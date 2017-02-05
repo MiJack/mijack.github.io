@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="袁宇杰（Mi&amp;Jack）在 Github 上的个人博客">
+    <meta name="keyword" content="null">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="江湖迈杰的博客" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        Android逆向工程101 – Part 2｜Mi&amp;Jack&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="http://mijack.github.io/2016/01/17/Android-Reverse-Engineering-101-Part-2/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+</head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('http://ohy7r8bgu.bkt.clouddn.com/background.jpg#博文默认的图片')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    江湖迈杰的博客
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/Tags/">Tags</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/links/">links</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="http://ohy7r8bgu.bkt.clouddn.com/background.jpg#博文默认的图片">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('http://ohy7r8bgu.bkt.clouddn.com/background.jpg#博文默认的图片')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>Android逆向工程101 – Part 2</h1>
+                    
+                    <span class="meta">
+                         作者 Mi&Jack
+                        <span>
+                          日期 2016-01-17
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#Android"
+                           title="Android">Android</a>
+                        
+                        <a class="tag" href="/tags/#逆向工程"
+                           title="逆向工程">逆向工程</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            Android逆向工程101 – Part 2
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <p>在这个系列的<a href="http://www.fasteque.com/android-reverse-engineering-101-part-1/" target="_blank" rel="external">第一篇文章</a> 中，我们已经探讨过了<strong>APK</strong>和<strong>AAR</strong> 组件的组成格式.</p>
+<p>正如之前所提到的，Google Play商店中可用的应用（或者几乎装在你手机上的所有的应用）都是一个apk文件。在第二部分，我们告诉你如何使用 <strong>aapt</strong> 读取apk中与value部分有关的信息。</p>
+<p>###AAPT</p>
+<p>如果你安装了Android SDK，那么你就有<strong>aapt</strong>了。事实上，“<strong>Android Asset Packaging Tool</strong>”是android 构建工具中的一部分，你可以在以下路径中找到它，例如：</p>
+<p><code>ANDROID_SDK_HOME/build-tools/23.0.2</code></p>
+<p>请注意，你会发现编译工具的每个版本都会有一个单独的文件夹：当你使用 Android SDK Manager去安装新版本的Build tools的时候，现有的版本并没有被覆盖，而是为其单独创建文件夹。这让你可以在不同版本的工具之间切换。</p>
+<p>在使用Android Studio的时候，你一定记得在model对应的<code>build.gradle</code>脚本文件中设置Build Tools的版本。</p>
+<p>这个工具是Android构建系统中的一部分，它允许您查看、创建和更改ZIP兼容文件（例如zip，jar，APK）。它还可以将资源编译成二进制资源。</p>
+<p>Details about how the Android Build System works are beyond this article, but <strong>aapt</strong> is mainly used in the process to:</p>
+<p>关于Android构建过程的具体细节不在本文的讨论范围之内，但是，你需要知道<strong>aapt</strong>主要有以下几个作用：</p>
+<ul>
+<li>生成<strong>R.java</strong>文件，这样是对资源文件的初步处理</li>
+<li>将Android manifest、资源、assets等装入<strong>APK</strong>文件</li>
+<li>Add to the <strong>APK</strong> file the compiled classes, which have been already converted to the dex format by the <strong>dx</strong> tool.</li>
+<li>编译class，使用<strong>dx</strong>工具将其转化成dex，添加到<strong>APK</strong>文件中。<br>更为详细的构建过程请看<a href="http://developer.android.com/sdk/installing/studio-build.html" target="_blank" rel="external">官方文档</a>.</li>
+</ul>
+<p>同时，<strong>aapt</strong>还可以用来从一个apk文件提取一些信息。</p>
+<p>If you would like to try the same commands, you just need to get one APK file as I have already explained in the <a href="http://www.fasteque.com/android-reverse-engineering-101-part-1/" target="_blank" rel="external">first article</a>.</p>
+<p>如果你还想尝试那些命令，你可以使用我在<a href="http://www.fasteque.com/android-reverse-engineering-101-part-1/" target="_blank" rel="external">第一篇</a>中提供的apk文件。</p>
+<p>###PACKAGE CONTENT</p>
+<p>获取<strong>apk</strong>文件中的文件清单，只需要如下简单的指令：</p>
+<p><code>aapt list FILENAME.apk</code></p>
+<p>在其后面添加 <code>-v</code>，你将知道更多关于上述文件的信息，例如文件的大小，创建的日期时间，CRC-32循环冗余校验码等。</p>
+<p><img src="http://www.fasteque.com/wp-content/uploads/2015/11/Screen-Shot-2015-11-14-at-14.11.53-1024x410.png" alt=""><br>aapt list -v</p>
+<p>###PACKAGE DETAILS</p>
+<p>使用<code>dump</code>指令，你可以找到更为详细的信息。</p>
+<p>添加<code>badging</code>选项，会打印更多信息，如包名称、版本名称、版本号、权限、支持屏幕、启动时的<code>Activity</code>、应用程序名称和图标文件，…</p>
+<p><code>aapt dump badging FILENAME.apk</code></p>
+<p><img src="http://www.fasteque.com/wp-content/uploads/2015/11/Screen-Shot-2015-11-14-at-14.26.44.png" alt=""><br><img src="http://www.fasteque.com/wp-content/uploads/2015/11/Screen-Shot-2015-11-14-at-14.28.04-1024x234.png" alt=""><br><code>aapt dump badging</code></p>
+<p><code>permissions</code> 选项可以打印（和Android manifest文件中的包名称对应）应用所需的权限。请注意，只有在清单中显式声明的权限才会被列出来。例如，<br><code>android.permission.WRITE_EXTERNAL_STORAGE</code>隐式要求权限<code>android.permission.READ_EXTERNAL_STORAGE</code>，但是该权限却不会出现在列表中。<br><code>aapt dump permissions FILENAME.apk</code><br><img src="http://www.fasteque.com/wp-content/uploads/2015/11/Screen-Shot-2015-11-14-at-14.38.35-1024x87.png" alt=""><br><code>aapt dump permissions</code></p>
+<p><code>configurations</code> 选项会打印出apk的configurations:</p>
+<p><code>aapt dump configurations FILENAME.apk</code></p>
+<p><img src="http://www.fasteque.com/wp-content/uploads/2015/11/Screen-Shot-2015-11-14-at-16.50.59-1024x300.png" alt=""><br><code>aapt dump configurations</code></p>
+<p><code>resources</code>指令会打印出APK文件的resource table 。<br>因此，你所得到的将是应用引用的所有资源列表，包括attributes, strings, dimens, layouts, styles, menus, drawables, …</p>
+<p>您还可以从应用的依赖库得到对应的资源：例如，如果<code>appcompat-v7</code>是项目中的一个依赖，那么他的资源也会被列出来。</p>
+<p><code>aapt dump resources FILENAME.apk</code></p>
+<p><img src="http://www.fasteque.com/wp-content/uploads/2015/11/Screen-Shot-2015-11-14-at-16.54.30-1024x425.png" alt=""><br><code>aapt dump resources</code></p>
+<p>最后一个命令<code>xmltree</code>，他十分有用：它可以打印出asset中编译好的xml文件。正如我在第一篇文章所提到的，xml文件是以二进制文件的形式被打包到apk文件中。所以你不能使用编辑器或者阅读器把它打开。但是，使用这个命令，你至少读起来更容易一些。</p>
+<p><code>aapt dump xmltree FILENAME.apk RESOURCE.xml</code><br><img src="http://www.fasteque.com/wp-content/uploads/2015/11/Screen-Shot-2015-11-14-at-17.07.31-1024x398.png" alt=""><br><code>aapt dump xmltree</code></p>
+<p>这就是<strong>aapt</strong>中比较重要的命令，但是，我觉得你还是有必要去看看所有的参数。</p>
+<p>正如你所看到的，使用这些简单的命令，就可以获取应用程序的一些细节信息，但它只是只读的，而你不能改变任何东西的apk文件。<br>在这篇文章中，我原本打算提过一下<strong> dex2jar </strong>以及如何使用它来反编译Android应用程序，但现在看有很多信息需要整理消化，所以这是顺延到下一个<a href="http://www.fasteque.com/android-reverse-engineering-101-part-3/" target="_blank" rel="external">博客</a>.</p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2016/01/17/Android-Reverse-Engineering-101-Part-4/" data-toggle="tooltip" data-placement="top"
+                           title="Android逆向工程101 – Part 4">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2016/01/07/Android-Reverse-Engineering-101-Part-1/" data-toggle="tooltip" data-placement="top"
+                           title="Android逆向工程101 – Part 1">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#Android"
+                           title="Android">Android</a>
+                        
+                        <a class="tag" href="/tags/#逆向工程"
+                           title="逆向工程">逆向工程</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
+                        
+                        <li><a href="http://chih.me">chih</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/mijackstudio">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/mijackstudio">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/mijack">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 江湖迈杰的博客 2017
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://mijack.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-75651210- 1';
+    var _gaDomain = 'auto';
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','null','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="https://avatars.githubusercontent.com/u/4158061?v=3">
+</body>
+
+</html>

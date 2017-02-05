@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="袁宇杰（Mi&amp;Jack）在 Github 上的个人博客">
+    <meta name="keyword" content="null">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="江湖迈杰的博客" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        使用Gradle将项目发布到Bitbucket上｜Mi&amp;Jack&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="http://mijack.github.io/2015/10/17/Publish-with-Gradle-on-Bitbucket/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+</head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('http://ohy7r8bgu.bkt.clouddn.com/background.jpg#博文默认的图片')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    江湖迈杰的博客
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/Tags/">Tags</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/links/">links</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="http://ohy7r8bgu.bkt.clouddn.com/background.jpg#博文默认的图片">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('http://ohy7r8bgu.bkt.clouddn.com/background.jpg#博文默认的图片')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>使用Gradle将项目发布到Bitbucket上</h1>
+                    
+                    <span class="meta">
+                         作者 Mi&Jack
+                        <span>
+                          日期 2015-10-17
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#Android"
+                           title="Android">Android</a>
+                        
+                        <a class="tag" href="/tags/#Gradle"
+                           title="Gradle">Gradle</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            使用Gradle将项目发布到Bitbucket上
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <blockquote>
+<ul>
+<li>原文链接 : <a href="https://medium.com/@Mul0w/publish-with-gradle-on-bitbucket-1463236dc460" target="_blank" rel="external">Publish with Gradle on Bitbucket</a></li>
+<li>原文作者 : <a href="https://medium.com/@Mul0w" target="_blank" rel="external">Stef</a></li>
+<li>译文出自 : <a href="http://www.devtf.cn" target="_blank" rel="external">开发技术前线 www.devtf.cn。未经允许，不得转载!</a></li>
+<li>译者 : <a href="https://github.com/mijack" target="_blank" rel="external">MiJack</a></li>
+<li>校对者: <a href="https://github.com/mijack" target="_blank" rel="external">MiJack</a></li>
+<li>状态 :  已完成</li>
+</ul>
+</blockquote>
+<p>大家好！</p>
+<p>我们经常看见一些开源库放在MavenCentral, JCenter等仓库上，但是对于一些现有的库例如公司的库和工具，有没有类似的处理方法？</p>
+<p>当然，你可能知道一些私有的仓库，例如（Nexus, Archiva），但是，有时候，你可能没有时间去接触公司的基础架构，比方说，你在一家PHP公司做android开发，还有很多事要做。</p>
+<p>就只有这些了吗？是的，因为如果你使用过像Github或者Bitbucket这样的Git仓库，当你开始使用Maven库的时候将会如鱼得水。很棒，是不是？</p>
+<p><a href="https://twitter.com/chrisbanes" target="_blank" rel="external">Chris Banes</a>  曾经写过<a href="https://chris.banes.me/2013/08/27/pushing-aars-to-maven-central/" target="_blank" rel="external">一篇介绍使用Gradle将项目发布到Maven上的文章</a> 。</p>
+<p>我们来看一下究竟是怎么做的吧！</p>
+<p>###发布到仓库</p>
+<p>Note : 如果你只使用一个build.gradle文件，你可以在上面设置任何东西，或者，也可以将他们写入不同的文件，然后用下面一段代码帮助你部署。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">apply from: &apos;&lt;path-to-your-file&gt;&apos;</div></pre></td></tr></table></figure></p>
+<p>首先要使用Maven插件<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">apply plugin: &apos;maven&apos;</div></pre></td></tr></table></figure></p>
+<p>然后配置相应的信息（下面是上传到Bitbucket的例子，大写的地方是你项目中对应的属性）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">uploadArchives &#123;</div><div class="line">    configuration = configurations.archives</div><div class="line">    repositories.mavenDeployer &#123;</div><div class="line">        pom.groupId = GROUP</div><div class="line">        pom.artifactId = POM_ARTIFACT_ID</div><div class="line">        pom.version = VERSION_NAME</div><div class="line">        configuration = configurations.deployerJar</div><div class="line">        repository(url: &quot;git:releases://git@bitbucket.org:&lt;bitbucket-username&gt;/&lt;your-repo&gt;.git&quot;)</div><div class="line">        snapshotRepository(url: &quot;git:snapshots://git@bitbucket.org:&lt;bitbucket-username&gt;/&lt;your-repo&gt;.git&quot;)</div><div class="line">        pom.project &#123;</div><div class="line">            name POM_NAME</div><div class="line">            packaging POM_PACKAGING</div><div class="line">            description POM_DESCRIPTION</div><div class="line">            url POM_URL</div><div class="line">            scm &#123;</div><div class="line">                url POM_SCM_URL</div><div class="line">                connection POM_SCM_CONNECTION</div><div class="line">                developerConnection POM_SCM_DEV_CONNECTION</div><div class="line">            &#125;</div><div class="line">            licenses &#123;</div><div class="line">                license &#123;</div><div class="line">                    name POM_LICENCE_NAME</div><div class="line">                    url POM_LICENCE_URL</div><div class="line">                    distribution POM_LICENCE_DIST</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            developers &#123;</div><div class="line">                developer &#123;</div><div class="line">                    id POM_DEVELOPER_ID</div><div class="line">                    name POM_DEVELOPER_NAME</div><div class="line">                    email POM_DEVELOPER_EMAIL</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当然，你可以发现deployerJar，我们也需要设置它</p>
+<p>首先，我们需要添加依赖Synergian Wagon-Git:<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">allprojects &#123;</div><div class="line">    repositories &#123;</div><div class="line">        mavenCentral()</div><div class="line">        maven &#123; url &quot;https://raw.github.com/synergian/wagon-git/releases&quot;&#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>&amp;</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">    deployerJar &quot;ar.com.synergian:wagon-git:0.2.3&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后，下一步需要说明如下配置<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">configurations &#123; </div><div class="line">    deployerJar</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>现在，你可以部署了：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ gradle [clean build] uploadArchives</div></pre></td></tr></table></figure></p>
+<p>And … you’re done !<br>你完成了！</p>
+<p>###获取你的lib !</p>
+<p>当然，现在你可以发布你的库（不论私有与否）托管到Bitbucket上（或其他）的对应仓库上，这很容易做到：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">allprojects &#123;</div><div class="line">    repositories &#123;</div><div class="line">        mavenCentral()</div><div class="line">        maven &#123;</div><div class="line">            url &quot;https://api.bitbucket.org/1.0/repositories/&lt;bitbucket_username&gt;/&lt;bitbucket-repository&gt;/raw/snapshots&quot;</div><div class="line">            credentials &#123;</div><div class="line">                username REPOSITORY_USERNAME</div><div class="line">                password REPOSITORY_PASSWORD</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        maven &#123;</div><div class="line">            url &quot;https://api.bitbucket.org/1.0/repositories/&lt;bitbucket_username&gt;/&lt;bitbucket-repository&gt;/raw/releases&quot;</div><div class="line">            credentials &#123;</div><div class="line">                username REPOSITORY_USERNAME</div><div class="line">                password REPOSITORY_PASSWORD</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>当然，最好不要在那些需要提交的build.gradle文件里设置您的凭据，但是，你可以在你的gradle.properties设置。其中最好的办法是将是有一个专门的账户来获取你的库，他只有库的读取权限。顺便说一下，发现证书只有在使用私有库的时候才会用到。</p>
+<p>然后，像平常一样添加依赖，就可以使用你的库了：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">      compile &quot;GROUP-ID:ARTIFACT-ID:VERSION&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>你会在Github上找到deploy.gradle文件。</p>
+<p>就是这样;-)</p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2016/01/07/让 Toolbar 随着 RecyclerView 的滚动而显示隐藏/" data-toggle="tooltip" data-placement="top"
+                           title="让 Toolbar 随着 RecyclerView 的滚动而显示/隐藏">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2015/10/10/Android-Design-Support-Library/" data-toggle="tooltip" data-placement="top"
+                           title="Android Design Support Library">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#Android"
+                           title="Android">Android</a>
+                        
+                        <a class="tag" href="/tags/#Gradle"
+                           title="Gradle">Gradle</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
+                        
+                        <li><a href="http://chih.me">chih</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/mijackstudio">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/mijackstudio">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/mijack">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 江湖迈杰的博客 2017
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://mijack.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-75651210- 1';
+    var _gaDomain = 'auto';
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','null','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="https://avatars.githubusercontent.com/u/4158061?v=3">
+</body>
+
+</html>

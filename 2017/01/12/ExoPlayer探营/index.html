@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="袁宇杰（Mi&amp;Jack）在 Github 上的个人博客">
+    <meta name="keyword" content="null">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="江湖迈杰的博客" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        ExoPlayer探营｜Mi&amp;Jack&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="http://mijack.github.io/2017/01/12/ExoPlayer探营/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+</head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('http://ohy7r8bgu.bkt.clouddn.com/background.jpg#博文默认的图片')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    江湖迈杰的博客
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/Tags/">Tags</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/links/">links</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="http://ohy7r8bgu.bkt.clouddn.com/background.jpg#博文默认的图片">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('http://ohy7r8bgu.bkt.clouddn.com/background.jpg#博文默认的图片')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>ExoPlayer探营</h1>
+                    
+                    <span class="meta">
+                         作者 Mi&Jack
+                        <span>
+                          日期 2017-01-12
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#Android"
+                           title="Android">Android</a>
+                        
+                        <a class="tag" href="/tags/#ExoPlayer"
+                           title="ExoPlayer">ExoPlayer</a>
+                        
+                        <a class="tag" href="/tags/#视频播放"
+                           title="视频播放">视频播放</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            ExoPlayer探营
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h1 id="1-什么是ExoPlayer"><a href="#1-什么是ExoPlayer" class="headerlink" title="1.什么是ExoPlayer"></a>1.什么是ExoPlayer</h1><p>ExoPlayer是谷歌官方主导基于低层媒体API（如<a href="https://developer.android.com/reference/android/media/MediaCodec.html" target="_blank" rel="external">MediaCodec</a>，<a href="https://developer.android.com/reference/android/media/AudioTrack.html" target="_blank" rel="external">AudioTrack</a>，<a href="https://developer.android.com/reference/android/media/MediaDrm.html" target="_blank" rel="external">MediaDrm</a>）开发的Android媒体播放库，整体上的特点如下：</p>
+<ul>
+<li>高度的可定制性，开发者可以根据实际需求对其进行修改</li>
+<li>提供一系列MediaPlayer不提供的特性，例如，支持动态的自适应流HTTP(DASH) 和平滑流</li>
+<li>独立于Android系统，可以构建系统版本自主升级</li>
+</ul>
+<p>ExoPlayer各功能对系统版本的要求如下：</p>
+<table>
+<thead>
+<tr>
+<th>Use case</th>
+<th style="text-align:right">Android version number</th>
+<th style="text-align:right">Android API level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Audio playback</td>
+<td style="text-align:right">4.1</td>
+<td style="text-align:right">16</td>
+</tr>
+<tr>
+<td>Video playback</td>
+<td style="text-align:right">4.1</td>
+<td style="text-align:right">16</td>
+</tr>
+<tr>
+<td>DASH (no DRM)</td>
+<td style="text-align:right">4.1</td>
+<td style="text-align:right">16</td>
+</tr>
+<tr>
+<td>DASH (Widevine CENC; “cenc” scheme)</td>
+<td style="text-align:right">4.4</td>
+<td style="text-align:right">19</td>
+</tr>
+<tr>
+<td>SmoothStreaming (no DRM)</td>
+<td style="text-align:right">4.1</td>
+<td style="text-align:right">16</td>
+</tr>
+<tr>
+<td>SmoothStreaming (PlayReady SL2000)</td>
+<td style="text-align:right">AndroidTV</td>
+<td style="text-align:right">AndroidTV</td>
+</tr>
+<tr>
+<td>HLS (no DRM)</td>
+<td style="text-align:right">4.1</td>
+<td style="text-align:right">16</td>
+</tr>
+<tr>
+<td>HLS (AES-128 encryption)</td>
+<td style="text-align:right">4.1</td>
+<td style="text-align:right">16</td>
+</tr>
+</tbody>
+</table>
+<p>相关的网站如下：</p>
+<ul>
+<li>项目官网：<a href="http://google.github.io/ExoPlayer/" target="_blank" rel="external">http://google.github.io/ExoPlayer/</a></li>
+<li>开发指南：<a href="http://google.github.io/ExoPlayer/guide.html" target="_blank" rel="external">http://google.github.io/ExoPlayer/guide.html</a></li>
+<li>Github地址：<a href="https://github.com/google/ExoPlayer" target="_blank" rel="external">https://github.com/google/ExoPlayer</a></li>
+<li>Medium博客：<a href="https://medium.com/google-exoplayer" target="_blank" rel="external">https://medium.com/google-exoplayer</a></li>
+</ul>
+<h2 id="框架简介"><a href="#框架简介" class="headerlink" title="框架简介"></a>框架简介</h2><p>接口<code>ExoPlayer</code>是ExoPlayer的核心，提供了一些我们平时可能会用到的功能，如缓冲、暂停、播放或者快进快退。ExoPlayer通过控制组件实现了媒体的识别、加载和渲染。这些组件如下：</p>
+<ul>
+<li><strong>MediaSource</strong>:是对播放对象的抽象，由于播放对象可能存在于内存、磁盘甚至网络中，MediaSource还需要提供对应的读取方式。</li>
+<li><strong>Renderer</strong>:负责Media的渲染工作</li>
+<li><strong>TrackSelecter</strong>: 选择MediaSource中的轨道（Track）交由TrackRenderer负责渲染,这里包括音频轨道和视频轨道。</li>
+<li><strong>LoadControl</strong>:  负责媒体的加载，如何时进行加载以及加载的多少</li>
+</ul>
+<p>以上四个组件，MediaSource需要在播放媒体前传入ExoPlayer，而后三者则需要在创建ExoPlayer时制定。</p>
+<h1 id="2-ExoPlayer-的Hello-World"><a href="#2-ExoPlayer-的Hello-World" class="headerlink" title="2.ExoPlayer 的Hello World"></a>2.ExoPlayer 的Hello World</h1><p>使用ExoPlayer在音频和视频的播放上没有太大区别，这里我们以视频播放为例，介绍一下如何使用ExoPlayer 播放视频，可以分为以下几步：</p>
+<ol>
+<li>将ExoPlayer添加到项目依赖中</li>
+<li>创建SimpleExoPlayer实例</li>
+<li>将player关联到到View上</li>
+<li>创建MediaSource并使player处于prepare状态</li>
+<li>释放资源</li>
+</ol>
+<h2 id="1-将ExoPlayer添加到项目依赖中"><a href="#1-将ExoPlayer添加到项目依赖中" class="headerlink" title="1.将ExoPlayer添加到项目依赖中"></a><strong>1.将ExoPlayer添加到项目依赖中</strong></h2><p>ExoPlayer发布在Jcenter上，所以需要在项目根目录的<code>build.gralde</code>文件中添加如下代码：<br><figure class="highlight gradle"><table><tr><td class="code"><pre><div class="line"><span class="keyword">repositories</span> &#123;</div><div class="line">    jcenter()</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>ExoPlayer对应的gradle地址如下：<br><figure class="highlight gradle"><table><tr><td class="code"><pre><div class="line"><span class="keyword">compile</span> <span class="string">'com.google.android.exoplayer:exoplayer:r2.X.X'</span></div></pre></td></tr></table></figure></p>
+<h2 id="2-创建一个SimpleExoPlayer实例"><a href="#2-创建一个SimpleExoPlayer实例" class="headerlink" title="2.创建一个SimpleExoPlayer实例"></a><strong>2.创建一个SimpleExoPlayer实例</strong></h2><p>这里我们使用<code>ExoPlayerFactory.newSimpleInstance(Context, TrackSelector, LoadControl)</code>创建对应的ExoPlayer实例对象。<br>相关代码如下：<br><figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 1. Create a default TrackSelector</span></div><div class="line">BandwidthMeter bandwidthMeter = <span class="keyword">new</span> DefaultBandwidthMeter();</div><div class="line">TrackSelection.Factory videoTrackSelectionFactory = <span class="keyword">new</span> AdaptiveVideoTrackSelection.Factory(bandwidthMeter);</div><div class="line">TrackSelector trackSelector = <span class="keyword">new</span> DefaultTrackSelector(videoTrackSelectionFactory);</div><div class="line"><span class="comment">// 2. Create a default LoadControl</span></div><div class="line">LoadControl loadControl = <span class="keyword">new</span> DefaultLoadControl();</div><div class="line"><span class="comment">// 3. Create the player</span></div><div class="line">SimpleExoPlayer player =</div><div class="line">    ExoPlayerFactory.newSimpleInstance(context, trackSelector, loadControl);</div></pre></td></tr></table></figure></p>
+<h2 id="3-将player关联到到View上"><a href="#3-将player关联到到View上" class="headerlink" title="3.将player关联到到View上"></a><strong>3.将player关联到到View上</strong></h2><p>ExoPlayer默认提供了一个实现<code>SimpleExoPlayerView</code>,它包括<code>PlaybackControlView</code>和用于视频渲染的<code>Surface</code>，通过调用<code>SimpleExoPlayerView.setPlayer(SimpleExoPlayer)</code>，就可以将SimpleExoPlayerView和Player进行绑定。<br>当然你可以对以上行为进行自定义，例如将PlaybackControlView作为单独的组件或者实现一个属于你自己的PlaybackControlView。</p>
+<h2 id="4-准备player"><a href="#4-准备player" class="headerlink" title="4.准备player"></a><strong>4.准备player</strong></h2><p>在ExoPlayer中，一个媒体片段用MediaSource表示，如果要播放一个片段，需要创建对应的MediaSource（ExoPlayer提供的实现有DashMediaSource、SsMediaSource、HlsMediaSource、ExtractorMediaSource）。如果我们需要播放一段mp4的视频，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="comment">// Measures bandwidth during playback. Can be null if not required.</span></div><div class="line">DefaultBandwidthMeter bandwidthMeter = <span class="keyword">new</span> DefaultBandwidthMeter();</div><div class="line"><span class="comment">// Produces DataSource instances through which media data is loaded.</span></div><div class="line">DataSource.Factory dataSourceFactory = <span class="keyword">new</span> DefaultDataSourceFactory(<span class="keyword">this</span>,</div><div class="line">    Util.getUserAgent(<span class="keyword">this</span>, <span class="string">"yourApplicationName"</span>), bandwidthMeter);</div><div class="line"><span class="comment">// Produces Extractor instances for parsing the media data.</span></div><div class="line">ExtractorsFactory extractorsFactory = <span class="keyword">new</span> DefaultExtractorsFactory();</div><div class="line"><span class="comment">// This is the MediaSource representing the media to be played.</span></div><div class="line">MediaSource videoSource = <span class="keyword">new</span> ExtractorMediaSource(mp4VideoUri,</div><div class="line">    dataSourceFactory, extractorsFactory, <span class="keyword">null</span>, <span class="keyword">null</span>);</div><div class="line"><span class="comment">// Prepare the player with the source.</span></div><div class="line">player.prepare(videoSource);</div></pre></td></tr></table></figure>
+<p>当ExoPlayer准备就绪后，我们可以通过player控制视频的播放、前进或后退。</p>
+<h2 id="5-释放资源"><a href="#5-释放资源" class="headerlink" title="5.释放资源"></a><strong>5.释放资源</strong></h2><p>当你不需要player时，可以通过调用<code>ExoPlayer.release</code>来释放资源。</p>
+<h1 id="3-MediaSource"><a href="#3-MediaSource" class="headerlink" title="3.MediaSource"></a>3.MediaSource</h1><p>之前已经提到过了，ExoPlayer中一个media片段用<code>MediaSource</code>表示。除了之前提到过的<code>MediaSource</code>，ExoPlayer中还提供了MergingMediaSource, LoopingMediaSource 和 ConcatenatingMediaSource等MediaSource，通过他们之间的相互组合，我们可以得到各种各样的播放效果</p>
+<h2 id="合并视频和字幕"><a href="#合并视频和字幕" class="headerlink" title="合并视频和字幕"></a>合并视频和字幕</h2><figure class="highlight java"><table><tr><td class="code"><pre><div class="line">MediaSource videoSource = <span class="keyword">new</span> ExtractorMediaSource(videoUri, dataSourceFactory, extractorsFactory, <span class="keyword">null</span>, <span class="keyword">null</span>);</div><div class="line">Format format = Format.createTextSampleFormat(<span class="keyword">null</span>, MimeTypes.APPLICATION_TTML, <span class="keyword">null</span>, Format.NO_VALUE, Format.NO_VALUE, <span class="string">"en"</span>, <span class="keyword">null</span>);</div><div class="line">MediaSource subtitleSource = <span class="keyword">new</span> SingleSampleMediaSource(subtitleUri, dataSourceFactory, format, C.TIME_UNSET);</div><div class="line">MergingMediaSource mergedSource = <span class="keyword">new</span> MergingMediaSource(videoSource, subtitleSource);</div></pre></td></tr></table></figure>
+<h2 id="循环播放视频"><a href="#循环播放视频" class="headerlink" title="循环播放视频"></a>循环播放视频</h2><figure class="highlight java"><table><tr><td class="code"><pre><div class="line">MediaSource source = <span class="keyword">new</span> ExtractorMediaSource(videoUri, ...);</div><div class="line"><span class="comment">// Loops the video indefinitely.</span></div><div class="line">LoopingMediaSource loopingSource = <span class="keyword">new</span> LoopingMediaSource(source);</div><div class="line"><span class="comment">// Plays the video twice.</span></div><div class="line">LoopingMediaSource loopingSource = <span class="keyword">new</span> LoopingMediaSource(source,<span class="number">2</span>);</div></pre></td></tr></table></figure>
+<h2 id="连续播放视频"><a href="#连续播放视频" class="headerlink" title="连续播放视频"></a>连续播放视频</h2><figure class="highlight java"><table><tr><td class="code"><pre><div class="line">MediaSource firstSource = <span class="keyword">new</span> ExtractorMediaSource(firstVideoUri, ...);</div><div class="line">MediaSource secondSource = <span class="keyword">new</span> ExtractorMediaSource(secondVideoUri, ...);</div><div class="line"><span class="comment">// Plays the first video, then the second video.</span></div><div class="line">ConcatenatingMediaSource concatenatedSource = <span class="keyword">new</span> ConcatenatingMediaSource(firstSource, secondSource);</div></pre></td></tr></table></figure>
+<h1 id="4-事件监听"><a href="#4-事件监听" class="headerlink" title="4.事件监听"></a>4.事件监听</h1><p>在platback的过程中，应用可以可以根据ExoPlayer的状态做出相应的调整，对播放过程进行控制。为此，ExoPlayer提供了两个不同方式</p>
+<h2 id="事件回调（High-Level-Event）"><a href="#事件回调（High-Level-Event）" class="headerlink" title="事件回调（High Level Event）"></a>事件回调（High Level Event）</h2><p>ExoPlayer提供了一个ExoPlay.EventListener这一接口，通过addListener和removeListener可以添加和删除相关接口。这个接口可以监听player状态的更改，提供的方法如下。除此以外，SimpleExoPlayer提供了<code>setVideoListener</code>负责接收与视频渲染有关的事件，<code>setVideoDebugListener</code>和<code>setAudioDebugListener</code>用于调试信息。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ExoPlayer</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="class"><span class="keyword">interface</span> <span class="title">EventListener</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Called when the timeline and/or manifest has been refreshed.</div><div class="line">     * &lt;p&gt;</div><div class="line">     * Note that if the timeline has changed then a position discontinuity may also have occurred.</div><div class="line">     * For example the current period index may have changed as a result of periods being added or</div><div class="line">     * removed from the timeline. The will &lt;em&gt;not&lt;/em&gt; be reported via a separate call to</div><div class="line">     * &#123;<span class="doctag">@link</span> #onPositionDiscontinuity()&#125;.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> timeline The latest timeline. Never null, but may be empty.</div><div class="line">     * <span class="doctag">@param</span> manifest The latest manifest. May be null.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onTimelineChanged</span><span class="params">(Timeline timeline, Object manifest)</span></span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Called when the available or selected tracks change.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> trackGroups The available tracks. Never null, but may be of length zero.</div><div class="line">     * <span class="doctag">@param</span> trackSelections The track selections for each &#123;<span class="doctag">@link</span> Renderer&#125;. Never null and always</div><div class="line">     *     of length &#123;<span class="doctag">@link</span> #getRendererCount()&#125;, but may contain null elements.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onTracksChanged</span><span class="params">(TrackGroupArray trackGroups, TrackSelectionArray trackSelections)</span></span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Called when the player starts or stops loading the source.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> isLoading Whether the source is currently being loaded.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onLoadingChanged</span><span class="params">(<span class="keyword">boolean</span> isLoading)</span></span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Called when the value returned from either &#123;<span class="doctag">@link</span> #getPlayWhenReady()&#125; or</div><div class="line">     * &#123;<span class="doctag">@link</span> #getPlaybackState()&#125; changes.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> playWhenReady Whether playback will proceed when ready.</div><div class="line">     * <span class="doctag">@param</span> playbackState One of the &#123;<span class="doctag">@code</span> STATE&#125; constants defined in the &#123;<span class="doctag">@link</span> ExoPlayer&#125;</div><div class="line">     *     interface.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onPlayerStateChanged</span><span class="params">(<span class="keyword">boolean</span> playWhenReady, <span class="keyword">int</span> playbackState)</span></span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Called when an error occurs. The playback state will transition to &#123;<span class="doctag">@link</span> #STATE_IDLE&#125;</div><div class="line">     * immediately after this method is called. The player instance can still be used, and</div><div class="line">     * &#123;<span class="doctag">@link</span> #release()&#125; must still be called on the player should it no longer be required.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> error The error.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onPlayerError</span><span class="params">(ExoPlaybackException error)</span></span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Called when a position discontinuity occurs without a change to the timeline. A position</div><div class="line">     * discontinuity occurs when the current window or period index changes (as a result of playback</div><div class="line">     * transitioning from one period in the timeline to the next), or when the playback position</div><div class="line">     * jumps within the period currently being played (as a result of a seek being performed, or</div><div class="line">     * when the source introduces a discontinuity internally).</div><div class="line">     * &lt;p&gt;</div><div class="line">     * When a position discontinuity occurs as a result of a change to the timeline this method is</div><div class="line">     * &lt;em&gt;not&lt;/em&gt; called. &#123;<span class="doctag">@link</span> #onTimelineChanged(Timeline, Object)&#125; is called in this case.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onPositionDiscontinuity</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<h2 id="Handler-Low-Level-Event"><a href="#Handler-Low-Level-Event" class="headerlink" title="Handler(Low Level Event)"></a>Handler(Low Level Event)</h2><p>通过调用<code>ExoPlayer.void sendMessages(ExoPlayerMessage... )</code>和<code>ExoPlayer.void blockingSendMessages(ExoPlayerMessage... messages)</code>实现和ExoPlayer交互，再由内部的Handler进行消息的分发和处理。其实，在具体实现上，回调是通过<code>Handler.handleMessage(Message)</code>实现的，两者在实现上是一样的。</p>
+<h1 id="5-使用Stetho对ExoPlayer进行网络调试"><a href="#5-使用Stetho对ExoPlayer进行网络调试" class="headerlink" title="5.使用Stetho对ExoPlayer进行网络调试"></a>5.使用Stetho对ExoPlayer进行网络调试</h1><p><a href="http://facebook.github.io/stetho/" target="_blank" rel="external">Stetho</a>是FaceBook出品的Android调试利器，在它的配合下，可以使用Chrome进行调试。当然，ExoPlayer也支持Stetho调试，开启方式如下：</p>
+<h2 id="1-实现添加相关库依赖"><a href="#1-实现添加相关库依赖" class="headerlink" title="1.实现添加相关库依赖"></a><strong>1.实现添加相关库依赖</strong></h2><p>由于ExoPlayer的数据读取是由接口<code>com.google.android.exoplayer2.upstream.DataSource</code>实现的，这里的我们采用的类是<code>com.google.android.exoplayer2.ext.okhttp.OkHttpDataSourceFactory</code>，所以需要添加如下依赖<br><figure class="highlight gradle"><table><tr><td class="code"><pre><div class="line"><span class="keyword">compile</span> <span class="string">'com.google.android.exoplayer:extension-okhttp:r2.1.1'</span></div><div class="line"><span class="keyword">compile</span> <span class="string">'com.squareup.okhttp3:okhttp:3.5.0'</span></div><div class="line"><span class="keyword">compile</span> <span class="string">'com.facebook.stetho:stetho:1.4.2'</span></div><div class="line"><span class="keyword">compile</span> <span class="string">'com.facebook.stetho:stetho-okhttp3:1.4.2'</span></div></pre></td></tr></table></figure></p>
+<h2 id="2-网络和Stetho的初始化"><a href="#2-网络和Stetho的初始化" class="headerlink" title="2.网络和Stetho的初始化"></a><strong>2.网络和Stetho的初始化</strong></h2><p>通过<code>Stetho.initializeWithDefaults(Context)</code>完成Stetho的初始化。<br>创建OkHttpClient，并添加StethoInterceptor到NetworkInterceptor<br><figure class="highlight java"><table><tr><td class="code"><pre><div class="line">Stetho.initializeWithDefaults(<span class="keyword">this</span>);</div><div class="line"></div><div class="line">OkHttpClient okHttpClient = <span class="keyword">new</span> OkHttpClient.Builder()</div><div class="line">        .addNetworkInterceptor(<span class="keyword">new</span> StethoInterceptor())</div><div class="line">        .build();</div></pre></td></tr></table></figure></p>
+<h2 id="3-创建OkHttpDataSource"><a href="#3-创建OkHttpDataSource" class="headerlink" title="3.创建OkHttpDataSource"></a><strong>3.创建OkHttpDataSource</strong></h2><figure class="highlight java"><table><tr><td class="code"><pre><div class="line">DataSource.Factory dataSourceFactory =</div><div class="line">        <span class="keyword">new</span> OkHttpDataSourceFactory(okHttpClient, userAgent, bandwidthMeter);</div></pre></td></tr></table></figure>
+<h2 id="4-查看调试结果"><a href="#4-查看调试结果" class="headerlink" title="4.查看调试结果"></a><strong>4.查看调试结果</strong></h2><p>打开<code>chrome://inspect</code>，我们就可以在<code>Developer Tools</code>的<code>Network</code>部分查看到相关的调试结果:<br><img src="http://ohy7r8bgu.bkt.clouddn.com/debug-exoplayer-using-stetho.png" alt=""></p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2016/11/14/小试RxJava原理/" data-toggle="tooltip" data-placement="top"
+                           title="小试RxJava原理">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-什么是ExoPlayer"><span class="toc-text">1.什么是ExoPlayer</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#框架简介"><span class="toc-text">框架简介</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-ExoPlayer-的Hello-World"><span class="toc-text">2.ExoPlayer 的Hello World</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-将ExoPlayer添加到项目依赖中"><span class="toc-text">1.将ExoPlayer添加到项目依赖中</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-创建一个SimpleExoPlayer实例"><span class="toc-text">2.创建一个SimpleExoPlayer实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-将player关联到到View上"><span class="toc-text">3.将player关联到到View上</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-准备player"><span class="toc-text">4.准备player</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-释放资源"><span class="toc-text">5.释放资源</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-MediaSource"><span class="toc-text">3.MediaSource</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#合并视频和字幕"><span class="toc-text">合并视频和字幕</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#循环播放视频"><span class="toc-text">循环播放视频</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#连续播放视频"><span class="toc-text">连续播放视频</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-事件监听"><span class="toc-text">4.事件监听</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#事件回调（High-Level-Event）"><span class="toc-text">事件回调（High Level Event）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Handler-Low-Level-Event"><span class="toc-text">Handler(Low Level Event)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-使用Stetho对ExoPlayer进行网络调试"><span class="toc-text">5.使用Stetho对ExoPlayer进行网络调试</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-实现添加相关库依赖"><span class="toc-text">1.实现添加相关库依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-网络和Stetho的初始化"><span class="toc-text">2.网络和Stetho的初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-创建OkHttpDataSource"><span class="toc-text">3.创建OkHttpDataSource</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-查看调试结果"><span class="toc-text">4.查看调试结果</span></a></li></ol></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#Android"
+                           title="Android">Android</a>
+                        
+                        <a class="tag" href="/tags/#ExoPlayer"
+                           title="ExoPlayer">ExoPlayer</a>
+                        
+                        <a class="tag" href="/tags/#视频播放"
+                           title="视频播放">视频播放</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
+                        
+                        <li><a href="http://chih.me">chih</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/mijackstudio">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/mijackstudio">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/mijack">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 江湖迈杰的博客 2017
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://mijack.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-75651210- 1';
+    var _gaDomain = 'auto';
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','null','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="https://avatars.githubusercontent.com/u/4158061?v=3">
+</body>
+
+</html>

@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="袁宇杰（Mi&amp;Jack）在 Github 上的个人博客">
+    <meta name="keyword" content="null">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="江湖迈杰的博客" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        Mi&amp;Jack&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="http://mijack.github.io/tags/逆向工程/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+</head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('http://ohy7r8bgu.bkt.clouddn.com/background.jpg#博文默认的图片')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "false" data-istags="true
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    江湖迈杰的博客
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/Tags/">Tags</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/links/">links</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+
+<!-- Page Header -->
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
+    <div class="row">
+        <header class="intro-header">
+            <div class="container">
+                <div class="site-heading text-center">
+                    <div class="about-me">
+                        <!--移动端头部显示-->
+                        <img src="https://avatars.githubusercontent.com/u/4158061?v=3"/>
+                        <h5><a href="/about/">Mi&amp;Jack</a></h5>
+                        <p>null</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+</div>
+<!-- Main Content -->
+<div class="container custom-haojen-container">
+    <!-- Post Container -->
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
+            <!-- Main Content -->
+
+
+
+<div class="post-preview "
+     style="background-image: url('http://ohy7r8bgu.bkt.clouddn.com/background.jpg#移动端显示的图片')">
+    <a href="/2016/01/17/Android-Reverse-Engineering-101-Part-5/">
+        <h2 class="post-title">
+            Android逆向工程101 – Part 5
+        </h2>
+        <p class="post-meta">
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2016-01-17
+        </p>
+        
+        <div class="post-content-preview">
+            <p>
+                到目前为止,在之前关于Android逆向工程的介绍中，我们已经知道了APK文件的格式,如何使用使用AAPT提取应用程序中和Android SDK相关的有用信息，如何将DEX字节码转化成更具可读性、易于编辑的格式以及如何反编译和修改Android应用程序的源代码和资源。
+本文是这个系列的最后一篇文..
+            </p>
+        </div>
+    </a>
+
+</div>
+
+<hr>
+
+
+
+<div class="post-preview "
+     style="background-image: url('http://ohy7r8bgu.bkt.clouddn.com/background.jpg#移动端显示的图片')">
+    <a href="/2016/01/17/Android-Reverse-Engineering-101-Part-4/">
+        <h2 class="post-title">
+            Android逆向工程101 – Part 4
+        </h2>
+        <p class="post-meta">
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2016-01-17
+        </p>
+        
+        <div class="post-content-preview">
+            <p>
+                在Android应用逆向工程的系列博客中，我们已经讨论过了APK的文件格式, aapt 和 dex2jar，接下来我们介绍Apktool。
+我们都知道，APK的资源文件是经过压缩以二进制的格式存储在文件中，我们无法通过aapt和dex2jar对其进行查看和编辑，前者实质是一个读取工具，用于从ap..
+            </p>
+        </div>
+    </a>
+
+</div>
+
+<hr>
+
+
+
+<div class="post-preview "
+     style="background-image: url('http://ohy7r8bgu.bkt.clouddn.com/background.jpg#移动端显示的图片')">
+    <a href="/2016/01/17/Android-Reverse-Engineering-101-Part-2/">
+        <h2 class="post-title">
+            Android逆向工程101 – Part 2
+        </h2>
+        <p class="post-meta">
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2016-01-17
+        </p>
+        
+        <div class="post-content-preview">
+            <p>
+                在这个系列的第一篇文章 中，我们已经探讨过了APK和AAR 组件的组成格式.
+正如之前所提到的，Google Play商店中可用的应用（或者几乎装在你手机上的所有的应用）都是一个apk文件。在第二部分，我们告诉你如何使用 aapt 读取apk中与value部分有关的信息。
+###AAPT
+如果你..
+            </p>
+        </div>
+    </a>
+
+</div>
+
+<hr>
+
+
+
+<div class="post-preview "
+     style="background-image: url('http://ohy7r8bgu.bkt.clouddn.com/background.jpg#移动端显示的图片')">
+    <a href="/2016/01/07/Android-Reverse-Engineering-101-Part-1/">
+        <h2 class="post-title">
+            Android逆向工程101 – Part 1
+        </h2>
+        <p class="post-meta">
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2016-01-07
+        </p>
+        
+        <div class="post-content-preview">
+            <p>
+                这篇文章是关于android应用逆向系列的第一片文章。
+在这个系列里，我将讲解以下内容：APK、AAR的文件格式，一些常用的逆向工程和检测工具，dex2jar、 AAPT、androguard和 apktool。
+Part 1 – APK and AAR format
+Part 2 – aapt..
+            </p>
+        </div>
+    </a>
+
+</div>
+
+<hr>
+
+
+
+
+<!-- 翻页 pager -->
+
+<ul class="pager">
+    
+    
+</ul>
+
+
+        </div>
+        <!-- Sidebar Container -->
+        <div class="
+                col-lg-3 col-lg-offset-0
+                col-md-3 col-md-offset-0
+                col-sm-12
+                col-xs-12
+                sidebar-container
+            ">
+
+            <!-- About Me -->
+            <section class="visible-md visible-lg" style="padding: 0 18px">
+                <div class="short-about">
+                    <!--侧边栏头像-->
+                    
+                    <img src="https://avatars.githubusercontent.com/u/4158061?v=3"/>
+                    
+                    <h5><a href="/about/">Mi&amp;Jack</a></h5>
+                    
+                    <hr>
+                    <!-- SNS Link 社交 -->
+                    <ul class="list-inline">
+                        
+                        
+                        
+                        <li>
+                            <a target="_blank" href="https://www.zhihu.com/people/mijackstudio">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa  fa-stack-1x fa-inverse">知</i>
+                                        </span>
+                            </a>
+                        </li>
+                        
+
+                        
+                        <li>
+                            <a target="_blank" href="http://weibo.com/mijackstudio">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                                        </span>
+                            </a>
+                        </li>
+                        
+
+                        
+
+                        
+                        <li>
+                            <a target="_blank" href="https://github.com/mijack">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                        </span>
+                            </a>
+                        </li>
+                        
+
+                        
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Featured Tags  标签 -->
+            
+            <section>
+                <div class="tags">
+                    
+                    
+                    <a href="/tags/#Android" title="Android"
+                       rel="12">Android</a>
+                    
+                    
+                    
+                    <a href="/tags/#Material Design" title="Material Design"
+                       rel="1">Material Design</a>
+                    
+                    
+                    
+                    <a href="/tags/#Maven" title="Maven"
+                       rel="1">Maven</a>
+                    
+                    
+                    
+                    <a href="/tags/#逆向工程" title="逆向工程"
+                       rel="4">逆向工程</a>
+                    
+                    
+                    
+                    <a href="/tags/#ExoPlayer" title="ExoPlayer"
+                       rel="1">ExoPlayer</a>
+                    
+                    
+                    
+                    <a href="/tags/#视频播放" title="视频播放"
+                       rel="1">视频播放</a>
+                    
+                    
+                    
+                    <a href="/tags/#MVP" title="MVP"
+                       rel="1">MVP</a>
+                    
+                    
+                    
+                    <a href="/tags/#Network" title="Network"
+                       rel="1">Network</a>
+                    
+                    
+                    
+                    <a href="/tags/#Log" title="Log"
+                       rel="1">Log</a>
+                    
+                    
+                    
+                    <a href="/tags/#Layout" title="Layout"
+                       rel="1">Layout</a>
+                    
+                    
+                    
+                    <a href="/tags/#RxJava" title="RxJava"
+                       rel="1">RxJava</a>
+                    
+                    
+                    
+                    <a href="/tags/#源码分享" title="源码分享"
+                       rel="1">源码分享</a>
+                    
+                    
+                    
+                    <a href="/tags/#开发" title="开发"
+                       rel="1">开发</a>
+                    
+                    
+                    
+                    <a href="/tags/#Gradle" title="Gradle"
+                       rel="1">Gradle</a>
+                    
+                    
+                </div>
+            </section>
+            
+
+            
+            <hr>
+            <h5 style="text-align: center;">Friends</h5>
+            <ul class="list-inline" style="text-align: center;">
+                
+                <li><a href="http://chih.me" target="_blank">chih</a></li>
+                
+            </ul>
+            
+
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/mijackstudio">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/mijackstudio">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/mijack">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 江湖迈杰的博客 2017
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://mijack.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-75651210- 1';
+    var _gaDomain = 'auto';
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','null','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="https://avatars.githubusercontent.com/u/4158061?v=3">
+</body>
+
+</html>

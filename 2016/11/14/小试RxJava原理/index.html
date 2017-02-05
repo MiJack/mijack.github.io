@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="袁宇杰（Mi&amp;Jack）在 Github 上的个人博客">
+    <meta name="keyword" content="null">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="江湖迈杰的博客" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        小试RxJava原理｜Mi&amp;Jack&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="http://mijack.github.io/2016/11/14/小试RxJava原理/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+</head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('http://ohy7r8bgu.bkt.clouddn.com/background.jpg#博文默认的图片')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    江湖迈杰的博客
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/Tags/">Tags</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/links/">links</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="http://ohy7r8bgu.bkt.clouddn.com/background.jpg#博文默认的图片">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('http://ohy7r8bgu.bkt.clouddn.com/background.jpg#博文默认的图片')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>小试RxJava原理</h1>
+                    
+                    <span class="meta">
+                         作者 Mi&Jack
+                        <span>
+                          日期 2016-11-14
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#RxJava"
+                           title="RxJava">RxJava</a>
+                        
+                        <a class="tag" href="/tags/#源码分享"
+                           title="源码分享">源码分享</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            小试RxJava原理
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <p>RxJava的Hello World<br>在开始介绍RxJava的源码之前，我们先来写一个RxJava的Hello world吧！</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"></div><div class="line">Observable</div><div class="line">        .create(<span class="keyword">new</span> Observable.OnSubscribe&lt;Integer&gt;() &#123;</div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(Subscriber&lt;? <span class="keyword">super</span> Integer&gt; subscriber)</span> </span>&#123;</div><div class="line">                subscriber.onNext(<span class="number">1</span>);</div><div class="line">                subscriber.onNext(<span class="number">2</span>);</div><div class="line">                subscriber.onNext(<span class="number">3</span>);</div><div class="line">                subscriber.onCompleted();</div><div class="line">            &#125;</div><div class="line">        &#125;)</div><div class="line">        .subscribe(<span class="keyword">new</span> Subscriber&lt;Integer&gt;() &#123;</div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>&#123;</div><div class="line">                System.out.println(<span class="string">"onCompleted"</span>);</div><div class="line">            &#125;</div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</div><div class="line">                System.out.println(<span class="string">"Error"</span>);</div><div class="line">            &#125;</div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(Integer integer)</span> </span>&#123;</div><div class="line">                System.out.println(integer);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div></pre></td></tr></table></figure>
+<p>这是我们熟悉的RxJava链式调用，在源码分析上比较麻烦，无法很明确的声明每一个代码块的含义。在这里，我们采用非链式调用的方式对这个Hello world进行重构（我们采用lambda 表达式）。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="comment">//创建OnSubscribe，在call()中对应数据源产生形式</span></div><div class="line">Observable.OnSubscribe&lt;Integer&gt; onSubscribe = (subscriber) -&gt; &#123;</div><div class="line">    subscriber.onNext(<span class="number">1</span>);</div><div class="line">    subscriber.onNext(<span class="number">2</span>);</div><div class="line">    subscriber.onNext(<span class="number">3</span>);</div><div class="line">    subscriber.onCompleted();</div><div class="line">&#125;;</div><div class="line"><span class="comment">//创建Subscriber，定义针对数据流的响应</span></div><div class="line">Subscriber&lt;Integer&gt; subscriber = <span class="keyword">new</span> Subscriber&lt;Integer&gt;() &#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"onCompleted"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"Error"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(Integer integer)</span> </span>&#123;</div><div class="line">        System.out.println(integer);</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"><span class="comment">//根据OnSubscribe创建Observable</span></div><div class="line">Observable&lt;Integer&gt; observable = Observable.create(onSubscribe);</div><div class="line"><span class="comment">//创建observable、subscriber的注册关系</span></div><div class="line">observable.subscribe(subscriber);</div></pre></td></tr></table></figure>
+<h1 id="Hello-World的简单分析"><a href="#Hello-World的简单分析" class="headerlink" title="Hello World的简单分析"></a>Hello World的简单分析</h1><p>简单的说，RxJava的原理就是观察者模式，不过RxJava比观察者模式强大多了。在RxJava，Observable相当于被观察者，它是事件的源头，而OnSubscribe则是定义数据源如何发送事件，或者如何发送什么样的数据；Subscriber则是观察者（在代码实现上，Subscriber实现了接口Observer），定义了接收数据后对应的反应。observable.subscribe(subscriber)将两者进行了关联：即告诉Observable，它有一个Subscriber；同时触发OnSubscribe.onCall()，开启整个事件流。<br>如下图,明显问题的关键就在于observable.subscribe(subscriber)。</p>
+<h2 id="observable-subscribe-subscriber"><a href="#observable-subscribe-subscriber" class="headerlink" title="observable.subscribe(subscriber)"></a>observable.subscribe(subscriber)</h2><p>接下来，我们对observable.subscribe(subscriber)进行分析,对应的代码在Observable.java中。</p>
+<p>注：如果没有特殊说明，我们使用的RxJava的版本为1.2.2</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> Subscription <span class="title">subscribe</span><span class="params">(Subscriber&lt;? <span class="keyword">super</span> T&gt; subscriber)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> Observable.subscribe(subscriber, <span class="keyword">this</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">static</span> &lt;T&gt; <span class="function">Subscription <span class="title">subscribe</span><span class="params">(Subscriber&lt;? <span class="keyword">super</span> T&gt; subscriber, Observable&lt;T&gt; observable)</span> </span>&#123;</div><div class="line">    <span class="comment">//检查subscriber、observable.onSubscribe是否为空</span></div><div class="line">    <span class="keyword">if</span> (subscriber == <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"subscriber can not be null"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (observable.onSubscribe == <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"onSubscribe function can not be null."</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//调用subscriber的onStart()</span></div><div class="line">    subscriber.onStart();</div><div class="line">    <span class="comment">//将subscriber封装成SafeSubscriber</span></div><div class="line">    <span class="keyword">if</span> (!(subscriber <span class="keyword">instanceof</span> SafeSubscriber)) &#123;</div><div class="line">        subscriber = <span class="keyword">new</span> SafeSubscriber&lt;T&gt;(subscriber);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        <span class="comment">//通过RxJavaHook对observable, observable.onSubscribe进行封装，同时调用Observable.OnSubscribe类的call(Subscriber)</span></div><div class="line">        RxJavaHooks.onObservableStart(observable, observable.onSubscribe).call(subscriber);</div><div class="line">        <span class="comment">//通过RxJavaHook对subscriber进行封装，并返回结果</span></div><div class="line">        <span class="keyword">return</span> RxJavaHooks.onObservableReturn(subscriber);</div><div class="line">    &#125; <span class="keyword">catch</span> (Throwable e) &#123;</div><div class="line">        <span class="comment">//判断异常，必要时抛出</span></div><div class="line">        Exceptions.throwIfFatal(e);</div><div class="line">        <span class="comment">//当Subscriber不再订阅时，有RxJavaHook负责处理</span></div><div class="line">        <span class="keyword">if</span> (subscriber.isUnsubscribed()) &#123;</div><div class="line">            RxJavaHooks.onError(RxJavaHooks.onObservableError(e));</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="comment">// if an unhandled error occurs executing the onSubscribe we will propagate it</span></div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                subscriber.onError(RxJavaHooks.onObservableError(e));</div><div class="line">            &#125; <span class="keyword">catch</span> (Throwable e2) &#123;</div><div class="line">                <span class="comment">//判断异常，必要时抛出</span></div><div class="line">                Exceptions.throwIfFatal(e2);</div><div class="line">                <span class="comment">//封装异常并抛出</span></div><div class="line">                RuntimeException r = <span class="keyword">new</span> OnErrorFailedException(<span class="string">"Error occurred attempting to subscribe ["</span> + e.getMessage() + <span class="string">"] and then again while trying to pass to onError."</span>, e2);</div><div class="line">                RxJavaHooks.onObservableError(r);</div><div class="line">                <span class="keyword">throw</span> r; </div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">//取消订阅</span></div><div class="line">        <span class="keyword">return</span> Subscriptions.unsubscribed();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>核心的代码就是RxJavaHooks.onObservableStart(observable, observable.onSubscribe).call(subscriber)简化成observable.onSubscribe.call(subscriber)。这才是关键。这里的subscriber其实对应于我们编写的Subscriber。那么，很明显,Hello world的调用关系如下，看上去是不是很简单。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line">observable.subscribe(subscriber);</div><div class="line">--&gt;onSubscribe.onCall(Subscriber)</div><div class="line">    --&gt;subscribe.onNext(<span class="number">1</span>)       ==&gt;  你写的subscriber.onNext(<span class="number">1</span>)</div><div class="line">    --&gt;subscribe.onNext(<span class="number">2</span>)       ==&gt;  你写的subscriber.onNext(<span class="number">2</span>)</div><div class="line">    --&gt;subscribe.onNext(<span class="number">3</span>)       ==&gt;  你写的subscriber.onNext(<span class="number">3</span>)</div><div class="line">    --&gt;subscribe.onCompleted()   ==&gt;  你写的subscriber.onCompleted()</div></pre></td></tr></table></figure>
+<p>说的再直白一点，为什么RxJava可以完成调用–响应呢？还记得你在Hello World里定义的Observable.OnSubscribe吗？看看它的onCall方法的参数的类型是不是和你定义的观察者Subscriber是同一个类型，都是rx.Subscriber。懂了吧！简单的理解，因为你在call(subscriber)中调用subscribe.onNext(1),所以你写的subscriber的onNext(Integer)方法会被调用。所以，你认为将你写的 subscriber变成了Observable.OnSubscribe里方法call(Subscriber)的一个参数.也只是因为你调用了observable.subscribe(subscriber),才有了后面onNext()、onCompleted()、onError()的一系列方法调用</p>
+<h1 id="map"><a href="#map" class="headerlink" title="map"></a>map</h1><p>在解释完RxJava的Hello world，下面我们分析一下map，实例代码（非链式调用）如下：<br><figure class="highlight java"><table><tr><td class="code"><pre><div class="line">Observable.OnSubscribe&lt;Integer&gt; onSubscribe = (subscriber) -&gt; &#123;</div><div class="line">    subscriber.onNext(<span class="number">1</span>);</div><div class="line">    subscriber.onNext(<span class="number">2</span>);</div><div class="line">    subscriber.onNext(<span class="number">3</span>);</div><div class="line">    subscriber.onCompleted();</div><div class="line">&#125;;</div><div class="line">Func1&lt;Integer, String&gt; func1 = (integer) -&gt; &#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">"Integer "</span> + integer;</div><div class="line">&#125;;</div><div class="line">Subscriber&lt;String&gt; subscriber = <span class="keyword">new</span> Subscriber&lt;String&gt;() &#123;...&#125;;</div><div class="line">Observable&lt;Integer&gt; observable = Observable.create(onSubscribe);</div><div class="line"><span class="comment">//分析重点</span></div><div class="line">Observable&lt;String&gt; mapObservable = observable.map(func1);</div><div class="line">mapObservable.subscribe(subscriber);</div></pre></td></tr></table></figure></p>
+<p>要了解为什么map可以实现链式调用，那么我们需要深入到源码那一层进行分析。不过在此之前，我们可以想一下如果是我们进行开发，那么应该如何开发。这里提供一个实现思路：在这里，mapObservable其实承担着双重责任，它既是 observable对应的Subscriber(注册者)，也是subscriber的Observable(观察对象)。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line">MapSubscriber mapSubscriber = <span class="keyword">new</span> MapSubscriber(Func1);</div><div class="line">Observable&lt;Integer&gt; observable = Observable.create(onSubscribe);</div><div class="line">Observable&lt;String&gt; mapObservable = Observable.create((subscriber)-&gt;&#123;<span class="comment">/*doSomething*/</span>&#125;);</div><div class="line">mapObservable.subscribe(subscriber);</div><div class="line">observable.subscribe(mapSubscriber);</div></pre></td></tr></table></figure>
+<p>查看源码，我们发现RxJava的具体实现如下：</p>
+<p>Observable.java<br><figure class="highlight java"><table><tr><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> &lt;R&gt; <span class="function">Observable&lt;R&gt; <span class="title">map</span><span class="params">(Func1&lt;? <span class="keyword">super</span> T, ? extends R&gt; func)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> create(<span class="keyword">new</span> OnSubscribeMap&lt;T, R&gt;(<span class="keyword">this</span>, func));</div><div class="line">&#125;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">Observable&lt;T&gt; <span class="title">create</span><span class="params">(OnSubscribe&lt;T&gt; f)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Observable&lt;T&gt;(RxJavaHooks.onCreate(f));</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>OnSubscribeMap.java<br><figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">OnSubscribeMap</span>&lt;<span class="title">T</span>, <span class="title">R</span>&gt; <span class="keyword">implements</span> <span class="title">OnSubscribe</span>&lt;<span class="title">R</span>&gt; </span>&#123;</div><div class="line">    <span class="keyword">final</span> Observable&lt;T&gt; source;</div><div class="line">    <span class="keyword">final</span> Func1&lt;? <span class="keyword">super</span> T, ? extends R&gt; transformer;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">OnSubscribeMap</span><span class="params">(Observable&lt;T&gt; source, Func1&lt;? <span class="keyword">super</span> T, ? extends R&gt; transformer)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.source = source;</div><div class="line">        <span class="keyword">this</span>.transformer = transformer;</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(<span class="keyword">final</span> Subscriber&lt;? <span class="keyword">super</span> R&gt; o)</span> </span>&#123;</div><div class="line">        MapSubscriber&lt;T, R&gt; parent = <span class="keyword">new</span> MapSubscriber&lt;T, R&gt;(o, transformer);</div><div class="line">        o.add(parent);</div><div class="line">        source.unsafeSubscribe(parent);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">MapSubscriber</span>&lt;<span class="title">T</span>, <span class="title">R</span>&gt; <span class="keyword">extends</span> <span class="title">Subscriber</span>&lt;<span class="title">T</span>&gt; </span>&#123;</div><div class="line">        <span class="keyword">final</span> Subscriber&lt;? <span class="keyword">super</span> R&gt; actual;</div><div class="line">        <span class="keyword">final</span> Func1&lt;? <span class="keyword">super</span> T, ? extends R&gt; mapper;</div><div class="line">        <span class="keyword">boolean</span> done;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">MapSubscriber</span><span class="params">(Subscriber&lt;? <span class="keyword">super</span> R&gt; actual, Func1&lt;? <span class="keyword">super</span> T, ? extends R&gt; mapper)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.actual = actual;</div><div class="line">            <span class="keyword">this</span>.mapper = mapper;</div><div class="line">        &#125;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(T t)</span> </span>&#123;</div><div class="line">            R result;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                result = mapper.call(t);</div><div class="line">            &#125; <span class="keyword">catch</span> (Throwable ex) &#123;</div><div class="line">                Exceptions.throwIfFatal(ex);</div><div class="line">                unsubscribe();</div><div class="line">                onError(OnErrorThrowable.addValueAsLastCause(ex, t));</div><div class="line">                <span class="keyword">return</span>;</div><div class="line">            &#125;</div><div class="line">            actual.onNext(result);</div><div class="line">        &#125;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</div><div class="line">            <span class="keyword">if</span> (done) &#123;</div><div class="line">                RxJavaHooks.onError(e);</div><div class="line">                <span class="keyword">return</span>;</div><div class="line">            &#125;</div><div class="line">            done = <span class="keyword">true</span>;</div><div class="line">            actual.onError(e);</div><div class="line">        &#125;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">if</span> (done) &#123;</div><div class="line">                <span class="keyword">return</span>;</div><div class="line">            &#125;</div><div class="line">            actual.onCompleted();</div><div class="line">        &#125;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setProducer</span><span class="params">(Producer p)</span> </span>&#123;</div><div class="line">            actual.setProducer(p);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2017/01/12/ExoPlayer探营/" data-toggle="tooltip" data-placement="top"
+                           title="ExoPlayer探营">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2016/05/03/Effortless-network-response-logging-on-Android/" data-toggle="tooltip" data-placement="top"
+                           title="Android上的网络响应日志技巧">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hello-World的简单分析"><span class="toc-text">Hello World的简单分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#observable-subscribe-subscriber"><span class="toc-text">observable.subscribe(subscriber)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#map"><span class="toc-text">map</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#RxJava"
+                           title="RxJava">RxJava</a>
+                        
+                        <a class="tag" href="/tags/#源码分享"
+                           title="源码分享">源码分享</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
+                        
+                        <li><a href="http://chih.me">chih</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/mijackstudio">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/mijackstudio">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/mijack">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 江湖迈杰的博客 2017
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://mijack.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-75651210- 1';
+    var _gaDomain = 'auto';
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','null','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="https://avatars.githubusercontent.com/u/4158061?v=3">
+</body>
+
+</html>
