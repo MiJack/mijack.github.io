@@ -78,17 +78,11 @@
 					
                     
                         
-							
-                        <li>
-                            <a href="/Tags/">Tags</a>
-                        </li>
-							
-						
                     
                         
 							
                         <li>
-                            <a href="/links/">links</a>
+                            <a href="/Tags/">Tags</a>
                         </li>
 							
 						
@@ -220,12 +214,12 @@
 <p>反编译一个程序的时间取决于具体的apk文件：当程序完成后，我们就可以根据提示运行其他命令。</p>
 <p>现在，我们可以输入<code>a.</code>，然后按下TAB键，我们可以得到APK想干的自动补全提示。</p>
 <p>我们先用一些简单的命令来获得APK文件中的一些有用信息吧。</p>
-<h2 id="APK-文件"><a href="#APK-文件" class="headerlink" title="APK 文件"></a>APK 文件</h2><p>它可以列出APK文件(其本质上是一个ZIP文件)中包含的所有文件：</p>
+<h2 id="apk-文件"><a href="#APK-文件" class="headerlink" title="APK 文件"></a>APK 文件</h2><p>它可以列出APK文件(其本质上是一个ZIP文件)中包含的所有文件：</p>
 <p><code>a.get_files()</code></p>
 <p><img src="http://i1.wp.com/www.fasteque.com/wp-content/uploads/2015/12/Screen-Shot-2015-12-05-at-14.52.30.png?resize=1024%2C587" alt=""></p>
-<h2 id="Application-Activities"><a href="#Application-Activities" class="headerlink" title="Application Activities"></a>Application Activities</h2><p>使用如下命令，我们可以得到应用中包含的所有Activity：</p>
+<h2 id="application-activities"><a href="#Application-Activities" class="headerlink" title="Application Activities"></a>Application Activities</h2><p>使用如下命令，我们可以得到应用中包含的所有Activity：</p>
 <p><code>a.get_activities()</code></p>
-<h2 id="Application-的权限"><a href="#Application-的权限" class="headerlink" title="Application 的权限"></a>Application 的权限</h2><p>使用如下的命令，我们可以得到应用在manifest文件中声明的所有权限：</p>
+<h2 id="application-的权限"><a href="#Application-的权限" class="headerlink" title="Application 的权限"></a>Application 的权限</h2><p>使用如下的命令，我们可以得到应用在manifest文件中声明的所有权限：</p>
 <p><code>a.get_permissions()</code></p>
 <p><img src="http://i2.wp.com/www.fasteque.com/wp-content/uploads/2015/12/Screen-Shot-2015-12-05-at-14.47.29.png" alt=""></p>
 <p>它也可以得到关于每一项权限的详细描述：</p>
@@ -238,20 +232,20 @@
 <li>帮助我们review使用到权限的代码片段，再次确认我们可能遗漏的注解。</li>
 </ul>
 <p><code>show_Permissions(dx)</code><br><img src="http://i1.wp.com/www.fasteque.com/wp-content/uploads/2015/12/Screen-Shot-2015-12-05-at-17.09.55.png" alt=""></p>
-<h2 id="Application-Content-providers"><a href="#Application-Content-providers" class="headerlink" title="Application Content providers"></a>Application Content providers</h2><p>使用如下的命令，我们可以得到应用在manifest文件中声明的所有Content Provider：</p>
+<h2 id="application-content-providers"><a href="#Application-Content-providers" class="headerlink" title="Application Content providers"></a>Application Content providers</h2><p>使用如下的命令，我们可以得到应用在manifest文件中声明的所有Content Provider：</p>
 <p><code>a.get_providers()</code><br><img src="http://i1.wp.com/www.fasteque.com/wp-content/uploads/2015/12/Screen-Shot-2015-12-05-at-14.42.07.png" alt=""></p>
-<h2 id="Application-signature"><a href="#Application-signature" class="headerlink" title="Application signature"></a>Application signature</h2><p>同时，我们也可以知道apk文件的签名以及其存放的位置：</p>
+<h2 id="application-signature"><a href="#Application-signature" class="headerlink" title="Application signature"></a>Application signature</h2><p>同时，我们也可以知道apk文件的签名以及其存放的位置：</p>
 <p><code>a.get_signature_name()</code></p>
 <p><code>a.get_signature()</code></p>
 <p><a href="http://doc.androguard.re/html/index.html" target="_blank" rel="external">这里</a>是目前最为完整的命令列表的文档：它的版本是<code>1.9</code>，不管怎么说，它都是一个很好的参考文档。</p>
-<h2 id="Code-dumping"><a href="#Code-dumping" class="headerlink" title="Code dumping"></a>Code dumping</h2><p>使用工具 <strong>androdd</strong>，我们可以得到APK文件中所有类的源代码（整理包括应用的代码和依赖）：在这种情况下，我们得到的是Java类，而不是我们使用<a href="HTTP：//www.fasteque.com/android-reverse-engineering-101-part-3/">dex2jar</a>得到的<code>.class</code>文件。</p>
+<h2 id="code-dumping"><a href="#Code-dumping" class="headerlink" title="Code dumping"></a>Code dumping</h2><p>使用工具 <strong>androdd</strong>，我们可以得到APK文件中所有类的源代码（整理包括应用的代码和依赖）：在这种情况下，我们得到的是Java类，而不是我们使用<a href="HTTP：//www.fasteque.com/android-reverse-engineering-101-part-3/">dex2jar</a>得到的<code>.class</code>文件。</p>
 <p><code>androdd.py -i FILENAME.apk -o OUTPUT_DIR</code><br><img src="http://i2.wp.com/www.fasteque.com/wp-content/uploads/2015/12/Screen-Shot-2015-12-05-at-15.44.22.png?resize=1024%2C430" alt=""></p>
 <p>在输入文件中，我们可以根据包名找到对应的Java类。</p>
 <p>当然，我们得到的代码可能和之前开发者写的代码不完全一样，但无论如何，它的可读性提高了，更容易理解。请记住，如果原来的应用程序代码已经被混淆，方法和类的名称可能已被重命名，工具不能得到原来的名称。</p>
 <p>例如，下面是我们的一个Fragment：源代码可以在<a href="https://github.com/fasteque/rgb-tool/blob/master/android-rgb-tool/src/main/java/com/fastebro/androidrgbtool/fragments/SelectPictureDialogFragment.java" target="_blank" rel="external">这里</a>找到.</p>
 <p><img src="http://i0.wp.com/www.fasteque.com/wp-content/uploads/2015/12/Screen-Shot-2015-12-05-at-15.52.47.png?resize=1024%2C390" alt=""></p>
 <p>正如在本系列中之前的介绍中，我们知道，我们无法找到资源名称，如字符串，布局，阵列，颜色，但是，我们可以得到的是一个整形值，在build的时候他和特定的资源相对应，并存储在<code>R.java</code>文件中。在这里，它表示为一个十进制值，而在原来的类文件是十六进制。</p>
-<h2 id="XML-manifest"><a href="#XML-manifest" class="headerlink" title="XML manifest"></a>XML manifest</h2><p>使用下面的工具，我们可以得到manifest文件，在apk文件中，它只要是以二进制格式存在的，我们得到的是纯文本格式的xml文件，更容易阅读。</p>
+<h2 id="xml-manifest"><a href="#XML-manifest" class="headerlink" title="XML manifest"></a>XML manifest</h2><p>使用下面的工具，我们可以得到manifest文件，在apk文件中，它只要是以二进制格式存在的，我们得到的是纯文本格式的xml文件，更容易阅读。</p>
 <p><code>androaxml.py -i FILENAME.apk -o OUTPUT.xml</code></p>
 <p>如果我们打开生成的XML文件，我们可以看到完整的APK manifest 文件，几乎和<a href="https://github.com/fasteque/rgb-tool/blob/master/android-rgb-tool/src/main/AndroidManifest.xml" target="_blank" rel="external">原来文件</a>一样。</p>
 <p><img src="http://i1.wp.com/www.fasteque.com/wp-content/uploads/2015/12/Screen-Shot-2015-12-05-at-16.10.44.png" alt=""></p>
@@ -263,7 +257,7 @@
 <p><img src="http://i1.wp.com/www.fasteque.com/wp-content/uploads/2015/12/Screen-Shot-2015-12-05-at-16.56.22.png" alt=""></p>
 <p><code>--help</code>可以得到可用于该工具的所有选项，因此这可以让分析更加精确，集中于应用程序的具体方面。</p>
 <p>当然，<strong>Androguard</strong> 还可以做很多事情，但是，本文的目的只是简单介绍一下工具以及相关的实验和分析。</p>
-<h2 id="MENTIONS"><a href="#MENTIONS" class="headerlink" title="MENTIONS"></a>MENTIONS</h2><p>结束系列之前，还要介绍一些比较好的工具。</p>
+<h2 id="mentions"><a href="#MENTIONS" class="headerlink" title="MENTIONS"></a>MENTIONS</h2><p>结束系列之前，还要介绍一些比较好的工具。</p>
 <p>第一个是<a href="https://bytecodeviewer.com/" target="_blank" rel="external">Bytecode Viewer</a>，它实际上是一套完整的逆向工程工具：它使我们通过smali/baksmali轻松地编辑apk文件以及浏览APK和DEX文件。同时也集成了 <strong>dex2jar</strong> 和<strong>Apktool</strong>。更多信息可以查看<a href="https://the.bytecode.club/wiki/index.php?title=Bytecode_Viewer" target="_blank" rel="external">这里</a>。</p>
 <p>第二个是<a href="https://github.com/google/android-classyshark" target="_blank" rel="external">ClassyShark</a>，这是为Android可执行文件设计的一个浏览器。它的客户端可以打开Android（APK）和桌面（JAR）文件。我们可以用ClassyShark打开APK/ ZIP/Class/Jar文件，并分析其内容。</p>
 <p>这个系列就结束了：正如之前强调的，这只是简单介绍了Android的逆向工程以及一些工具的简单使用。当然，这只是逆向工程的冰山一角。对Android逆向工程的了解程度取决于我们的实际需要,所以,我们可能会发现一些更适合的工具。</p>
@@ -294,7 +288,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#APK-文件"><span class="toc-text">APK 文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Application-Activities"><span class="toc-text">Application Activities</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Application-的权限"><span class="toc-text">Application 的权限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Application-Content-providers"><span class="toc-text">Application Content providers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Application-signature"><span class="toc-text">Application signature</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Code-dumping"><span class="toc-text">Code dumping</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XML-manifest"><span class="toc-text">XML manifest</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#比较两个apk文件"><span class="toc-text">比较两个apk文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MENTIONS"><span class="toc-text">MENTIONS</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#apk-文件"><span class="toc-text">APK 文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#application-activities"><span class="toc-text">Application Activities</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#application-的权限"><span class="toc-text">Application 的权限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#application-content-providers"><span class="toc-text">Application Content providers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#application-signature"><span class="toc-text">Application signature</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#code-dumping"><span class="toc-text">Code dumping</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xml-manifest"><span class="toc-text">XML manifest</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#比较两个apk文件"><span class="toc-text">比较两个apk文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mentions"><span class="toc-text">MENTIONS</span></a></li></ol>
                 </div>
             </div>
         </div>
@@ -333,6 +327,8 @@
                     <ul class="list-inline text-center">
                         
                         <li><a href="http://chih.me">chih</a></li>
+                        
+                        <li><a href="https://buwenqi.github.io">wenqi</a></li>
                         
                     </ul>
                 </div>

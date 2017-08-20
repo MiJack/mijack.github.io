@@ -78,17 +78,11 @@
 					
                     
                         
-							
-                        <li>
-                            <a href="/Tags/">Tags</a>
-                        </li>
-							
-						
                     
                         
 							
                         <li>
-                            <a href="/links/">links</a>
+                            <a href="/Tags/">Tags</a>
                         </li>
 							
 						
@@ -201,7 +195,7 @@
 <p><img src="http://i1.wp.com/www.fasteque.com/wp-content/uploads/2015/11/Screen-Shot-2015-11-23-at-22.11.54.png" alt=""></p>
 <p>在输入第一个命令之前，我们需要选择一个应用。在之前介绍<a href="http://www.fasteque.com/android-reverse-engineering-101-part-3/" target="_blank" rel="external"><strong>dex2jar article</strong></a>，我选择了<a href="https://play.google.com/store/apps/details?id=com.fastebro.androidrgbtool" target="_blank" rel="external">RGB Tool</a> ，因为它是我的一个开源项目，对其进行逆向工程并不会有任何争议。我们可以在<a href="https://play.google.com/store/apps/details?id=com.fastebro.androidrgbtool" target="_blank" rel="external">这里</a>下载这个该应用。</p>
 <p>对于所有的实例，均运行在我的<strong>Nexus 6</strong>上，安装有<strong>RGB Tool v1.4.3</strong> ，系统版本<strong>Android 6.0</strong>。</p>
-<h2 id="FRAMEWORKS"><a href="#FRAMEWORKS" class="headerlink" title="FRAMEWORKS"></a>FRAMEWORKS</h2><p>在反编译APK或者系统应用的过程中，Frameworks是非常重要的。事实上，在一台设备或者模拟器上，有一APK文件包括了ROM里的所有资源，包括图片、动画、声音、闪屏等，它是系统镜像的一部分.</p>
+<h2 id="frameworks"><a href="#FRAMEWORKS" class="headerlink" title="FRAMEWORKS"></a>FRAMEWORKS</h2><p>在反编译APK或者系统应用的过程中，Frameworks是非常重要的。事实上，在一台设备或者模拟器上，有一APK文件包括了ROM里的所有资源，包括图片、动画、声音、闪屏等，它是系统镜像的一部分.</p>
 <p>这个文件位于<code>/system/framework/framework-res.apk</code></p>
 <p>简单的讲，这个文件包括关于设备界面风格所需的必要资源，被系统获取其他应用使用。对于任何一个制造商，包括三星，HTC，摩托罗拉，LG等，它都会提供自己的frameworkd的APK文件。</p>
 <p>Apktool默认情况下使用的是AOSP的framework，并在如下路径（Mac OS X）有对应文件的拷贝:<code>$HOME/Library/apktool/framework/1.apk</code></p>
@@ -266,7 +260,7 @@ W: Could not decode attr value, using undecoded value instead: ns=android, name=
 <p>它对应的资源是<code>@drawable/robot</code>，有很多界面使用了它。我们把它提取出来，改改颜色后，命名为<code>robot_apktool</code>。然后，我们必须在所有的XML布局中的<code>robot</code>替换成<code>robot_apktool</code>。然后我们重新打包、签名、安装在我们的设备。</p>
 <p><img src="http://i0.wp.com/www.fasteque.com/wp-content/uploads/2015/11/Screenshot_20151127-211610.png" alt="New robot"><br>New robot</p>
 <p>我们的新Android替换好了！说实话，这很容易，因为资源只被XML文件引用，但从未在任何java类出现过。后者和前者属于两种不同的情况，这也是我们不在这里讨论的原因。</p>
-<h3 id="我们可以修改源代码吗？"><a href="#我们可以修改源代码吗？" class="headerlink" title="我们可以修改源代码吗？"></a>我们可以修改源代码吗？</h3><p>当然，在文章的开头我们已经介绍过了，<strong>Apktool</strong> 可以反编译出应用的可执行代码，产生<code>.smali</code>文件,所以我们可以直接更改它们，并生成新的APK文件。当然，<br><a href="https://github.com/jesusfreke/smali" target="_blank" rel="external">Smail</a>并不及java那样容易入门，它的语法比较冗长。我们可以用任何文本编辑器打开这些文件，但是我们无法享受语法高亮和自动完成的编辑器特征。另一方面，我们可以很容易地用grep搜索字符串。</p>
+<h3 id="我们可以修改源代码吗"><a href="#我们可以修改源代码吗？" class="headerlink" title="我们可以修改源代码吗？"></a>我们可以修改源代码吗？</h3><p>当然，在文章的开头我们已经介绍过了，<strong>Apktool</strong> 可以反编译出应用的可执行代码，产生<code>.smali</code>文件,所以我们可以直接更改它们，并生成新的APK文件。当然，<br><a href="https://github.com/jesusfreke/smali" target="_blank" rel="external">Smail</a>并不及java那样容易入门，它的语法比较冗长。我们可以用任何文本编辑器打开这些文件，但是我们无法享受语法高亮和自动完成的编辑器特征。另一方面，我们可以很容易地用grep搜索字符串。</p>
 <p>在这里推荐一些工具：一个是开源的<a href="https://github.com/ShaneWilton/sublime-smali" target="_blank" rel="external">syntax highlighter</a>，而另一个是[全功能的解决方案]（<a href="http://virtuous-ten-studio.com/），不仅仅可以用来编辑`smali`。" target="_blank" rel="external">http://virtuous-ten-studio.com/），不仅仅可以用来编辑`smali`。</a></p>
 <p>让我们通过smali尝试一个很简单的改变：如果我们点击 <strong>Print color</strong> 选项（需要点击溢出菜单图标调出它），下面的对话框出现在屏幕上。</p>
 <p><img src="http://i2.wp.com/www.fasteque.com/wp-content/uploads/2015/11/Screenshot_20151127-214535.png?resize=169%2C300" alt=""></p>
@@ -318,7 +312,7 @@ move-result-object v2
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FRAMEWORKS"><span class="toc-text">FRAMEWORKS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#反编译"><span class="toc-text">反编译</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#构建"><span class="toc-text">构建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#牛刀小试"><span class="toc-text">牛刀小试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#应用的名称和主题"><span class="toc-text">应用的名称和主题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#应用的图标"><span class="toc-text">应用的图标</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#新的资源"><span class="toc-text">新的资源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#我们可以修改源代码吗？"><span class="toc-text">我们可以修改源代码吗？</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#frameworks"><span class="toc-text">FRAMEWORKS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#反编译"><span class="toc-text">反编译</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#构建"><span class="toc-text">构建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#牛刀小试"><span class="toc-text">牛刀小试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#应用的名称和主题"><span class="toc-text">应用的名称和主题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#应用的图标"><span class="toc-text">应用的图标</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#新的资源"><span class="toc-text">新的资源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#我们可以修改源代码吗"><span class="toc-text">我们可以修改源代码吗？</span></a></li></ol></li></ol>
                 </div>
             </div>
         </div>
@@ -357,6 +351,8 @@ move-result-object v2
                     <ul class="list-inline text-center">
                         
                         <li><a href="http://chih.me">chih</a></li>
+                        
+                        <li><a href="https://buwenqi.github.io">wenqi</a></li>
                         
                     </ul>
                 </div>

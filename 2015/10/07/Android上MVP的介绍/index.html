@@ -78,17 +78,11 @@
 					
                     
                         
-							
-                        <li>
-                            <a href="/Tags/">Tags</a>
-                        </li>
-							
-						
                     
                         
 							
                         <li>
-                            <a href="/links/">links</a>
+                            <a href="/Tags/">Tags</a>
                         </li>
 							
 						
@@ -401,7 +395,7 @@
 <p>如果你有不止一对请求参数，这个库在不使用运行时注解的前提下。您可以创建<code>BasePresenter</code>并把<em>Icepick</em>到该类中，所有的子类将会自动保存标有<code>@Icicle</code>这一注解的变量，而你将不再需要去实现<code>OnSave</code>。这也适用于保存Activity，Fragment，View的状态。</p>
 <p>####在主线程中调用<code>onTakeView</code>进行即时查询<a href="http://konmik.github.io/nucleus/nucleus/presenter/Presenter.html#onTakeView(ViewType" target="_blank" rel="external">Javadoc</a>)</p>
 <p>有时候，你要进行少量的数据查询，如从数据库中读取少量的数据。虽然你可以很容易地用Nucleus创建一个可重启的请求，你不必到处使用这个强大的工具。如果你在fragment创建的时候初始化一个后台请求，即使只有几毫秒，用户也会看到一会儿的空白屏。因此，为了使代码更短，用户体验更好，可以使用主线程。</p>
-<h4 id="不要让Presenter控制你的View"><a href="#不要让Presenter控制你的View" class="headerlink" title="不要让Presenter控制你的View"></a>不要让Presenter控制你的View</h4><p>这不是很好的工作方式 - 由于这种不自然的方式，应用程序逻辑变得太复杂。</p>
+<h4 id="不要让presenter控制你的view"><a href="#不要让Presenter控制你的View" class="headerlink" title="不要让Presenter控制你的View"></a>不要让Presenter控制你的View</h4><p>这不是很好的工作方式 - 由于这种不自然的方式，应用程序逻辑变得太复杂。</p>
 <p>自然的方式是操作流由用户发起，通过View，Presenter和Model，最后流向数据。毕竟，用户将使用应用,用户是控制应用程序的源头。因此，控制应该从用户开始而不是一些应用的内部结构。</p>
 <p>从view，到presenter到model是很直接的形式，很容易书写这样的代码。你将得到以下序列： <strong>user -&gt; view -&gt; presenter -&gt; model -&gt; data</strong> 。但是，当控制流变成这样时: <strong>user -&gt; view -&gt; presenter -&gt; view -&gt; presenter -&gt; model -&gt; data</strong>，它只是违反KISS原则.</p>
 <p>Fragments？不好意思它是违背了这种自然操作流程的。它们太复杂。这里是一个非常好讲诉Fragment的文章：<a href="http://corner.squareup.com/2014/10/advocating-against-android-fragments.html" target="_blank" rel="external">抨击Android的Fragment</a>。fragment的替代者<a href="https://github.com/square/flow" target="_blank" rel="external">Flow</a> 并没有简化多少东西。</p>
@@ -449,7 +443,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#不要让Presenter控制你的View"><span class="toc-text">不要让Presenter控制你的View</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#在数据复杂的项目中使用固定的数据结构"><span class="toc-text">在数据复杂的项目中使用固定的数据结构</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#不要让presenter控制你的view"><span class="toc-text">不要让Presenter控制你的View</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#在数据复杂的项目中使用固定的数据结构"><span class="toc-text">在数据复杂的项目中使用固定的数据结构</span></a></li></ol>
                 </div>
             </div>
         </div>
@@ -488,6 +482,8 @@
                     <ul class="list-inline text-center">
                         
                         <li><a href="http://chih.me">chih</a></li>
+                        
+                        <li><a href="https://buwenqi.github.io">wenqi</a></li>
                         
                     </ul>
                 </div>
