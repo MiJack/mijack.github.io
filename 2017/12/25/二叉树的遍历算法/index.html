@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="袁宇杰（Mi&amp;Jack）在 Github 上的个人博客">
+    <meta name="keyword" content="null">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="江湖迈杰的博客" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        二叉树的遍历算法｜Mi&amp;Jack&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="http://mijack.github.io/2017/12/25/二叉树的遍历算法/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+</head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('http://ohy7r8bgu.bkt.clouddn.com/background.jpg#博文默认的图片')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    江湖迈杰的博客
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+                    
+                        
+							
+                        <li>
+                            <a href="/Tags/">Tags</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="http://ohy7r8bgu.bkt.clouddn.com/background.jpg#博文默认的图片">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('http://ohy7r8bgu.bkt.clouddn.com/background.jpg#博文默认的图片')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>二叉树的遍历算法</h1>
+                    
+                    <span class="meta">
+                         作者 Mi&Jack
+                        <span>
+                          日期 2017-12-25
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#算法"
+                           title="算法">算法</a>
+                        
+                        <a class="tag" href="/tags/#二叉树"
+                           title="二叉树">二叉树</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            二叉树的遍历算法
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <p>#二叉树的遍历算法</p>
+<p>二叉树遍历算法是面试过程中的常见考题，面试官常常要求应聘者写成树的三种遍历（前序、中序、后序）算法，当然要完成这个任务非常简单，每一种遍历方式的代码不超过10行。假设树中节点的结构如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span></span>&#123;</div><div class="line">  <span class="keyword">int</span> val;</div><div class="line">  TreeNode left,right;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="树的递归遍历算法"><a href="#树的递归遍历算法" class="headerlink" title="树的递归遍历算法"></a>树的递归遍历算法</h1><p>树的前序遍历</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">preOrder</span><span class="params">(TreeNode root)</span></span>&#123;</div><div class="line">  <span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span> ;</div><div class="line">  System.out.println(root.val);</div><div class="line">  preOrder(root.left);</div><div class="line">  preOrder(root.right);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>树的中序遍历<br><figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">inOrder</span><span class="params">(TreeNode root)</span></span>&#123;</div><div class="line">  <span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span> ;</div><div class="line">  inOrder(root.left);</div><div class="line">  System.out.println(root.val);</div><div class="line">  inOrder(root.right);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>树的后序遍历<br><figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">postOrder</span><span class="params">(TreeNode root)</span></span>&#123;</div><div class="line">  <span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span>;</div><div class="line">  postOrder(root.left);</div><div class="line">  postOrder(root.right);</div><div class="line">  System.out.println(root.val);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>整体上，三者的基本结构是一样的，只是输出的位置发生了变化。</p>
+<p>考虑到递归调用有的时候会出现Stack Overflow的问题，为此，我们还需要会写非递归调用的树的三种遍历。具体的实现形式可以基于Stack实现。</p>
+<h1 id="基于stack-的实现方法"><a href="#基于Stack-的实现方法" class="headerlink" title="基于Stack 的实现方法"></a>基于Stack 的实现方法</h1><h2 id="前序遍历"><a href="#前序遍历" class="headerlink" title="前序遍历"></a>前序遍历</h2><p>三种遍历算法中，树的前序遍历最为简单，因为他不存在状态回溯。</p>
+<p>基本实现的思路如下：首先我们先将根节点压入到Stack中，然后进入一个循环：从Stack顶部取一个节点，输出这个节点，再将节点的左右非空子节点（ <strong>按照先右节点再左节点的顺序</strong> ）放入到Stack，直至Stack中为空，结束循环，遍历结束。<br>代码实现如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">preOrderWithStack</span><span class="params">(TreeNode root)</span></span>&#123;</div><div class="line">  <span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span> ;</div><div class="line">  Stack&lt;TreeNode&gt; stack =<span class="keyword">new</span> Stack();</div><div class="line">  stack.add(root);</div><div class="line">  <span class="keyword">while</span>(!stack.isEmpty())&#123;</div><div class="line">    TreeNode node = stack.pop();</div><div class="line">    System.out.print(node.val);</div><div class="line">    <span class="keyword">if</span>(node.right!=<span class="keyword">null</span>)&#123;</div><div class="line">      stack.push(node.right);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(node.left!=<span class="keyword">null</span>)&#123;</div><div class="line">      stack.push(node.left);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h2><h3 id="一种简单的情况"><a href="#一种简单的情况" class="headerlink" title="一种简单的情况"></a>一种简单的情况</h3><p>在编写中序遍历的代码之前，我们先来看看一种情况，也就是“丿”撇字型的数，所有的节点的右子树均为null。在这种情况下，我们可以先将这个撇要入到栈中，然后一边pop一边输出，得到结果就是我们想要的中序遍历。</p>
+<p><img src="../imgs/特殊的二叉树.png" alt="撇字形的树"></p>
+<p>具体代码比较简单，如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">inOrderWithStack</span><span class="params">(TreeNode root)</span></span>&#123;</div><div class="line">  <span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span>;</div><div class="line">  Stack&lt;TreeNode&gt; stack = <span class="keyword">new</span> Stack();</div><div class="line">  TreeNode node = root;</div><div class="line">  <span class="keyword">while</span>(node!=<span class="keyword">null</span>)&#123; <span class="comment">// ①查找root树的最小元素</span></div><div class="line">    stack.push(node);</div><div class="line">    node = node.left;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">while</span>(!stack.isEmpty())&#123; <span class="comment">// ②依次弹出栈中的元素</span></div><div class="line">    node = stack.pop();</div><div class="line">    System.out.print(node.val);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当然这个还离我们的想要的二叉树的中序遍历有一些距离。</p>
+<p>从结构上，撇字形的树和二叉树的区别在于二叉树可能存在右子树，为此，当我们将一个节点输出后，我们还没有进行树的右子树的遍历，为此我们需要这个节点的右子树进行中序遍历，</p>
+<p>也就是当我们输出一个节点node后，要需要对这个节点的右子树进行检查，<strong>如果它不为空，那么我们需要对它进行中序遍历，回到上面一段代码中的①处，不同的是此时的root变成了node</strong>。为此，我们可以代码进行调整得到我们需要的中序遍历。</p>
+<h3 id="最终的代码实现"><a href="#最终的代码实现" class="headerlink" title="最终的代码实现"></a>最终的代码实现</h3><p>具体代码如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">inOrderWithStack</span><span class="params">(TreeNode root)</span></span>&#123;</div><div class="line">  <span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span> ;</div><div class="line">  Stack&lt;TreeNode&gt; stack = <span class="keyword">new</span> Stack();</div><div class="line">  TreeNode node = root;</div><div class="line">  <span class="keyword">while</span>(!stack.isEmpty()||node!=<span class="keyword">null</span>)&#123;</div><div class="line">    <span class="keyword">while</span>(node!=<span class="keyword">null</span>)&#123; <span class="comment">//①查找root树的最小元素</span></div><div class="line">      stack.push(node);</div><div class="line">      node = node.left;</div><div class="line">    &#125;</div><div class="line">    node = stack.pop(); <span class="comment">// ②弹出栈顶元素，并输出</span></div><div class="line">   	System.out.print(node.val);</div><div class="line">    node =node.right; <span class="comment">// ③node指向右子树</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="后序遍历"><a href="#后序遍历" class="headerlink" title="后序遍历"></a>后序遍历</h2><p>相比前面这个遍历方式，后序遍历的实现需要一定的技巧</p>
+<h3 id="比较简单的方法"><a href="#比较简单的方法" class="headerlink" title="比较简单的方法"></a>比较简单的方法</h3><p>对于一个树的后序遍历， 顺序如下：左子树 - 右子树 - 当前节点，我们可以看着 当前节点 - 右子树 - 左子树的逆序，这样我们就可以采用的类似前序遍历的方法，再将得到的中间结果进行逆序，输出即可，中间结果可以储存在Stack中或者ArrayList中，具体实现如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">postOrderWithStack</span><span class="params">(TreeNode root)</span></span>&#123;</div><div class="line">  <span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span> ;</div><div class="line">  Stack&lt;Integer&gt; result = <span class="keyword">new</span> Stack();</div><div class="line">  Stack&lt;TreeNode&gt; stack = <span class="keyword">new</span> Stack();</div><div class="line">  stack.add(root);</div><div class="line">  <span class="keyword">while</span>(!stack.isEmpty())&#123;</div><div class="line">    TreeNode node = stack.pop();</div><div class="line">    result.add(node.val);</div><div class="line">    <span class="keyword">if</span>(node.right!=<span class="keyword">null</span>)&#123;</div><div class="line">      stack.push(node.right);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(node.left!=<span class="keyword">null</span>)&#123;</div><div class="line">      stack.push(node.left);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">while</span>(!result.isEmpty())&#123;</div><div class="line">    <span class="keyword">int</span> val = result.pop();</div><div class="line">    System.out.print(val);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="另一种实现方式"><a href="#另一种实现方式" class="headerlink" title="另一种实现方式"></a>另一种实现方式</h3><p>上面中方式巧妙借助了前序遍历解决了问题，现在我们采用另一种方式解决这个问题。</p>
+<p>我们还是先考虑刚才的那一种特殊情况，对于<strong>撇字形</strong> 的树，他的后序遍历就比较简单了，具体如下<br><figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">postOrderWithStack</span><span class="params">(TreeNode root)</span></span>&#123;</div><div class="line">  <span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span>;</div><div class="line">  Stack&lt;TreeNode&gt;  stack = <span class="keyword">new</span> Stack();</div><div class="line">  TreeNode = node ;</div><div class="line">  <span class="keyword">while</span>(node!=<span class="keyword">null</span>)&#123;</div><div class="line">    stack.push(node);</div><div class="line">    node=node.left;</div><div class="line">  &#125;</div><div class="line">   <span class="keyword">while</span>(!stack.isEmpty())&#123;</div><div class="line">    node = stack.pop();</div><div class="line">    System.out.print(node.val);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>和中序遍历类似，我们<strong>缺少对节点右子树的检查</strong> 。不同的是，中序遍历是<strong>先输出再检查右子树</strong> ，这里我们需要<strong>先检查左子树，再输出节点</strong> ：当我们检查栈顶元素时，如果之前输出的节点是栈顶元素的左子树，这意味着当前节点的左子树输出完毕，需要进行右子树的后序遍历；如果当前输出节点是栈顶元素的右子树，则当前节点的右子树输出完毕，直接pop，输出当前节点。<br>具体代码实现如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">postOrder</span><span class="params">(TreeNode root)</span></span>&#123;</div><div class="line">  <span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span>;</div><div class="line">  TreeNode node = root;</div><div class="line">  TreeNode pre = <span class="keyword">null</span>;</div><div class="line">  Stack&lt;TreeNode&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</div><div class="line">  <span class="keyword">while</span>(!stack.isEmpty()||node!=<span class="keyword">null</span>)&#123;</div><div class="line">    <span class="keyword">while</span>(node!=<span class="keyword">null</span>)&#123;</div><div class="line">      stack.push(node);</div><div class="line">      node = node.left;</div><div class="line">    &#125;</div><div class="line">    node = stack.peek();</div><div class="line">    <span class="keyword">if</span>(node.right ==<span class="keyword">null</span> ||node.right==pre)&#123; <span class="comment">// 右子树为空或者右子树已经输出</span></div><div class="line">       System.out.println(node.val);</div><div class="line">       node = stack.pop();</div><div class="line">       pre = node;</div><div class="line">       node =<span class="keyword">null</span>; <span class="comment">// 防止重新进入循环</span></div><div class="line">   &#125; <span class="keyword">else</span> &#123;</div><div class="line">      node = node.right;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2017/01/12/ExoPlayer探营/" data-toggle="tooltip" data-placement="top"
+                           title="ExoPlayer探营">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#树的递归遍历算法"><span class="toc-text">树的递归遍历算法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#基于stack-的实现方法"><span class="toc-text">基于Stack 的实现方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#前序遍历"><span class="toc-text">前序遍历</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#中序遍历"><span class="toc-text">中序遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一种简单的情况"><span class="toc-text">一种简单的情况</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最终的代码实现"><span class="toc-text">最终的代码实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后序遍历"><span class="toc-text">后序遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#比较简单的方法"><span class="toc-text">比较简单的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#另一种实现方式"><span class="toc-text">另一种实现方式</span></a></li></ol></li></ol></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#算法"
+                           title="算法">算法</a>
+                        
+                        <a class="tag" href="/tags/#二叉树"
+                           title="二叉树">二叉树</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
+                        
+                        <li><a href="http://chih.me">chih</a></li>
+                        
+                        <li><a href="https://buwenqi.github.io">wenqi</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/mijackstudio">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/mijackstudio">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/mijack">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 江湖迈杰的博客 2017
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://mijack.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-75651210- 1';
+    var _gaDomain = 'auto';
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','null','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="https://avatars.githubusercontent.com/u/4158061?v=3">
+</body>
+
+</html>
