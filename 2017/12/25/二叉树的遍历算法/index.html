@@ -181,7 +181,10 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <h1 id="二叉树的遍历算法"><a href="#二叉树的遍历算法" class="headerlink" title="二叉树的遍历算法"></a>二叉树的遍历算法</h1><p>二叉树遍历算法是面试过程中的常见考题，面试官常常要求应聘者写成树的三种遍历（前序、中序、后序）算法，当然要完成这个任务非常简单，每一种遍历方式的代码不超过10行。假设树中节点的结构如下</p>
+                <blockquote>
+<p>声明：我已委托「维权骑士」（rightknights.com）为我的文章进行维权行动。</p>
+</blockquote>
+<h1 id="二叉树的遍历算法"><a href="#二叉树的遍历算法" class="headerlink" title="二叉树的遍历算法"></a>二叉树的遍历算法</h1><p>二叉树遍历算法是面试过程中的常见考题，面试官常常要求应聘者写成树的三种遍历（前序、中序、后序）算法，当然要完成这个任务非常简单，每一种遍历方式的代码不超过10行。假设树中节点的结构如下</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span></span>&#123;</div><div class="line">  <span class="keyword">int</span> val;</div><div class="line">  TreeNode left,right;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h1 id="树的递归遍历算法"><a href="#树的递归遍历算法" class="headerlink" title="树的递归遍历算法"></a>树的递归遍历算法</h1><p>树的前序遍历</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">preOrder</span><span class="params">(TreeNode root)</span></span>&#123;</div><div class="line">  <span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span> ;</div><div class="line">  System.out.println(root.val);</div><div class="line">  preOrder(root.left);</div><div class="line">  preOrder(root.right);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
