@@ -1,50 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Head tag -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="袁宇杰（Mi&amp;Jack）在 Github 上的个人博客">
-    <meta name="keyword" content="null">
-    <meta name="theme-color" content="#600090">
-    <meta name="msapplication-navbutton-color" content="#600090">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
-    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
-    <link rel="alternate" type="application/atom+xml" title="江湖迈杰的博客" href="/atom.xml">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
-    <title>
-        
-        使用Gradle将项目发布到Bitbucket上｜Mi&amp;Jack&#39;s blog
-        
-    </title>
+    <meta name="description" content="description">
+    <meta name="keywords"  content="Mi&Jack, Mi&Jack Blog, 江湖迈杰的博客, yuanyujie, 袁宇杰, Java, Android">
+    <meta name="theme-color" content="#000000">
+    
+    <title>使用Gradle将项目发布到Bitbucket上 - 江湖迈杰的博客 | BY Mi&Jack</title>
 
-    <link rel="canonical" href="http://mijack.github.io/2015/10/17/Publish-with-Gradle-on-Bitbucket/">
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="http://localhost:4000/2015/10/17/Publish-with-Gradle-on-Bitbucket/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/blog-style.css">
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
 
     <!-- Pygments Github CSS -->
     <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
 </head>
 
-<style>
 
-    header.intro-header {
-        background-image: url('http://ohy7r8bgu.bkt.clouddn.com/background.jpg#博文默认的图片')
-    }
-</style>
 <!-- hack iOS CSS :active style -->
-<body ontouchstart="" class="animated fadeIn">
-<!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
-" data-ishome = "false" >
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header page-scroll">
@@ -54,44 +69,29 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand animated pulse" href="/">
-                <span class="brand-logo">
-                    江湖迈杰的博客
-                </span>
-                's Blog
-            </a>
+            <a class="navbar-brand" href="/">江湖迈杰的博客</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <!-- Known Issue, found by Hux:
-            <nav>'s height woule be hold on by its content.
-            so, when navbar scale out, the <nav> will cover tags.
-            also mask any touch event of tags, unfortunately.
-        -->
-        <!-- /.navbar-collapse -->
         <div id="huxblog_navbar">
             <div class="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a href="/">Home</a>
                     </li>
-					
                     
-                        
+                    <li>
+                        <a href="/about/">About</a>
+                    </li>
                     
-                        
-							
-                        <li>
-                            <a href="/Tags/">Tags</a>
-                        </li>
-							
-						
+                    <li>
+                        <a href="/tags/">Tags</a>
+                    </li>
                     
-					
-					
                 </ul>
             </div>
         </div>
+        <!-- /.navbar-collapse -->
     </div>
     <!-- /.container -->
 </nav>
@@ -99,15 +99,13 @@
     // Drop Bootstarp low-performance Navbar
     // Use customize navbar with high-quality material design animation
     // in high-perf jank-free CSS3 implementation
-//    var $body   = document.body;
+    var $body   = document.body;
     var $toggle = document.querySelector('.navbar-toggle');
     var $navbar = document.querySelector('#huxblog_navbar');
     var $collapse = document.querySelector('.navbar-collapse');
 
-    $toggle.addEventListener('click', handleMagic)
-    function handleMagic(e){
-        if ($navbar.className.indexOf('in') > 0) {
-        // CLOSE
+    var __HuxNav__ = {
+        close: function(){
             $navbar.className = " ";
             // wait until animation end.
             setTimeout(function(){
@@ -116,62 +114,76 @@
                     $collapse.style.height = "0px"
                 }
             },400)
-        }else{
-        // OPEN
+        },
+        open: function(){
             $collapse.style.height = "auto"
             $navbar.className += " in";
         }
     }
+
+    // Bind Event
+    $toggle.addEventListener('click', function(e){
+        if ($navbar.className.indexOf('in') > 0) {
+            __HuxNav__.close()
+        }else{
+            __HuxNav__.open()
+        }
+    })
+
+    /**
+     * Since Fastclick is used to delegate 'touchstart' globally
+     * to hack 300ms delay in iOS by performing a fake 'click',
+     * Using 'e.stopPropagation' to stop 'touchstart' event from 
+     * $toggle/$collapse will break global delegation.
+     * 
+     * Instead, we use a 'e.target' filter to prevent handler
+     * added to document close HuxNav.  
+     *
+     * Also, we use 'click' instead of 'touchstart' as compromise
+     */
+    document.addEventListener('click', function(e){
+        if(e.target == $toggle) return;
+        if(e.target.className == 'icon-bar') return;
+        __HuxNav__.close();
+    })
 </script>
 
-<!-- Main Content -->
 
-<!--only post-->
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/bg-head.jpg" width="0" height="0"> -->
 
-
-<img class="wechat-title-img"
-     src="http://ohy7r8bgu.bkt.clouddn.com/background.jpg#博文默认的图片">
-
-
-<style>
-    
-    header.intro-header {
-        background-image: url('http://ohy7r8bgu.bkt.clouddn.com/background.jpg#博文默认的图片')
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('/img/bg-head.jpg')
     }
 
     
 </style>
-
-<header class="intro-header">
+<header class="intro-header" >
+    <div class="header-mask"></div>
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
-                    <h1>使用Gradle将项目发布到Bitbucket上</h1>
-                    
-                    <span class="meta">
-                         作者 Mi&Jack
-                        <span>
-                          日期 2015-10-17
-                         </span>
-                    </span>
-                    <div class="tags text-center">
+                    <div class="tags">
                         
-                        <a class="tag" href="/tags/#Android"
-                           title="Android">Android</a>
+                        <a class="tag" href="/tags/#Android" title="Android">Android</a>
                         
-                        <a class="tag" href="/tags/#Gradle"
-                           title="Gradle">Gradle</a>
+                        <a class="tag" href="/tags/#Gradle" title="Gradle">Gradle</a>
                         
                     </div>
+                    <h1>使用Gradle将项目发布到Bitbucket上</h1>
+                    
+                    
+                    <h2 class="subheading"></h2>
+                    
+                    <span class="meta">Posted by Mi&Jack on October 17, 2015</span>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="post-title-haojen">
-        <span>
-            使用Gradle将项目发布到Bitbucket上
-        </span>
     </div>
 </header>
 
@@ -179,78 +191,215 @@
 <article>
     <div class="container">
         <div class="row">
-            <!-- Post Container -->
-            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <blockquote>
-<ul>
-<li>原文链接 : <a href="https://medium.com/@Mul0w/publish-with-gradle-on-bitbucket-1463236dc460" target="_blank" rel="external">Publish with Gradle on Bitbucket</a></li>
-<li>原文作者 : <a href="https://medium.com/@Mul0w" target="_blank" rel="external">Stef</a></li>
-<li>译文出自 : <a href="http://www.devtf.cn" target="_blank" rel="external">开发技术前线 www.devtf.cn。未经允许，不得转载!</a></li>
-<li>译者 : <a href="https://github.com/mijack" target="_blank" rel="external">MiJack</a></li>
-<li>校对者: <a href="https://github.com/mijack" target="_blank" rel="external">MiJack</a></li>
-<li>状态 :  已完成</li>
-</ul>
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+				<blockquote>
+  <ul>
+    <li>原文链接 : <a href="https://medium.com/@Mul0w/publish-with-gradle-on-bitbucket-1463236dc460">Publish with Gradle on Bitbucket</a></li>
+    <li>原文作者 : <a href="https://medium.com/@Mul0w">Stef</a></li>
+    <li>译文出自 : <a href="http://www.devtf.cn">开发技术前线 www.devtf.cn。未经允许，不得转载!</a></li>
+    <li>译者 : <a href="https://github.com/mijack">MiJack</a></li>
+    <li>校对者: <a href="https://github.com/mijack">MiJack</a></li>
+    <li>状态 :  已完成</li>
+  </ul>
 </blockquote>
+
 <p>大家好！</p>
+
 <p>我们经常看见一些开源库放在MavenCentral, JCenter等仓库上，但是对于一些现有的库例如公司的库和工具，有没有类似的处理方法？</p>
+
 <p>当然，你可能知道一些私有的仓库，例如（Nexus, Archiva），但是，有时候，你可能没有时间去接触公司的基础架构，比方说，你在一家PHP公司做android开发，还有很多事要做。</p>
+
 <p>就只有这些了吗？是的，因为如果你使用过像Github或者Bitbucket这样的Git仓库，当你开始使用Maven库的时候将会如鱼得水。很棒，是不是？</p>
-<p><a href="https://twitter.com/chrisbanes" target="_blank" rel="external">Chris Banes</a>  曾经写过<a href="https://chris.banes.me/2013/08/27/pushing-aars-to-maven-central/" target="_blank" rel="external">一篇介绍使用Gradle将项目发布到Maven上的文章</a> 。</p>
+
+<p><a href="https://twitter.com/chrisbanes">Chris Banes</a>  曾经写过<a href="https://chris.banes.me/2013/08/27/pushing-aars-to-maven-central/">一篇介绍使用Gradle将项目发布到Maven上的文章</a> 。</p>
+
 <p>我们来看一下究竟是怎么做的吧！</p>
+
 <p>###发布到仓库</p>
-<p>Note : 如果你只使用一个build.gradle文件，你可以在上面设置任何东西，或者，也可以将他们写入不同的文件，然后用下面一段代码帮助你部署。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">apply from: &apos;&lt;path-to-your-file&gt;&apos;</div></pre></td></tr></table></figure></p>
-<p>首先要使用Maven插件<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">apply plugin: &apos;maven&apos;</div></pre></td></tr></table></figure></p>
+
+<p>Note : 如果你只使用一个build.gradle文件，你可以在上面设置任何东西，或者，也可以将他们写入不同的文件，然后用下面一段代码帮助你部署。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apply from: '&lt;path-to-your-file&gt;'
+</code></pre></div></div>
+<p>首先要使用Maven插件</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apply plugin: 'maven'
+</code></pre></div></div>
+
 <p>然后配置相应的信息（下面是上传到Bitbucket的例子，大写的地方是你项目中对应的属性）</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">uploadArchives &#123;</div><div class="line">    configuration = configurations.archives</div><div class="line">    repositories.mavenDeployer &#123;</div><div class="line">        pom.groupId = GROUP</div><div class="line">        pom.artifactId = POM_ARTIFACT_ID</div><div class="line">        pom.version = VERSION_NAME</div><div class="line">        configuration = configurations.deployerJar</div><div class="line">        repository(url: &quot;git:releases://git@bitbucket.org:&lt;bitbucket-username&gt;/&lt;your-repo&gt;.git&quot;)</div><div class="line">        snapshotRepository(url: &quot;git:snapshots://git@bitbucket.org:&lt;bitbucket-username&gt;/&lt;your-repo&gt;.git&quot;)</div><div class="line">        pom.project &#123;</div><div class="line">            name POM_NAME</div><div class="line">            packaging POM_PACKAGING</div><div class="line">            description POM_DESCRIPTION</div><div class="line">            url POM_URL</div><div class="line">            scm &#123;</div><div class="line">                url POM_SCM_URL</div><div class="line">                connection POM_SCM_CONNECTION</div><div class="line">                developerConnection POM_SCM_DEV_CONNECTION</div><div class="line">            &#125;</div><div class="line">            licenses &#123;</div><div class="line">                license &#123;</div><div class="line">                    name POM_LICENCE_NAME</div><div class="line">                    url POM_LICENCE_URL</div><div class="line">                    distribution POM_LICENCE_DIST</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            developers &#123;</div><div class="line">                developer &#123;</div><div class="line">                    id POM_DEVELOPER_ID</div><div class="line">                    name POM_DEVELOPER_NAME</div><div class="line">                    email POM_DEVELOPER_EMAIL</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>uploadArchives {
+    configuration = configurations.archives
+    repositories.mavenDeployer {
+        pom.groupId = GROUP
+        pom.artifactId = POM_ARTIFACT_ID
+        pom.version = VERSION_NAME
+        configuration = configurations.deployerJar
+        repository(url: "git:releases://git@bitbucket.org:&lt;bitbucket-username&gt;/&lt;your-repo&gt;.git")
+        snapshotRepository(url: "git:snapshots://git@bitbucket.org:&lt;bitbucket-username&gt;/&lt;your-repo&gt;.git")
+        pom.project {
+            name POM_NAME
+            packaging POM_PACKAGING
+            description POM_DESCRIPTION
+            url POM_URL
+            scm {
+                url POM_SCM_URL
+                connection POM_SCM_CONNECTION
+                developerConnection POM_SCM_DEV_CONNECTION
+            }
+            licenses {
+                license {
+                    name POM_LICENCE_NAME
+                    url POM_LICENCE_URL
+                    distribution POM_LICENCE_DIST
+                }
+            }
+            developers {
+                developer {
+                    id POM_DEVELOPER_ID
+                    name POM_DEVELOPER_NAME
+                    email POM_DEVELOPER_EMAIL
+                }
+            }
+        }
+    }
+}
+</code></pre></div></div>
 <p>当然，你可以发现deployerJar，我们也需要设置它</p>
-<p>首先，我们需要添加依赖Synergian Wagon-Git:<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">allprojects &#123;</div><div class="line">    repositories &#123;</div><div class="line">        mavenCentral()</div><div class="line">        maven &#123; url &quot;https://raw.github.com/synergian/wagon-git/releases&quot;&#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+<p>首先，我们需要添加依赖Synergian Wagon-Git:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>allprojects {
+    repositories {
+        mavenCentral()
+        maven { url "https://raw.github.com/synergian/wagon-git/releases"}
+    }
+}
+</code></pre></div></div>
 <p>&amp;</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">    deployerJar &quot;ar.com.synergian:wagon-git:0.2.3&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>然后，下一步需要说明如下配置<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">configurations &#123; </div><div class="line">    deployerJar</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>现在，你可以部署了：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ gradle [clean build] uploadArchives</div></pre></td></tr></table></figure></p>
-<p>And … you’re done !<br>你完成了！</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dependencies {
+    deployerJar "ar.com.synergian:wagon-git:0.2.3"
+}
+</code></pre></div></div>
+
+<p>然后，下一步需要说明如下配置</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>configurations { 
+    deployerJar
+}
+</code></pre></div></div>
+<p>现在，你可以部署了：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ gradle [clean build] uploadArchives
+</code></pre></div></div>
+
+<p>And … you’re done !
+你完成了！</p>
+
 <p>###获取你的lib !</p>
-<p>当然，现在你可以发布你的库（不论私有与否）托管到Bitbucket上（或其他）的对应仓库上，这很容易做到：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">allprojects &#123;</div><div class="line">    repositories &#123;</div><div class="line">        mavenCentral()</div><div class="line">        maven &#123;</div><div class="line">            url &quot;https://api.bitbucket.org/1.0/repositories/&lt;bitbucket_username&gt;/&lt;bitbucket-repository&gt;/raw/snapshots&quot;</div><div class="line">            credentials &#123;</div><div class="line">                username REPOSITORY_USERNAME</div><div class="line">                password REPOSITORY_PASSWORD</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        maven &#123;</div><div class="line">            url &quot;https://api.bitbucket.org/1.0/repositories/&lt;bitbucket_username&gt;/&lt;bitbucket-repository&gt;/raw/releases&quot;</div><div class="line">            credentials &#123;</div><div class="line">                username REPOSITORY_USERNAME</div><div class="line">                password REPOSITORY_PASSWORD</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+<p>当然，现在你可以发布你的库（不论私有与否）托管到Bitbucket上（或其他）的对应仓库上，这很容易做到：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>allprojects {
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://api.bitbucket.org/1.0/repositories/&lt;bitbucket_username&gt;/&lt;bitbucket-repository&gt;/raw/snapshots"
+            credentials {
+                username REPOSITORY_USERNAME
+                password REPOSITORY_PASSWORD
+            }
+        }
+        maven {
+            url "https://api.bitbucket.org/1.0/repositories/&lt;bitbucket_username&gt;/&lt;bitbucket-repository&gt;/raw/releases"
+            credentials {
+                username REPOSITORY_USERNAME
+                password REPOSITORY_PASSWORD
+            }
+        }
+    }
+}
+</code></pre></div></div>
+
 <p>当然，最好不要在那些需要提交的build.gradle文件里设置您的凭据，但是，你可以在你的gradle.properties设置。其中最好的办法是将是有一个专门的账户来获取你的库，他只有库的读取权限。顺便说一下，发现证书只有在使用私有库的时候才会用到。</p>
+
 <p>然后，像平常一样添加依赖，就可以使用你的库了：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">      compile &quot;GROUP-ID:ARTIFACT-ID:VERSION&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dependencies {
+      compile "GROUP-ID:ARTIFACT-ID:VERSION"
+}
+</code></pre></div></div>
 <p>你会在Github上找到deploy.gradle文件。</p>
+
 <p>就是这样;-)</p>
 
-                <hr>
-                
+
+                <hr style="visibility: hidden;">
 
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2016/01/07/让 Toolbar 随着 RecyclerView 的滚动而显示隐藏/" data-toggle="tooltip" data-placement="top"
-                           title="让 Toolbar 随着 RecyclerView 的滚动而显示/隐藏">&larr; Previous Post</a>
+                        <a href="/2015/10/10/Android-Design-Support-Library/" data-toggle="tooltip" data-placement="top" title="Android Design Support Library">
+                        Previous<br>
+                        <span>Android Design Support Library</span>
+                        </a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/2015/10/10/Android-Design-Support-Library/" data-toggle="tooltip" data-placement="top"
-                           title="Android Design Support Library">Next Post &rarr;</a>
+                        <a href="/2016/01/07/%E8%AE%A9-Toolbar-%E9%9A%8F%E7%9D%80-RecyclerView-%E7%9A%84%E6%BB%9A%E5%8A%A8%E8%80%8C%E6%98%BE%E7%A4%BA%E9%9A%90%E8%97%8F/" data-toggle="tooltip" data-placement="top" title="让 Toolbar 随着 RecyclerView 的滚动而显示/隐藏">
+                        Next<br>
+                        <span>让 Toolbar 随着 RecyclerView 的滚动而显示/隐藏</span>
+                        </a>
                     </li>
                     
                 </ul>
 
+
+                <!--Gitalk评论start  -->
+                
+                <!-- 引入Gitalk评论插件  -->
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+                <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+                <div id="gitalk-container"></div>
+                <script type="text/javascript">
+                    var gitalk = new Gitalk({
+                    clientID: '0c25cf406e1d9c0165bb',
+                    clientSecret: 'a9b973d400e04404eaebe31751812562019fc909',
+                    repo: 'mijack.github.io',
+                    owner: 'mijack',
+                    admin: ['mijack'],
+                    distractionFreeMode: true,
+                    id: window.location.pathname,
+                    });
+                    gitalk.render('gitalk-container');
+                </script>
+                
+                <!-- Gitalk end -->
+
                 
 
-                
+            </div>  
 
-            </div>
-
-            <div class="hidden-xs col-sm-3 toc-col">
-                <div class="toc-wrap">
-                    
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
                 </div>
             </div>
-        </div>
+        
 
-        <div class="row">
-            <!-- Sidebar Container -->
-
+    <!-- Sidebar Container -->
             <div class="
                 col-lg-8 col-lg-offset-2
                 col-md-10 col-md-offset-1
@@ -259,38 +408,74 @@
                 <!-- Featured Tags -->
                 
                 <section>
-                    <!-- no hr -->
-                    <h5 class="text-center">
-                        <a href="/tags/">FEATURED TAGS</a>
-                    </h5>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
-                        
-                        <a class="tag" href="/tags/#Android"
-                           title="Android">Android</a>
-                        
-                        <a class="tag" href="/tags/#Gradle"
-                           title="Gradle">Gradle</a>
-                        
-                    </div>
+        				
+                            
+                				<a href="/tags/#Android" title="Android" rel="12">
+                                    Android
+                                </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+                				<a href="/tags/#逆向工程" title="逆向工程" rel="4">
+                                    逆向工程
+                                </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+        			</div>
                 </section>
                 
 
                 <!-- Friends Blog -->
                 
-                <div style="margin-top: 20px;">
-                    <h5 class="text-center">FRIENDS</h5>
-                    <ul class="list-inline text-center">
-                        
-                        <li><a href="http://chih.me">chih</a></li>
-                        
-                        <li><a href="https://buwenqi.github.io">wenqi</a></li>
-                        
-                    </ul>
-                </div>
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                        <li><a href="http://chih.me/">chih</a></li>
+                    
+                        <li><a href="https://buwenqi.github.io/">wenqi</a></li>
+                    
+                </ul>
                 
             </div>
         </div>
-
     </div>
 </article>
 
@@ -299,17 +484,63 @@
 
 
 
-<!-- Footer -->
-<!-- Footer -->
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+    <!-- Footer -->
 <footer>
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
-                <br>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <ul class="list-inline text-center">
-                
-                
-                
+                    
+                    <li>
+                        <a href="/feed.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <!-- add jianshu add target = "_blank" to <a> by BY -->
+                    
+                    
+
+                    <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
+                    
                     <li>
                         <a target="_blank" href="https://www.zhihu.com/people/mijackstudio">
                             <span class="fa-stack fa-lg">
@@ -318,56 +549,60 @@
                             </span>
                         </a>
                     </li>
-                
+                    
+                    
 
-                
+
+                    
+                    
                     <li>
-                        <a target="_blank" href="http://weibo.com/mijackstudio">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-
-                
-                    <li>
-                        <a target="_blank"  href="https://github.com/mijack">
+                        <a target="_blank" href="https://github.com/github">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-github fa-stack-1x fa-inverse"></i>
                             </span>
                         </a>
                     </li>
-                
-
-                
-
+                    
+                    
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; 江湖迈杰的博客 2018
+                    Copyright &copy; Mi&Jack 2018
                     <br>
-                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
-                    <br>
-                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                    Theme on <a href="https://github.com/mijack/mijack.github.io.git">GitHub</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=github&repo=github.github.io&type=star&count=true" >
+                    </iframe>
                 </p>
-
             </div>
         </div>
     </div>
 </footer>
 
 <!-- jQuery -->
-<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.min.js "></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.min.js "></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="/js/blog.js"></script>
+<script src="/js/hux-blog.min.js "></script>
+
+<!-- Service Worker -->
+
+<script type="text/javascript">
+    if(navigator.serviceWorker){
+        // For security reasons, a service worker can only control the pages that are in the same directory level or below it. That's why we put sw.js at ROOT level.
+        navigator.serviceWorker
+            .register('/sw.js')
+            .then((registration) => {console.log('Service Worker Registered. ', registration)})
+            .catch((error) => {console.log('ServiceWorker registration failed: ', error)})
+    }
+</script>
+
+
 
 <!-- async load function -->
 <script>
@@ -381,11 +616,31 @@
     }
 </script>
 
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/ 
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers   
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
 <!-- jquery.tagcloud.js -->
 <script>
     // only load tagcloud.js in tag.html
     if($('#tag_cloud').length !== 0){
-        async("http://mijack.github.io/js/jquery.tagcloud.js",function(){
+        async('/js/jquery.tagcloud.js',function(){
             $.fn.tagcloud.defaults = {
                 //size: {start: 1, end: 1, unit: 'em'},
                 color: {start: '#bbbbee', end: '#0085a1'},
@@ -397,46 +652,89 @@
 
 <!--fastClick.js -->
 <script>
-    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
         var $nav = document.querySelector("nav");
         if($nav) FastClick.attach($nav);
     })
 </script>
 
-<!-- Google Analytics -->
 
+<!-- Google Analytics -->
 
 <script>
     // dynamic User by Hux
-    var _gaId = 'UA-75651210- 1';
-    var _gaDomain = 'auto';
+    var _gaId = 'UA-75651210-1';
+    var _gaDomain = 'mijack.github.io';
+
     // Originial
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
     ga('create', _gaId, _gaDomain);
     ga('send', 'pageview');
 </script>
 
 
+
 <!-- Baidu Tongji -->
 
 
-<!-- swiftype -->
-<script type="text/javascript">
-  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
-  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
-  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
-  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
 
-  _st('install','null','2.0.0');
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        var P = $('div.post-container'),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;    
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
 </script>
 
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-<!--wechat title img-->
-<img class="wechat-title-img" src="https://avatars.githubusercontent.com/u/4158061?v=3">
+
+
+
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
 </body>
 
 </html>

@@ -1,50 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Head tag -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="袁宇杰（Mi&amp;Jack）在 Github 上的个人博客">
-    <meta name="keyword" content="null">
-    <meta name="theme-color" content="#600090">
-    <meta name="msapplication-navbutton-color" content="#600090">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
-    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
-    <link rel="alternate" type="application/atom+xml" title="江湖迈杰的博客" href="/atom.xml">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
-    <title>
-        
-        MVP在Android平台上的应用｜Mi&amp;Jack&#39;s blog
-        
-    </title>
+    <meta name="description" content="description">
+    <meta name="keywords"  content="Mi&Jack, Mi&Jack Blog, 江湖迈杰的博客, yuanyujie, 袁宇杰, Java, Android">
+    <meta name="theme-color" content="#000000">
+    
+    <title>MVP在Android平台上的应用 - 江湖迈杰的博客 | BY Mi&Jack</title>
 
-    <link rel="canonical" href="http://mijack.github.io/2015/10/07/Android上MVP的介绍/">
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="http://localhost:4000/2015/10/07/Android%E4%B8%8AMVP%E7%9A%84%E4%BB%8B%E7%BB%8D/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/blog-style.css">
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
 
     <!-- Pygments Github CSS -->
     <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
 </head>
 
-<style>
 
-    header.intro-header {
-        background-image: url('http://ohy7r8bgu.bkt.clouddn.com/background.jpg#博文默认的图片')
-    }
-</style>
 <!-- hack iOS CSS :active style -->
-<body ontouchstart="" class="animated fadeIn">
-<!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
-" data-ishome = "false" >
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header page-scroll">
@@ -54,44 +69,29 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand animated pulse" href="/">
-                <span class="brand-logo">
-                    江湖迈杰的博客
-                </span>
-                's Blog
-            </a>
+            <a class="navbar-brand" href="/">江湖迈杰的博客</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <!-- Known Issue, found by Hux:
-            <nav>'s height woule be hold on by its content.
-            so, when navbar scale out, the <nav> will cover tags.
-            also mask any touch event of tags, unfortunately.
-        -->
-        <!-- /.navbar-collapse -->
         <div id="huxblog_navbar">
             <div class="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a href="/">Home</a>
                     </li>
-					
                     
-                        
+                    <li>
+                        <a href="/about/">About</a>
+                    </li>
                     
-                        
-							
-                        <li>
-                            <a href="/Tags/">Tags</a>
-                        </li>
-							
-						
+                    <li>
+                        <a href="/tags/">Tags</a>
+                    </li>
                     
-					
-					
                 </ul>
             </div>
         </div>
+        <!-- /.navbar-collapse -->
     </div>
     <!-- /.container -->
 </nav>
@@ -99,15 +99,13 @@
     // Drop Bootstarp low-performance Navbar
     // Use customize navbar with high-quality material design animation
     // in high-perf jank-free CSS3 implementation
-//    var $body   = document.body;
+    var $body   = document.body;
     var $toggle = document.querySelector('.navbar-toggle');
     var $navbar = document.querySelector('#huxblog_navbar');
     var $collapse = document.querySelector('.navbar-collapse');
 
-    $toggle.addEventListener('click', handleMagic)
-    function handleMagic(e){
-        if ($navbar.className.indexOf('in') > 0) {
-        // CLOSE
+    var __HuxNav__ = {
+        close: function(){
             $navbar.className = " ";
             // wait until animation end.
             setTimeout(function(){
@@ -116,62 +114,76 @@
                     $collapse.style.height = "0px"
                 }
             },400)
-        }else{
-        // OPEN
+        },
+        open: function(){
             $collapse.style.height = "auto"
             $navbar.className += " in";
         }
     }
+
+    // Bind Event
+    $toggle.addEventListener('click', function(e){
+        if ($navbar.className.indexOf('in') > 0) {
+            __HuxNav__.close()
+        }else{
+            __HuxNav__.open()
+        }
+    })
+
+    /**
+     * Since Fastclick is used to delegate 'touchstart' globally
+     * to hack 300ms delay in iOS by performing a fake 'click',
+     * Using 'e.stopPropagation' to stop 'touchstart' event from 
+     * $toggle/$collapse will break global delegation.
+     * 
+     * Instead, we use a 'e.target' filter to prevent handler
+     * added to document close HuxNav.  
+     *
+     * Also, we use 'click' instead of 'touchstart' as compromise
+     */
+    document.addEventListener('click', function(e){
+        if(e.target == $toggle) return;
+        if(e.target.className == 'icon-bar') return;
+        __HuxNav__.close();
+    })
 </script>
 
-<!-- Main Content -->
 
-<!--only post-->
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/bg-head.jpg" width="0" height="0"> -->
 
-
-<img class="wechat-title-img"
-     src="http://ohy7r8bgu.bkt.clouddn.com/background.jpg#博文默认的图片">
-
-
-<style>
-    
-    header.intro-header {
-        background-image: url('http://ohy7r8bgu.bkt.clouddn.com/background.jpg#博文默认的图片')
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('/img/bg-head.jpg')
     }
 
     
 </style>
-
-<header class="intro-header">
+<header class="intro-header" >
+    <div class="header-mask"></div>
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
-                    <h1>MVP在Android平台上的应用</h1>
-                    
-                    <span class="meta">
-                         作者 Mi&Jack
-                        <span>
-                          日期 2015-10-07
-                         </span>
-                    </span>
-                    <div class="tags text-center">
+                    <div class="tags">
                         
-                        <a class="tag" href="/tags/#Android"
-                           title="Android">Android</a>
+                        <a class="tag" href="/tags/#Android" title="Android">Android</a>
                         
-                        <a class="tag" href="/tags/#MVP"
-                           title="MVP">MVP</a>
+                        <a class="tag" href="/tags/#MVP" title="MVP">MVP</a>
                         
                     </div>
+                    <h1>MVP在Android平台上的应用</h1>
+                    
+                    
+                    <h2 class="subheading"></h2>
+                    
+                    <span class="meta">Posted by Mi&Jack on October 7, 2015</span>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="post-title-haojen">
-        <span>
-            MVP在Android平台上的应用
-        </span>
     </div>
 </header>
 
@@ -179,278 +191,673 @@
 <article>
     <div class="container">
         <div class="row">
-            <!-- Post Container -->
-            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <blockquote>
-<ul>
-<li>原文链接 : <a href="http://konmik.github.io/introduction-to-model-view-presenter-on-android.html" target="_blank" rel="external">Introduction to Model-View-Presenter on Android</a></li>
-<li>原文作者 : <a href="http://konmik.github.io/" target="_blank" rel="external">konmik</a></li>
-<li>译文出自 : <a href="http://konmik.github.io/introduction-to-model-view-presenter-on-android.html" target="_blank" rel="external">  其他  http://konmik.github.io/introduction-to-model-view-presenter-on-android.html</a></li>
-<li>译者 : <a href="https://github.com/MiJack" target="_blank" rel="external">MiJack</a>  </li>
-<li>校对者: <a href="https://github.com/MiJack" target="_blank" rel="external">MiJack</a>  </li>
-<li>状态 : 校对完成</li>
-</ul>
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+				<blockquote>
+  <ul>
+    <li>原文链接 : <a href="http://konmik.github.io/introduction-to-model-view-presenter-on-android.html">Introduction to Model-View-Presenter on Android</a></li>
+    <li>原文作者 : <a href="http://konmik.github.io/">konmik</a></li>
+    <li>译文出自 : <a href="http://konmik.github.io/introduction-to-model-view-presenter-on-android.html">  其他  http://konmik.github.io/introduction-to-model-view-presenter-on-android.html</a></li>
+    <li>译者 : <a href="https://github.com/MiJack">MiJack</a></li>
+    <li>校对者: <a href="https://github.com/MiJack">MiJack</a></li>
+    <li>状态 : 校对完成</li>
+  </ul>
 </blockquote>
+
 <p>=======</p>
+
 <p>#Android平台上MVP的介绍</p>
+
 <p>这篇文章向你介绍Android平台上的MVP模式，从一个简浅的例子开始实践之路。文章也会介绍一个一个库让你在Android平台上轻松的实现MVP</p>
+
 <p>##简单吗？我怎么才能从中受益？</p>
+
 <p>###什么是MVP？</p>
+
 <ul>
-<li><strong>View</strong>层主要是用于展示数据并对用户行为做出反馈。在Android平台上，他可以对应为Activity, Fragment,View或者对话框。</li>
-<li><strong>Model</strong>是数据访问层，往往是数据库接口或者服务器的API。</li>
-<li><strong>Presenter</strong>层可以想View层提供来自数据访问层的数据，除此以外，他也会处理一些后台事务。</li>
+  <li><strong>View</strong>层主要是用于展示数据并对用户行为做出反馈。在Android平台上，他可以对应为Activity, Fragment,View或者对话框。</li>
+  <li><strong>Model</strong>是数据访问层，往往是数据库接口或者服务器的API。</li>
+  <li><strong>Presenter</strong>层可以想View层提供来自数据访问层的数据，除此以外，他也会处理一些后台事务。</li>
 </ul>
+
 <p>在Android平台上，MVP可以将后台事务从Activity/View/Fragment中分离出来，让它们独立于大部分生命周期事件。这样，一个应用将会变得简单， 整个应用可靠性可以提高10倍，应用的代码将会变短, 代码的可维护性提高，开发者也为此感到高兴。</p>
+
 <p>###Android为什么需要MVP</p>
+
 <p>####理由1：尽量简单</p>
-<p>如果你还有读过这篇文章，请阅读它：<a href="https://people.apache.org/~fhanik/kiss.html" target="_blank" rel="external">Kiss原则</a>（Keep It Stupid Simple）</p>
+
+<p>如果你还有读过这篇文章，请阅读它：<a href="https://people.apache.org/~fhanik/kiss.html">Kiss原则</a>（Keep It Stupid Simple）</p>
+
 <ul>
-<li>大部分的安卓应用只使用View-Model结构</li>
-<li>程序员现在更多的是和复杂的View打交道而不是解决业务逻辑。</li>
+  <li>大部分的安卓应用只使用View-Model结构</li>
+  <li>程序员现在更多的是和复杂的View打交道而不是解决业务逻辑。</li>
 </ul>
-<p>当你在应用中只使用Model-View时，到最后，你会发现“所有的事物都被连接到一起”。<br><img src="http://konmik.github.io/images/mvp_everything_is_connected_with_everything.png" alt=""></p>
+
+<p>当你在应用中只使用Model-View时，到最后，你会发现“所有的事物都被连接到一起”。
+<img src="http://konmik.github.io/images/mvp_everything_is_connected_with_everything.png" alt="" /></p>
+
 <p>如果这张图看上去还不是很复杂，那么请你想象一下以下情况：每一个View在任意一个时刻都有可能出现或者消失。不要忘记View的保存和恢复，在临时的view上挂载一个后台任务。</p>
+
 <p>“所有的事物都被连接到一起”的替代品是一个万能对象(god object)。</p>
-<p><img src="http://konmik.github.io/images/mvp_a_god_object.png" alt=""></p>
+
+<p><img src="http://konmik.github.io/images/mvp_a_god_object.png" alt="" /></p>
+
 <p>god object是十分复杂的，他的每一个部分都不能重复利用，无法轻易的测试、或者调试和重构。</p>
+
 <p>###With MVP</p>
+
 <p>###使用MVP</p>
-<p><img src="http://konmik.github.io/images/mvp_mvp.png" alt=""></p>
+
+<p><img src="http://konmik.github.io/images/mvp_mvp.png" alt="" /></p>
+
 <p>复杂的任务被分成细小的任务，并且很容易解决。越小的东西，bug越少，越容易debug，更好测试。在MVP模式下的View层将会变得简单，所以即便是他请求数据的时候也不需要回调函数。View逻辑变成十分直接。</p>
+
 <p>理由2：后台任务</p>
+
 <p>当你编写一个Actviity、Fragment、自定义View的时候，你会把所有的和后台任务相关的方法写在一个静态类或者外部类中。这样，你的Task不再和Activity联系在一起，这既不会导致内存泄露，也不依赖于Activity的重建。</p>
+
 <p>这里有若干种方法处理后台任务，但是它们的可靠性都不及MVP。</p>
+
 <p>###为什么它是可行的？</p>
+
 <p>这里有一张表格，用于展示在configuration改变、Activity 重启、Out-Of-Memory时，不同的应用部分会发生什么？</p>
+
 <table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">情景 1</th>
-<th style="text-align:center">情景 2</th>
-<th style="text-align:center">情景 3</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center">配置改变</td>
-<td style="text-align:center">Activity 重启</td>
-<td style="text-align:center">进程重启</td>
-</tr>
-<tr>
-<td style="text-align:center">对话框</td>
-<td style="text-align:center">重置</td>
-<td style="text-align:center">重置</td>
-<td style="text-align:center">重置</td>
-</tr>
-<tr>
-<td style="text-align:center">Activity, View, Fragment</td>
-<td style="text-align:center">保存/恢复</td>
-<td style="text-align:center">保存/恢复</td>
-<td style="text-align:center">保存/恢复</td>
-</tr>
-<tr>
-<td style="text-align:center">Fragment with setRetainInstance(true)</td>
-<td style="text-align:center">无变化</td>
-<td style="text-align:center">保存/恢复</td>
-<td style="text-align:center">保存/恢复</td>
-</tr>
-<tr>
-<td style="text-align:center">Static variables and threads</td>
-<td style="text-align:center">无变化</td>
-<td style="text-align:center">无变化</td>
-<td style="text-align:center">重置</td>
-</tr>
-</tbody>
+  <thead>
+    <tr>
+      <th style="text-align: center"> </th>
+      <th style="text-align: center">情景 1</th>
+      <th style="text-align: center">情景 2</th>
+      <th style="text-align: center">情景 3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">配置改变</td>
+      <td style="text-align: center">Activity 重启</td>
+      <td style="text-align: center">进程重启</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">对话框</td>
+      <td style="text-align: center">重置</td>
+      <td style="text-align: center">重置</td>
+      <td style="text-align: center">重置</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Activity, View, Fragment</td>
+      <td style="text-align: center">保存/恢复</td>
+      <td style="text-align: center">保存/恢复</td>
+      <td style="text-align: center">保存/恢复</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Fragment with setRetainInstance(true)</td>
+      <td style="text-align: center">无变化</td>
+      <td style="text-align: center">保存/恢复</td>
+      <td style="text-align: center">保存/恢复</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Static variables and threads</td>
+      <td style="text-align: center">无变化</td>
+      <td style="text-align: center">无变化</td>
+      <td style="text-align: center">重置</td>
+    </tr>
+  </tbody>
 </table>
-<p>情景 1: 当用户切换屏幕、更改语言设置或者链接外部的模拟器时，往往意味着设置改变。 相关更多请阅读<a href="http://developer.android.com/reference/android/R.attr.html#configChanges" target="_blank" rel="external">这里</a>。</p>
+
+<p>情景 1: 当用户切换屏幕、更改语言设置或者链接外部的模拟器时，往往意味着设置改变。 相关更多请阅读<a href="http://developer.android.com/reference/android/R.attr.html#configChanges">这里</a>。</p>
+
 <p>情景 2:Activity的重启发生在当用户在开发者选项中选中了“Don’t keep activities”（“中文下为 不保留活动”）的复选框，然后另一个Activity在最顶上的时候。</p>
+
 <p>情景 3: 进程的重启发生在应用运行在后台，但是这个时候内存不够的情况下。</p>
+
 <p>###总结</p>
-<p>现在你可以发现，一个调用了setRetainInstance(true)的Fragment也不奏效，我们还是需要保存/恢复fragment的状态，所以为简化问题，我们暂不考虑上述情况的Fragment。<a href="http://en.wikipedia.org/wiki/Occam&#39;s_razor" target="_blank" rel="external">Occam’s razor</a></p>
+
+<p>现在你可以发现，一个调用了setRetainInstance(true)的Fragment也不奏效，我们还是需要保存/恢复fragment的状态，所以为简化问题，我们暂不考虑上述情况的Fragment。<a href="http://en.wikipedia.org/wiki/Occam's_razor">Occam’s razor</a></p>
+
 <table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">配置改变,   Activity重启</th>
-<th style="text-align:center">进程重启</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">Activity, View, Fragment, DialogFragment</td>
-<td style="text-align:center">保存/恢复</td>
-<td style="text-align:center">保存/恢复</td>
-</tr>
-<tr>
-<td style="text-align:center">Static variables and threads</td>
-<td style="text-align:center">无变化</td>
-<td style="text-align:center">重置</td>
-</tr>
-</tbody>
+  <thead>
+    <tr>
+      <th style="text-align: center"> </th>
+      <th style="text-align: center">配置改变,   Activity重启</th>
+      <th style="text-align: center">进程重启</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Activity, View, Fragment, DialogFragment</td>
+      <td style="text-align: center">保存/恢复</td>
+      <td style="text-align: center">保存/恢复</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Static variables and threads</td>
+      <td style="text-align: center">无变化</td>
+      <td style="text-align: center">重置</td>
+    </tr>
+  </tbody>
 </table>
+
 <p>现在，看上去更舒服了，我们只需要写两段代码为了恢复应用：</p>
+
 <ul>
-<li><p>保存/恢复 for Activity, View, Fragment, DialogFragment;</p>
-</li>
-<li><p>重启后台请求由于进程重启</p>
-</li>
+  <li>
+    <p>保存/恢复 for Activity, View, Fragment, DialogFragment;</p>
+  </li>
+  <li>
+    <p>重启后台请求由于进程重启</p>
+  </li>
 </ul>
+
 <p>第一个部分,用Android的API可以实现。第二个部分，就是Presenter的作用了。Presenter将会记住有哪些请求需要执行，当进程在执行过程中重启时，Presenter将会出现执行它们。</p>
+
 <p>#####一个简单的例子(no MVP)</p>
+
 <p>这个例子用于从远程服务器加载数据并呈现，当发生异常时，会通过Toast提示。</p>
-<p>我推荐使用<a href="https://github.com/ReactiveX/RxJava" target="_blank" rel="external">RxJava</a>构建Presenter，因为这个库更容易控制数据流。</p>
-<p>我想对创造如此简单的API的伙计说声谢谢，我把它用于<a href="http://www.icndb.com/" target="_blank" rel="external">The Internet Chuck Norris Database</a></p>
-<p>无MVP的<a href="https://github.com/konmik/MVPExamples/tree/master/example00" target="_blank" rel="external">例子00</a>：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String DEFAULT_NAME = <span class="string">"Chuck Norris"</span>;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> ArrayAdapter&lt;ServerAPI.Item&gt; adapter;</div><div class="line">    <span class="keyword">private</span> Subscription subscription;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">        ListView listView = (ListView)findViewById(R.id.listView);</div><div class="line">        listView.setAdapter(adapter = <span class="keyword">new</span> ArrayAdapter&lt;&gt;(<span class="keyword">this</span>, R.layout.item));</div><div class="line">        requestItems(DEFAULT_NAME);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onDestroy();</div><div class="line">        unsubscribe();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">requestItems</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">        unsubscribe();</div><div class="line">        subscription = App.getServerAPI()</div><div class="line">            .getItems(name.split(<span class="string">"\\s+"</span>)[<span class="number">0</span>], name.split(<span class="string">"\\s+"</span>)[<span class="number">1</span>])</div><div class="line">            .delay(<span class="number">1</span>, TimeUnit.SECONDS)</div><div class="line">            .observeOn(AndroidSchedulers.mainThread())</div><div class="line">            .subscribe(<span class="keyword">new</span> Action1&lt;ServerAPI.Response&gt;() &#123;</div><div class="line">                <span class="meta">@Override</span></div><div class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(ServerAPI.Response response)</span> </span>&#123;</div><div class="line">                    onItemsNext(response.items);</div><div class="line">                &#125;</div><div class="line">            &#125;, <span class="keyword">new</span> Action1&lt;Throwable&gt;() &#123;</div><div class="line">                <span class="meta">@Override</span></div><div class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(Throwable error)</span> </span>&#123;</div><div class="line">                    onItemsError(error);</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onItemsNext</span><span class="params">(ServerAPI.Item[] items)</span> </span>&#123;</div><div class="line">        adapter.clear();</div><div class="line">        adapter.addAll(items);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onItemsError</span><span class="params">(Throwable throwable)</span> </span>&#123;</div><div class="line">        Toast.makeText(<span class="keyword">this</span>, throwable.getMessage(), Toast.LENGTH_LONG).show();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">unsubscribe</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (subscription != <span class="keyword">null</span>) &#123;</div><div class="line">            subscription.unsubscribe();</div><div class="line">            subscription = <span class="keyword">null</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+<p>我推荐使用<a href="https://github.com/ReactiveX/RxJava">RxJava</a>构建Presenter，因为这个库更容易控制数据流。</p>
+
+<p>我想对创造如此简单的API的伙计说声谢谢，我把它用于<a href="http://www.icndb.com/">The Internet Chuck Norris Database</a></p>
+
+<p>无MVP的<a href="https://github.com/konmik/MVPExamples/tree/master/example00">例子00</a>：</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainActivity</span> <span class="kd">extends</span> <span class="n">Activity</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">DEFAULT_NAME</span> <span class="o">=</span> <span class="s">"Chuck Norris"</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="n">ArrayAdapter</span><span class="o">&lt;</span><span class="n">ServerAPI</span><span class="o">.</span><span class="na">Item</span><span class="o">&gt;</span> <span class="n">adapter</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">Subscription</span> <span class="n">subscription</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+        <span class="n">setContentView</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">activity_main</span><span class="o">);</span>
+        <span class="n">ListView</span> <span class="n">listView</span> <span class="o">=</span> <span class="o">(</span><span class="n">ListView</span><span class="o">)</span><span class="n">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">listView</span><span class="o">);</span>
+        <span class="n">listView</span><span class="o">.</span><span class="na">setAdapter</span><span class="o">(</span><span class="n">adapter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayAdapter</span><span class="o">&lt;&gt;(</span><span class="k">this</span><span class="o">,</span> <span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">item</span><span class="o">));</span>
+        <span class="n">requestItems</span><span class="o">(</span><span class="n">DEFAULT_NAME</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onDestroy</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onDestroy</span><span class="o">();</span>
+        <span class="n">unsubscribe</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">requestItems</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">unsubscribe</span><span class="o">();</span>
+        <span class="n">subscription</span> <span class="o">=</span> <span class="n">App</span><span class="o">.</span><span class="na">getServerAPI</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">getItems</span><span class="o">(</span><span class="n">name</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">"\\s+"</span><span class="o">)[</span><span class="mi">0</span><span class="o">],</span> <span class="n">name</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">"\\s+"</span><span class="o">)[</span><span class="mi">1</span><span class="o">])</span>
+            <span class="o">.</span><span class="na">delay</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">SECONDS</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">observeOn</span><span class="o">(</span><span class="n">AndroidSchedulers</span><span class="o">.</span><span class="na">mainThread</span><span class="o">())</span>
+            <span class="o">.</span><span class="na">subscribe</span><span class="o">(</span><span class="k">new</span> <span class="n">Action1</span><span class="o">&lt;</span><span class="n">ServerAPI</span><span class="o">.</span><span class="na">Response</span><span class="o">&gt;()</span> <span class="o">{</span>
+                <span class="nd">@Override</span>
+                <span class="kd">public</span> <span class="kt">void</span> <span class="nf">call</span><span class="o">(</span><span class="n">ServerAPI</span><span class="o">.</span><span class="na">Response</span> <span class="n">response</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">onItemsNext</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">items</span><span class="o">);</span>
+                <span class="o">}</span>
+            <span class="o">},</span> <span class="k">new</span> <span class="n">Action1</span><span class="o">&lt;</span><span class="n">Throwable</span><span class="o">&gt;()</span> <span class="o">{</span>
+                <span class="nd">@Override</span>
+                <span class="kd">public</span> <span class="kt">void</span> <span class="nf">call</span><span class="o">(</span><span class="n">Throwable</span> <span class="n">error</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">onItemsError</span><span class="o">(</span><span class="n">error</span><span class="o">);</span>
+                <span class="o">}</span>
+            <span class="o">});</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onItemsNext</span><span class="o">(</span><span class="n">ServerAPI</span><span class="o">.</span><span class="na">Item</span><span class="o">[]</span> <span class="n">items</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">adapter</span><span class="o">.</span><span class="na">clear</span><span class="o">();</span>
+        <span class="n">adapter</span><span class="o">.</span><span class="na">addAll</span><span class="o">(</span><span class="n">items</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onItemsError</span><span class="o">(</span><span class="n">Throwable</span> <span class="n">throwable</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">throwable</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">Toast</span><span class="o">.</span><span class="na">LENGTH_LONG</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">unsubscribe</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">subscription</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">subscription</span><span class="o">.</span><span class="na">unsubscribe</span><span class="o">();</span>
+            <span class="n">subscription</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
 <p>有经验的开发者会注意到这个例子有以下不妥：</p>
+
 <p>当用户翻转屏幕时候会开始请求，应用发起了过多的请求，将会是屏幕在切换的时候呈现空白的界面。</p>
+
 <p>当用户频繁的切换屏幕，这将会造成内存泄露，请求运行时，每一个回调将会持有MainActivity的引用，让其保存在内存中。因此引起的OOM和应用反应迟缓，会引发应用的Crash。</p>
-<p>MVP模式下的<a href="https://github.com/konmik/MVPExamples/tree/master/example01" target="_blank" rel="external">例子 01</a></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainPresenter</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String DEFAULT_NAME = <span class="string">"Chuck Norris"</span>;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> ServerAPI.Item[] items;</div><div class="line">    <span class="keyword">private</span> Throwable error;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> MainActivity view;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MainPresenter</span><span class="params">()</span> </span>&#123;</div><div class="line">        App.getServerAPI()</div><div class="line">            .getItems(DEFAULT_NAME.split(<span class="string">"\\s+"</span>)[<span class="number">0</span>], DEFAULT_NAME.split(<span class="string">"\\s+"</span>)[<span class="number">1</span>])</div><div class="line">            .delay(<span class="number">1</span>, TimeUnit.SECONDS)</div><div class="line">            .observeOn(AndroidSchedulers.mainThread())</div><div class="line">            .subscribe(<span class="keyword">new</span> Action1&lt;ServerAPI.Response&gt;() &#123;</div><div class="line">                <span class="meta">@Override</span></div><div class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(ServerAPI.Response response)</span> </span>&#123;</div><div class="line">                    items = response.items;</div><div class="line">                    publish();</div><div class="line">                &#125;</div><div class="line">            &#125;, <span class="keyword">new</span> Action1&lt;Throwable&gt;() &#123;</div><div class="line">                <span class="meta">@Override</span></div><div class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(Throwable throwable)</span> </span>&#123;</div><div class="line">                    error = throwable;</div><div class="line">                    publish();</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onTakeView</span><span class="params">(MainActivity view)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.view = view;</div><div class="line">        publish();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">publish</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (view != <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">if</span> (items != <span class="keyword">null</span>)</div><div class="line">                view.onItemsNext(items);</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (error != <span class="keyword">null</span>)</div><div class="line">                view.onItemsError(error);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>从严格意义上来说，MainPresenter有三个事件处理线程： <em>onNext</em>, <em>onError</em>, <em>onTakeView</em>。他们调用了<code>publish()</code>方法，<em>onNext</em> 或 <em>onError</em>的值将会在MainActivity中发布，而不是由onTakeView提供。      </p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> ArrayAdapter&lt;ServerAPI.Item&gt; adapter;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> MainPresenter presenter;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line"></div><div class="line">        ListView listView = (ListView)findViewById(R.id.listView);</div><div class="line">        listView.setAdapter(adapter = <span class="keyword">new</span> ArrayAdapter&lt;&gt;(<span class="keyword">this</span>, R.layout.item));</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (presenter == <span class="keyword">null</span>)</div><div class="line">            presenter = <span class="keyword">new</span> MainPresenter();</div><div class="line">        presenter.onTakeView(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onDestroy();</div><div class="line">        presenter.onTakeView(<span class="keyword">null</span>);</div><div class="line">        <span class="keyword">if</span> (isFinishing())</div><div class="line">            presenter = <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onItemsNext</span><span class="params">(ServerAPI.Item[] items)</span> </span>&#123;</div><div class="line">        adapter.clear();</div><div class="line">        adapter.addAll(items);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onItemsError</span><span class="params">(Throwable throwable)</span> </span>&#123;</div><div class="line">        Toast.makeText(<span class="keyword">this</span>, throwable.getMessage(), Toast.LENGTH_LONG).show();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+<p>MVP模式下的<a href="https://github.com/konmik/MVPExamples/tree/master/example01">例子 01</a></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainPresenter</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">DEFAULT_NAME</span> <span class="o">=</span> <span class="s">"Chuck Norris"</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="n">ServerAPI</span><span class="o">.</span><span class="na">Item</span><span class="o">[]</span> <span class="n">items</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">Throwable</span> <span class="n">error</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="n">MainActivity</span> <span class="n">view</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">MainPresenter</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">App</span><span class="o">.</span><span class="na">getServerAPI</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">getItems</span><span class="o">(</span><span class="n">DEFAULT_NAME</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">"\\s+"</span><span class="o">)[</span><span class="mi">0</span><span class="o">],</span> <span class="n">DEFAULT_NAME</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">"\\s+"</span><span class="o">)[</span><span class="mi">1</span><span class="o">])</span>
+            <span class="o">.</span><span class="na">delay</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">SECONDS</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">observeOn</span><span class="o">(</span><span class="n">AndroidSchedulers</span><span class="o">.</span><span class="na">mainThread</span><span class="o">())</span>
+            <span class="o">.</span><span class="na">subscribe</span><span class="o">(</span><span class="k">new</span> <span class="n">Action1</span><span class="o">&lt;</span><span class="n">ServerAPI</span><span class="o">.</span><span class="na">Response</span><span class="o">&gt;()</span> <span class="o">{</span>
+                <span class="nd">@Override</span>
+                <span class="kd">public</span> <span class="kt">void</span> <span class="nf">call</span><span class="o">(</span><span class="n">ServerAPI</span><span class="o">.</span><span class="na">Response</span> <span class="n">response</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">items</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="na">items</span><span class="o">;</span>
+                    <span class="n">publish</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">},</span> <span class="k">new</span> <span class="n">Action1</span><span class="o">&lt;</span><span class="n">Throwable</span><span class="o">&gt;()</span> <span class="o">{</span>
+                <span class="nd">@Override</span>
+                <span class="kd">public</span> <span class="kt">void</span> <span class="nf">call</span><span class="o">(</span><span class="n">Throwable</span> <span class="n">throwable</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">error</span> <span class="o">=</span> <span class="n">throwable</span><span class="o">;</span>
+                    <span class="n">publish</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">});</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onTakeView</span><span class="o">(</span><span class="n">MainActivity</span> <span class="n">view</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">view</span> <span class="o">=</span> <span class="n">view</span><span class="o">;</span>
+        <span class="n">publish</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">publish</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">view</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">items</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
+                <span class="n">view</span><span class="o">.</span><span class="na">onItemsNext</span><span class="o">(</span><span class="n">items</span><span class="o">);</span>
+            <span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">error</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
+                <span class="n">view</span><span class="o">.</span><span class="na">onItemsError</span><span class="o">(</span><span class="n">error</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<p>从严格意义上来说，MainPresenter有三个事件处理线程： <em>onNext</em>, <em>onError</em>, <em>onTakeView</em>。他们调用了<code class="highlighter-rouge">publish()</code>方法，<em>onNext</em> 或 <em>onError</em>的值将会在MainActivity中发布，而不是由onTakeView提供。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainActivity</span> <span class="kd">extends</span> <span class="n">Activity</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="n">ArrayAdapter</span><span class="o">&lt;</span><span class="n">ServerAPI</span><span class="o">.</span><span class="na">Item</span><span class="o">&gt;</span> <span class="n">adapter</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">MainPresenter</span> <span class="n">presenter</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+        <span class="n">setContentView</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">activity_main</span><span class="o">);</span>
+
+        <span class="n">ListView</span> <span class="n">listView</span> <span class="o">=</span> <span class="o">(</span><span class="n">ListView</span><span class="o">)</span><span class="n">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">listView</span><span class="o">);</span>
+        <span class="n">listView</span><span class="o">.</span><span class="na">setAdapter</span><span class="o">(</span><span class="n">adapter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayAdapter</span><span class="o">&lt;&gt;(</span><span class="k">this</span><span class="o">,</span> <span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">item</span><span class="o">));</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">presenter</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
+            <span class="n">presenter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MainPresenter</span><span class="o">();</span>
+        <span class="n">presenter</span><span class="o">.</span><span class="na">onTakeView</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onDestroy</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onDestroy</span><span class="o">();</span>
+        <span class="n">presenter</span><span class="o">.</span><span class="na">onTakeView</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">isFinishing</span><span class="o">())</span>
+            <span class="n">presenter</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onItemsNext</span><span class="o">(</span><span class="n">ServerAPI</span><span class="o">.</span><span class="na">Item</span><span class="o">[]</span> <span class="n">items</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">adapter</span><span class="o">.</span><span class="na">clear</span><span class="o">();</span>
+        <span class="n">adapter</span><span class="o">.</span><span class="na">addAll</span><span class="o">(</span><span class="n">items</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onItemsError</span><span class="o">(</span><span class="n">Throwable</span> <span class="n">throwable</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">throwable</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">Toast</span><span class="o">.</span><span class="na">LENGTH_LONG</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
 <p>MainActivty构建了MainPresenter，将其维持在onCreate/onDestroy周期外，MainActivity持有MainPresenter的静态引用，所以每一个进程由于OOM重启时，MainActivity可以确认Presenter是否仍然存在，必要时创建。</p>
+
 <p>当然，确认和使用静态变量可能是代码变得臃肿，稍后我们会告诉你如何好看些：。:)</p>
+
 <p>####重要思路：</p>
+
 <ul>
-<li>示例程序不会在每次切换屏幕的时候都开始一个新的请求</li>
-<li>当进程重启时，示例程序将会重新加载数据。</li>
-<li>当MainActivity销毁时，MainPresenter不会持有MainActivity的引用，因此不会在切换屏幕的时候发生内存泄漏，而且没必要去unsubscribe请求。</li>
+  <li>示例程序不会在每次切换屏幕的时候都开始一个新的请求</li>
+  <li>当进程重启时，示例程序将会重新加载数据。</li>
+  <li>当MainActivity销毁时，MainPresenter不会持有MainActivity的引用，因此不会在切换屏幕的时候发生内存泄漏，而且没必要去unsubscribe请求。</li>
 </ul>
-<p>###<a href="https://github.com/konmik/nucleus" target="_blank" rel="external">Nucleus</a></p>
-<p>Nucleus是我从<a href="https://github.com/square/mortar" target="_blank" rel="external">Mortar</a>和 Keep It Stupid Simple 这篇文章得到的灵感而建立的库。</p>
+
+<p>###<a href="https://github.com/konmik/nucleus">Nucleus</a></p>
+
+<p>Nucleus是我从<a href="https://github.com/square/mortar">Mortar</a>和 Keep It Stupid Simple 这篇文章得到的灵感而建立的库。</p>
+
 <p>它有以下特征：</p>
+
 <ul>
-<li><p>它支持在View/Fragment/Activity的Bundle中保存/恢复Presenter的状态，一个Presenter可以保存请求参数，以便之后重启它们</p>
-</li>
-<li><p>只需要一行代码，它就可以直接将请求结果或者错误反馈给View，所以你不需要写<code>!= null</code>之类的核对代码。</p>
-</li>
-<li><p>它允许你可以有多个持有Presenter的实例。 不过你不能在用<a href="http://square.github.io/dagger/" target="_blank" rel="external">Dagger</a>实例化的presenter中这样使用(传统方法).</p>
-</li>
-<li><p>它可以用一行代码快速的将View和Presenter绑定。</p>
-</li>
-<li><p>它提供一些现成的基类，例如: <code>NucleusView</code>, <code>NucleusFragment</code>, <code>NucleusSupportFragment</code>, <code>NucleusActivity</code>. 你可以将他们的代码拷贝出来改造出一个自己的类以利用Nucleus的presenter。</p>
-</li>
-<li><p>支持在进程重启后，自动重新发起请求，在<code>onDestroy</code>方法中，自动的退订RxJava的订阅。</p>
-</li>
-<li><p>最后，它简洁明了，每一个开发者都会理解，Presenter的驱动只用了180行代码，RxJava用了230行代码。</p>
-</li>
+  <li>
+    <p>它支持在View/Fragment/Activity的Bundle中保存/恢复Presenter的状态，一个Presenter可以保存请求参数，以便之后重启它们</p>
+  </li>
+  <li>
+    <p>只需要一行代码，它就可以直接将请求结果或者错误反馈给View，所以你不需要写<code class="highlighter-rouge">!= null</code>之类的核对代码。</p>
+  </li>
+  <li>
+    <p>它允许你可以有多个持有Presenter的实例。 不过你不能在用<a href="http://square.github.io/dagger/">Dagger</a>实例化的presenter中这样使用(传统方法).</p>
+  </li>
+  <li>
+    <p>它可以用一行代码快速的将View和Presenter绑定。</p>
+  </li>
+  <li>
+    <p>它提供一些现成的基类，例如: <code class="highlighter-rouge">NucleusView</code>, <code class="highlighter-rouge">NucleusFragment</code>, <code class="highlighter-rouge">NucleusSupportFragment</code>, <code class="highlighter-rouge">NucleusActivity</code>. 你可以将他们的代码拷贝出来改造出一个自己的类以利用Nucleus的presenter。</p>
+  </li>
+  <li>
+    <p>支持在进程重启后，自动重新发起请求，在<code class="highlighter-rouge">onDestroy</code>方法中，自动的退订RxJava的订阅。</p>
+  </li>
+  <li>
+    <p>最后，它简洁明了，每一个开发者都会理解，Presenter的驱动只用了180行代码，RxJava用了230行代码。</p>
+  </li>
 </ul>
-<p>使用了<a href="https://github.com/konmik/nucleus" target="_blank" rel="external">Nucleus</a> 的<a href="https://github.com/konmik/MVPExamples/tree/master/example02" target="_blank" rel="external">例 02</a></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainPresenter</span> <span class="keyword">extends</span> <span class="title">RxPresenter</span>&lt;<span class="title">MainActivity</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String DEFAULT_NAME = <span class="string">"Chuck Norris"</span>;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedState);</div><div class="line"></div><div class="line">        App.getServerAPI()</div><div class="line">            .getItems(DEFAULT_NAME.split(<span class="string">"\\s+"</span>)[<span class="number">0</span>], DEFAULT_NAME.split(<span class="string">"\\s+"</span>)[<span class="number">1</span>])</div><div class="line">            .delay(<span class="number">1</span>, TimeUnit.SECONDS)</div><div class="line">            .observeOn(AndroidSchedulers.mainThread())</div><div class="line">            .compose(<span class="keyword">this</span>.&lt;ServerAPI.Response&gt;deliverLatestCache())</div><div class="line">            .subscribe(<span class="keyword">new</span> Action1&lt;ServerAPI.Response&gt;() &#123;</div><div class="line">                <span class="meta">@Override</span></div><div class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(ServerAPI.Response response)</span> </span>&#123;</div><div class="line">                    getView().onItemsNext(response.items);</div><div class="line">                &#125;</div><div class="line">            &#125;, <span class="keyword">new</span> Action1&lt;Throwable&gt;() &#123;</div><div class="line">                <span class="meta">@Override</span></div><div class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(Throwable throwable)</span> </span>&#123;</div><div class="line">                    getView().onItemsError(throwable);</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">@RequiresPresenter</span>(MainPresenter.class)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">NucleusActivity</span>&lt;<span class="title">MainPresenter</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> ArrayAdapter&lt;ServerAPI.Item&gt; adapter;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line"></div><div class="line">        ListView listView = (ListView)findViewById(R.id.listView);</div><div class="line">        listView.setAdapter(adapter = <span class="keyword">new</span> ArrayAdapter&lt;&gt;(<span class="keyword">this</span>, R.layout.item));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onItemsNext</span><span class="params">(ServerAPI.Item[] items)</span> </span>&#123;</div><div class="line">        adapter.clear();</div><div class="line">        adapter.addAll(items);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onItemsError</span><span class="params">(Throwable throwable)</span> </span>&#123;</div><div class="line">        Toast.makeText(<span class="keyword">this</span>, throwable.getMessage(), Toast.LENGTH_LONG).show();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+<p>使用了<a href="https://github.com/konmik/nucleus">Nucleus</a> 的<a href="https://github.com/konmik/MVPExamples/tree/master/example02">例 02</a></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainPresenter</span> <span class="kd">extends</span> <span class="n">RxPresenter</span><span class="o">&lt;</span><span class="n">MainActivity</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">DEFAULT_NAME</span> <span class="o">=</span> <span class="s">"Chuck Norris"</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedState</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedState</span><span class="o">);</span>
+
+        <span class="n">App</span><span class="o">.</span><span class="na">getServerAPI</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">getItems</span><span class="o">(</span><span class="n">DEFAULT_NAME</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">"\\s+"</span><span class="o">)[</span><span class="mi">0</span><span class="o">],</span> <span class="n">DEFAULT_NAME</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">"\\s+"</span><span class="o">)[</span><span class="mi">1</span><span class="o">])</span>
+            <span class="o">.</span><span class="na">delay</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">SECONDS</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">observeOn</span><span class="o">(</span><span class="n">AndroidSchedulers</span><span class="o">.</span><span class="na">mainThread</span><span class="o">())</span>
+            <span class="o">.</span><span class="na">compose</span><span class="o">(</span><span class="k">this</span><span class="o">.&lt;</span><span class="n">ServerAPI</span><span class="o">.</span><span class="na">Response</span><span class="o">&gt;</span><span class="n">deliverLatestCache</span><span class="o">())</span>
+            <span class="o">.</span><span class="na">subscribe</span><span class="o">(</span><span class="k">new</span> <span class="n">Action1</span><span class="o">&lt;</span><span class="n">ServerAPI</span><span class="o">.</span><span class="na">Response</span><span class="o">&gt;()</span> <span class="o">{</span>
+                <span class="nd">@Override</span>
+                <span class="kd">public</span> <span class="kt">void</span> <span class="nf">call</span><span class="o">(</span><span class="n">ServerAPI</span><span class="o">.</span><span class="na">Response</span> <span class="n">response</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">getView</span><span class="o">().</span><span class="na">onItemsNext</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">items</span><span class="o">);</span>
+                <span class="o">}</span>
+            <span class="o">},</span> <span class="k">new</span> <span class="n">Action1</span><span class="o">&lt;</span><span class="n">Throwable</span><span class="o">&gt;()</span> <span class="o">{</span>
+                <span class="nd">@Override</span>
+                <span class="kd">public</span> <span class="kt">void</span> <span class="nf">call</span><span class="o">(</span><span class="n">Throwable</span> <span class="n">throwable</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">getView</span><span class="o">().</span><span class="na">onItemsError</span><span class="o">(</span><span class="n">throwable</span><span class="o">);</span>
+                <span class="o">}</span>
+            <span class="o">});</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="nd">@RequiresPresenter</span><span class="o">(</span><span class="n">MainPresenter</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainActivity</span> <span class="kd">extends</span> <span class="n">NucleusActivity</span><span class="o">&lt;</span><span class="n">MainPresenter</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="n">ArrayAdapter</span><span class="o">&lt;</span><span class="n">ServerAPI</span><span class="o">.</span><span class="na">Item</span><span class="o">&gt;</span> <span class="n">adapter</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+        <span class="n">setContentView</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">activity_main</span><span class="o">);</span>
+
+        <span class="n">ListView</span> <span class="n">listView</span> <span class="o">=</span> <span class="o">(</span><span class="n">ListView</span><span class="o">)</span><span class="n">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">listView</span><span class="o">);</span>
+        <span class="n">listView</span><span class="o">.</span><span class="na">setAdapter</span><span class="o">(</span><span class="n">adapter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayAdapter</span><span class="o">&lt;&gt;(</span><span class="k">this</span><span class="o">,</span> <span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">item</span><span class="o">));</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onItemsNext</span><span class="o">(</span><span class="n">ServerAPI</span><span class="o">.</span><span class="na">Item</span><span class="o">[]</span> <span class="n">items</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">adapter</span><span class="o">.</span><span class="na">clear</span><span class="o">();</span>
+        <span class="n">adapter</span><span class="o">.</span><span class="na">addAll</span><span class="o">(</span><span class="n">items</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onItemsError</span><span class="o">(</span><span class="n">Throwable</span> <span class="n">throwable</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">throwable</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">Toast</span><span class="o">.</span><span class="na">LENGTH_LONG</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
 <p>正如你看到的，跟上一个代码相比，这个例子十分简洁。Nucleus 可以构造/销毁/变成 Presenter, 向Presenter中添加/分离 View ，并且自动向附加的view发送请求。。</p>
-<p><code>MainPresenter</code>的代码比较短，因为它使用<code>deliverLatestCache（）</code>的操作，延迟了由一个数据源发出所有的数据和错误，直到View可用。它还把数据缓存在内存中，以便它可以在Configuration change时可以被重用。</p>
-<p><code>MainActivity</code>的代码比较短，因为主Presenter的创作由<code>NucleusActivity</code>管理。当你需要绑定一个Presenter的时候，只需要添加注解<code>@RequiresPresenter（MainPresenter.class）</code>。</p>
+
+<p><code class="highlighter-rouge">MainPresenter</code>的代码比较短，因为它使用<code class="highlighter-rouge">deliverLatestCache（）</code>的操作，延迟了由一个数据源发出所有的数据和错误，直到View可用。它还把数据缓存在内存中，以便它可以在Configuration change时可以被重用。</p>
+
+<p><code class="highlighter-rouge">MainActivity</code>的代码比较短，因为主Presenter的创作由<code class="highlighter-rouge">NucleusActivity</code>管理。当你需要绑定一个Presenter的时候，只需要添加注解<code class="highlighter-rouge">@RequiresPresenter（MainPresenter.class）</code>。</p>
+
 <p>警告！注释！在Android中，如果你使用注解，这是最好检查以下这么做会不会降低性能。以我使用的’Galaxy S`（2010年设备）为例，处理此批注耗时不超过0.3毫秒。只在实例化view的时候才会发生，因此注解在这里对性能的影响可以忽略。</p>
+
 <p>####更多例子</p>
-<p>一个扩展的例子,带有请求参数的Presenter：<a href="https://github.com/konmik/nucleus/tree/master/nucleus-example" target="_blank" rel="external">Nucleus Example</a>。</p>
-<p>带有单元测试的例子： <a href="https://github.com/konmik/nucleus/tree/master/nucleus-example-with-tests" target="_blank" rel="external">Nucleus Example With Tests</a></p>
-<p>####<code>deliverLatestCache()</code> 方法</p>
+
+<p>一个扩展的例子,带有请求参数的Presenter：<a href="https://github.com/konmik/nucleus/tree/master/nucleus-example">Nucleus Example</a>。</p>
+
+<p>带有单元测试的例子： <a href="https://github.com/konmik/nucleus/tree/master/nucleus-example-with-tests">Nucleus Example With Tests</a></p>
+
+<p>####<code class="highlighter-rouge">deliverLatestCache()</code> 方法</p>
+
 <p>这个RxPresenter的工具方法有三个变种：</p>
+
 <ul>
-<li><p><code>deliver()</code> will just delay all onNext, onError and onComplete emissions until a View becomes available. Use it for cases when you’re doing a one-time request, like logging in to a web service. <a href="http://konmik.github.io/nucleus/nucleus/presenter/Presenter.html#onCreate(android.os.Bundle" target="_blank" rel="external">Javadoc</a>)</p>
-</li>
-<li><p><code>deliver()</code>只是推迟onNext、onError、onComplete的调用，直到视图有效。使用它，你只需要一次请求，就像发起登陆web服务一样。<a href="http://konmik.github.io/nucleus/nucleus/presenter/Presenter.html#onCreate(android.os.Bundle" target="_blank" rel="external">Javadoc</a>)</p>
-</li>
-<li><p><code>deliverLatest（）</code>当有新的的onNext值，将会舍弃原有的值，如果你有可更新的数据源，这将让你去除那些不需要的数据。<a href="http://konmik.github.io/nucleus/nucleus/presenter/RxPresenter.html#deliverLatest" target="_blank" rel="external">Javadoc</a></p>
-</li>
-<li><p><code>deliverLatestCache（）</code>，和<code>deliverLatest（）</code>一样，但除了它会在内存中保存最新的结果外，当View的另一个实例可用（例如：在配置更改的时候）时，还是会触发一次。如果你不想组织请求在你的View中的保存/恢复事务（比方说，结果太大或者不能很容易地保存在Bundle中），这个方法可以让用户体验更好。<a href="http://konmik.github.io/nucleus/nucleus/presenter/RxPresenter.html#deliverLatestCache" target="_blank" rel="external">Javadoc</a></p>
-</li>
+  <li>
+    <p><code class="highlighter-rouge">deliver()</code> will just delay all onNext, onError and onComplete emissions until a View becomes available. Use it for cases when you’re doing a one-time request, like logging in to a web service. <a href="http://konmik.github.io/nucleus/nucleus/presenter/Presenter.html#onCreate(android.os.Bundle)">Javadoc</a></p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">deliver()</code>只是推迟onNext、onError、onComplete的调用，直到视图有效。使用它，你只需要一次请求，就像发起登陆web服务一样。<a href="http://konmik.github.io/nucleus/nucleus/presenter/Presenter.html#onCreate(android.os.Bundle)">Javadoc</a></p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">deliverLatest（）</code>当有新的的onNext值，将会舍弃原有的值，如果你有可更新的数据源，这将让你去除那些不需要的数据。<a href="http://konmik.github.io/nucleus/nucleus/presenter/RxPresenter.html#deliverLatest">Javadoc</a></p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">deliverLatestCache（）</code>，和<code class="highlighter-rouge">deliverLatest（）</code>一样，但除了它会在内存中保存最新的结果外，当View的另一个实例可用（例如：在配置更改的时候）时，还是会触发一次。如果你不想组织请求在你的View中的保存/恢复事务（比方说，结果太大或者不能很容易地保存在Bundle中），这个方法可以让用户体验更好。<a href="http://konmik.github.io/nucleus/nucleus/presenter/RxPresenter.html#deliverLatestCache">Javadoc</a></p>
+  </li>
 </ul>
+
 <p>####Presenter的生命周期</p>
+
 <p>相比Android组件，Presenter的生命周期更加简短。</p>
+
 <ul>
-<li><p><code>void onCreate(Bundle savedState)</code> - 每一个Presenter构造时 .  <a href="http://konmik.github.io/nucleus/nucleus/presenter/Presenter.html#onCreate(android.os.Bundle" target="_blank" rel="external">Javadoc</a>)</p>
-</li>
-<li><p><code>void onDestroy()</code> - 用户离开View时调用 . <a href="http://konmik.github.io/nucleus/nucleus/presenter/Presenter.html#onDestroy(" target="_blank" rel="external">Javadoc</a>)</p>
-</li>
-<li><p><code>void onSave(Bundle state)</code> - 在View的<code>onSaveInstanceState</code>方法中调用，用于持有Presenter的状态.  <a href="http://konmik.github.io/nucleus/nucleus/presenter/Presenter.html#onSave(android.os.Bundle" target="_blank" rel="external">Javadoc</a>)</p>
-</li>
-<li><p><code>void onTakeView(ViewType view)</code> - 在Activity或者Fragment的<code>onResume()</code>方法中或者<code>android.view.View#onAttachedToWindow()</code>调用.  <a href="http://konmik.github.io/nucleus/nucleus/presenter/Presenter.html#onTakeView(ViewType" target="_blank" rel="external">Javadoc</a>)</p>
-</li>
-<li><p><code>void onTakeView(ViewType view)</code> - 在Activity或者Fragment的<code>onResume()</code>方法中或者<code>android.view.View#onAttachedToWindow()</code>调用.  <a href="http://konmik.github.io/nucleus/nucleus/presenter/Presenter.html#onTakeView(ViewType" target="_blank" rel="external">Javadoc</a>)</p>
-</li>
-<li><p><code>void onDropView()</code> -  在Activity或者Fragment的<code>onPause()</code>方法中或者<code>android.view.View#onDetachedFromWindow()</code>调用. <a href="http://konmik.github.io/nucleus/nucleus/presenter/Presenter.html#onDropView" target="_blank" rel="external">Javadoc</a></p>
-</li>
+  <li>
+    <p><code class="highlighter-rouge">void onCreate(Bundle savedState)</code> - 每一个Presenter构造时 .  <a href="http://konmik.github.io/nucleus/nucleus/presenter/Presenter.html#onCreate(android.os.Bundle)">Javadoc</a></p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">void onDestroy()</code> - 用户离开View时调用 . <a href="http://konmik.github.io/nucleus/nucleus/presenter/Presenter.html#onDestroy()">Javadoc</a></p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">void onSave(Bundle state)</code> - 在View的<code class="highlighter-rouge">onSaveInstanceState</code>方法中调用，用于持有Presenter的状态.  <a href="http://konmik.github.io/nucleus/nucleus/presenter/Presenter.html#onSave(android.os.Bundle)">Javadoc</a></p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">void onTakeView(ViewType view)</code> - 在Activity或者Fragment的<code class="highlighter-rouge">onResume()</code>方法中或者<code class="highlighter-rouge">android.view.View#onAttachedToWindow()</code>调用.  <a href="http://konmik.github.io/nucleus/nucleus/presenter/Presenter.html#onTakeView(ViewType)">Javadoc</a></p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">void onTakeView(ViewType view)</code> - 在Activity或者Fragment的<code class="highlighter-rouge">onResume()</code>方法中或者<code class="highlighter-rouge">android.view.View#onAttachedToWindow()</code>调用.  <a href="http://konmik.github.io/nucleus/nucleus/presenter/Presenter.html#onTakeView(ViewType)">Javadoc</a></p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">void onDropView()</code> -  在Activity或者Fragment的<code class="highlighter-rouge">onPause()</code>方法中或者<code class="highlighter-rouge">android.view.View#onDetachedFromWindow()</code>调用. <a href="http://konmik.github.io/nucleus/nucleus/presenter/Presenter.html#onDropView">Javadoc</a></p>
+  </li>
 </ul>
+
 <p>####View的回收与View栈</p>
+
 <p>通常来说,你的view（比如fragment或者自定义的view）在用户的交互过程中挂载与解挂（attached and detached）都是随机发生的。 这倒是不让presenter在view每次解挂（detached）的时候都销毁的一个启发。你可以在任何时候挂载与解挂view，但是presenter可以在这些行为中幸存下来，继续后台的工作。</p>
+
 <p>这里还存在着一个关于View回收的问题：一个Fragment在Configuration change或者从stack中弹出的情况下，不知道自身有没有解挂（detached）。</p>
-<p>默认只在Activity处于finish时，才在调用View的<code>onDetachedFromWindow()</code>/<code>onDestroy()</code> 销毁Presenter。</p>
-<p>所以，当你在常规的Activity生命周期内，销毁View，你需要给给View一个销毁Presenter的信号。在这里，公有方法<code>NucleusLayout.destroyPresenter()</code> and <code>NucleusFragment.destroyPresenter()</code>就派上用场了。</p>
-<p>例如，在我的项目中，下面的是我如何进行FragmentManager的<code>pop()</code>操作:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line">fragment = fragmentManager.findFragmentById(R.id.fragmentStackContainer);</div><div class="line">fragmentManager.popBackStackImmediate();</div><div class="line"><span class="keyword">if</span> (fragment <span class="keyword">instanceof</span> NucleusFragment)</div><div class="line">    ((NucleusFragment)fragment).destroyPresenter();</div></pre></td></tr></table></figure>
+
+<p>默认只在Activity处于finish时，才在调用View的<code class="highlighter-rouge">onDetachedFromWindow()</code>/<code class="highlighter-rouge">onDestroy()</code> 销毁Presenter。</p>
+
+<p>所以，当你在常规的Activity生命周期内，销毁View，你需要给给View一个销毁Presenter的信号。在这里，公有方法<code class="highlighter-rouge">NucleusLayout.destroyPresenter()</code> and <code class="highlighter-rouge">NucleusFragment.destroyPresenter()</code>就派上用场了。</p>
+
+<p>例如，在我的项目中，下面的是我如何进行FragmentManager的<code class="highlighter-rouge">pop()</code>操作:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">fragment</span> <span class="o">=</span> <span class="n">fragmentManager</span><span class="o">.</span><span class="na">findFragmentById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">fragmentStackContainer</span><span class="o">);</span>
+    <span class="n">fragmentManager</span><span class="o">.</span><span class="na">popBackStackImmediate</span><span class="o">();</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">fragment</span> <span class="k">instanceof</span> <span class="n">NucleusFragment</span><span class="o">)</span>
+        <span class="o">((</span><span class="n">NucleusFragment</span><span class="o">)</span><span class="n">fragment</span><span class="o">).</span><span class="na">destroyPresenter</span><span class="o">();</span>
+</code></pre></div></div>
+
 <p>在进行<em>replace</em>Fragment栈和对处于底部的Fragment进行<em>push</em>操作时，你可能需要进行相同的操作。</p>
+
 <p>在View从Activity解挂（detached）时，您可能会选择摧毁Presenter来避免问题的发生，但是，这将意味着当View解挂（detached）时，后台任务无法继续进行。</p>
+
 <p>所以这一节的 “view recycling”完全留你你自己考虑，也许有一天我会找到更好的解决办法，如果你有一个办法，请告诉我。</p>
+
 <p>####最佳实践</p>
+
 <p>在Presenter中保存你的请求参数。</p>
+
 <p>规则很简单：Presenter的主要作用是管理请求。所以，View不应该自己处理或者重启请求。从View中，我们可以看见，后台事务不会消失，总是会返回结果或者错误，<em>而不是通过回调的方式</em>。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainPresenter</span> <span class="keyword">extends</span> <span class="title">RxPresenter</span>&lt;<span class="title">MainActivity</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> String name = DEFAULT_NAME;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedState);</div><div class="line">        <span class="keyword">if</span> (savedState != <span class="keyword">null</span>)</div><div class="line">            name = savedState.getString(NAME_KEY);</div><div class="line">        ...</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onSave</span><span class="params">(@NonNull Bundle state)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onSave(state);</div><div class="line">        state.putString(NAME_KEY, name);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>我推荐使用一个很棒的库<a href="https://github.com/frankiesardo/icepick" target="_blank" rel="external">Icepick</a>。在不使用运行时注解的前提下，它可以减少代码量，并简化应用程序逻辑 - 所有的事都在编译过程中已经处理好了。这个库和<a href="http://jakewharton.github.io/butterknife" target="_blank" rel="external">ButterKnife</a>搭配是个不错的选择。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainPresenter</span> <span class="keyword">extends</span> <span class="title">RxPresenter</span>&lt;<span class="title">MainActivity</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Icicle</span> String name = DEFAULT_NAME;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedState);</div><div class="line">        Icepick.restoreInstanceState(<span class="keyword">this</span>, savedState);</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onSave</span><span class="params">(@NonNull Bundle state)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onSave(state);</div><div class="line">        Icepick.saveInstanceState(<span class="keyword">this</span>, state);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>如果你有不止一对请求参数，这个库在不使用运行时注解的前提下。您可以创建<code>BasePresenter</code>并把<em>Icepick</em>到该类中，所有的子类将会自动保存标有<code>@Icicle</code>这一注解的变量，而你将不再需要去实现<code>OnSave</code>。这也适用于保存Activity，Fragment，View的状态。</p>
-<p>####在主线程中调用<code>onTakeView</code>进行即时查询<a href="http://konmik.github.io/nucleus/nucleus/presenter/Presenter.html#onTakeView(ViewType" target="_blank" rel="external">Javadoc</a>)</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainPresenter</span> <span class="kd">extends</span> <span class="n">RxPresenter</span><span class="o">&lt;</span><span class="n">MainActivity</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="n">DEFAULT_NAME</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedState</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedState</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">savedState</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">savedState</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="n">NAME_KEY</span><span class="o">);</span>
+        <span class="o">...</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onSave</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">Bundle</span> <span class="n">state</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onSave</span><span class="o">(</span><span class="n">state</span><span class="o">);</span>
+        <span class="n">state</span><span class="o">.</span><span class="na">putString</span><span class="o">(</span><span class="n">NAME_KEY</span><span class="o">,</span> <span class="n">name</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>我推荐使用一个很棒的库<a href="https://github.com/frankiesardo/icepick">Icepick</a>。在不使用运行时注解的前提下，它可以减少代码量，并简化应用程序逻辑 - 所有的事都在编译过程中已经处理好了。这个库和<a href="http://jakewharton.github.io/butterknife">ButterKnife</a>搭配是个不错的选择。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainPresenter</span> <span class="kd">extends</span> <span class="n">RxPresenter</span><span class="o">&lt;</span><span class="n">MainActivity</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="nd">@Icicle</span> <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="n">DEFAULT_NAME</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedState</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedState</span><span class="o">);</span>
+        <span class="n">Icepick</span><span class="o">.</span><span class="na">restoreInstanceState</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">savedState</span><span class="o">);</span>
+        <span class="o">...</span>
+    <span class="o">}</span>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onSave</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">Bundle</span> <span class="n">state</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onSave</span><span class="o">(</span><span class="n">state</span><span class="o">);</span>
+        <span class="n">Icepick</span><span class="o">.</span><span class="na">saveInstanceState</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">state</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+ 
+</code></pre></div></div>
+
+<p>如果你有不止一对请求参数，这个库在不使用运行时注解的前提下。您可以创建<code class="highlighter-rouge">BasePresenter</code>并把<em>Icepick</em>到该类中，所有的子类将会自动保存标有<code class="highlighter-rouge">@Icicle</code>这一注解的变量，而你将不再需要去实现<code class="highlighter-rouge">OnSave</code>。这也适用于保存Activity，Fragment，View的状态。</p>
+
+<p>####在主线程中调用<code class="highlighter-rouge">onTakeView</code>进行即时查询<a href="http://konmik.github.io/nucleus/nucleus/presenter/Presenter.html#onTakeView(ViewType)">Javadoc</a></p>
+
 <p>有时候，你要进行少量的数据查询，如从数据库中读取少量的数据。虽然你可以很容易地用Nucleus创建一个可重启的请求，你不必到处使用这个强大的工具。如果你在fragment创建的时候初始化一个后台请求，即使只有几毫秒，用户也会看到一会儿的空白屏。因此，为了使代码更短，用户体验更好，可以使用主线程。</p>
-<h4 id="不要让presenter控制你的view"><a href="#不要让Presenter控制你的View" class="headerlink" title="不要让Presenter控制你的View"></a>不要让Presenter控制你的View</h4><p>这不是很好的工作方式 - 由于这种不自然的方式，应用程序逻辑变得太复杂。</p>
+
+<h4 id="不要让presenter控制你的view">不要让Presenter控制你的View</h4>
+
+<p>这不是很好的工作方式 - 由于这种不自然的方式，应用程序逻辑变得太复杂。</p>
+
 <p>自然的方式是操作流由用户发起，通过View，Presenter和Model，最后流向数据。毕竟，用户将使用应用,用户是控制应用程序的源头。因此，控制应该从用户开始而不是一些应用的内部结构。</p>
+
 <p>从view，到presenter到model是很直接的形式，很容易书写这样的代码。你将得到以下序列： <strong>user -&gt; view -&gt; presenter -&gt; model -&gt; data</strong> 。但是，当控制流变成这样时: <strong>user -&gt; view -&gt; presenter -&gt; view -&gt; presenter -&gt; model -&gt; data</strong>，它只是违反KISS原则.</p>
-<p>Fragments？不好意思它是违背了这种自然操作流程的。它们太复杂。这里是一个非常好讲诉Fragment的文章：<a href="http://corner.squareup.com/2014/10/advocating-against-android-fragments.html" target="_blank" rel="external">抨击Android的Fragment</a>。fragment的替代者<a href="https://github.com/square/flow" target="_blank" rel="external">Flow</a> 并没有简化多少东西。</p>
+
+<p>Fragments？不好意思它是违背了这种自然操作流程的。它们太复杂。这里是一个非常好讲诉Fragment的文章：<a href="http://corner.squareup.com/2014/10/advocating-against-android-fragments.html">抨击Android的Fragment</a>。fragment的替代者<a href="https://github.com/square/flow">Flow</a> 并没有简化多少东西。</p>
+
 <p>####MVC</p>
+
 <p>如果你对MVC（模型-View-控制器）-不要去使用。模型-View-控制器和MVP完全不同，不能解决接口开发者面对的问题。</p>
+
 <p>####What is MVC?</p>
+
 <p>####什么是MVC?</p>
+
 <ul>
-<li><p><strong>Model</strong>代表着应用程序的内部状态。它可以负责存储，当然也可以不考虑。</p>
-</li>
-<li><p><strong>View</strong>是唯一的与MVP相同的部分 - 它用于将模型呈现在屏幕上，应用程序的一部分。</p>
-</li>
-<li><p><strong>Controller</strong>表示输入装置，如键盘，鼠标或操纵杆。</p>
-</li>
+  <li>
+    <p><strong>Model</strong>代表着应用程序的内部状态。它可以负责存储，当然也可以不考虑。</p>
+  </li>
+  <li>
+    <p><strong>View</strong>是唯一的与MVP相同的部分 - 它用于将模型呈现在屏幕上，应用程序的一部分。</p>
+  </li>
+  <li>
+    <p><strong>Controller</strong>表示输入装置，如键盘，鼠标或操纵杆。</p>
+  </li>
 </ul>
+
 <p>MVC在过去以键盘为驱动的应用中（比如游戏），是比较好的模式。没有窗口和图形用户界面的交互——应用接受输入(Controller),维持状态（Model），产生输出（View）。同样，数据和控制的关系是这样的。<strong>controller -&gt; model -&gt; view</strong>。这种模式是在Android绝对无用。</p>
+
 <p>这里有一些关于MVC的困惑。人们（Web开发人员）觉得他们使用MVC，而实际上，他们使用的MVP。许多Android开发者认为Controller是用于控制View的，所以他们试图在创建View时，从视图（View）中提取视图逻辑，交由专门的控制器控制。我个人是没有看出这种架构的好处。</p>
-<h4 id="在数据复杂的项目中使用固定的数据结构"><a href="#在数据复杂的项目中使用固定的数据结构" class="headerlink" title="在数据复杂的项目中使用固定的数据结构"></a>在数据复杂的项目中使用固定的数据结构</h4><p>在这方面，<a href="https://github.com/google/auto/tree/master/value" target="_blank" rel="external">AutoValue</a>是十分好的库，在它的描述中，你会发现一大堆好处，我建议你阅读它。Android平台上还有一个接口：<a href="https://github.com/frankiesardo/auto-parcel" target="_blank" rel="external">AutoParcel</a>。其主要原因是，你可以四处传递，而不用关心是否在程序的某个地方被修改了。而且他们也是线程安全的。</p>
+
+<h4 id="在数据复杂的项目中使用固定的数据结构">在数据复杂的项目中使用固定的数据结构</h4>
+
+<p>在这方面，<a href="https://github.com/google/auto/tree/master/value">AutoValue</a>是十分好的库，在它的描述中，你会发现一大堆好处，我建议你阅读它。Android平台上还有一个接口：<a href="https://github.com/frankiesardo/auto-parcel">AutoParcel</a>。其主要原因是，你可以四处传递，而不用关心是否在程序的某个地方被修改了。而且他们也是线程安全的。</p>
+
 <p>###总结</p>
+
 <p>试试MVP吧，然后告诉你的朋友。:)</p>
 
-                <hr>
-                
+
+                <hr style="visibility: hidden;">
 
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2015/10/10/Android-Design-Support-Library/" data-toggle="tooltip" data-placement="top"
-                           title="Android Design Support Library">&larr; Previous Post</a>
+                        <a href="/2015/09/03/%E5%88%86%E9%92%9F%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAandroid%E7%9A%84%E7%A7%81%E6%9C%89Maven%E4%BB%93%E5%BA%93/" data-toggle="tooltip" data-placement="top" title="30分钟搭建一个android的私有Maven仓库">
+                        Previous<br>
+                        <span>30分钟搭建一个android的私有Maven仓库</span>
+                        </a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/2015/09/03/30分钟搭建一个android的私有Maven仓库/" data-toggle="tooltip" data-placement="top"
-                           title="30分钟搭建一个android的私有Maven仓库">Next Post &rarr;</a>
+                        <a href="/2015/10/10/Android-Design-Support-Library/" data-toggle="tooltip" data-placement="top" title="Android Design Support Library">
+                        Next<br>
+                        <span>Android Design Support Library</span>
+                        </a>
                     </li>
                     
                 </ul>
 
+
+                <!--Gitalk评论start  -->
+                
+                <!-- 引入Gitalk评论插件  -->
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+                <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+                <div id="gitalk-container"></div>
+                <script type="text/javascript">
+                    var gitalk = new Gitalk({
+                    clientID: '0c25cf406e1d9c0165bb',
+                    clientSecret: 'a9b973d400e04404eaebe31751812562019fc909',
+                    repo: 'mijack.github.io',
+                    owner: 'mijack',
+                    admin: ['mijack'],
+                    distractionFreeMode: true,
+                    id: window.location.pathname,
+                    });
+                    gitalk.render('gitalk-container');
+                </script>
+                
+                <!-- Gitalk end -->
+
                 
 
-                
+            </div>  
 
-            </div>
-
-            <div class="hidden-xs col-sm-3 toc-col">
-                <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#不要让presenter控制你的view"><span class="toc-text">不要让Presenter控制你的View</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#在数据复杂的项目中使用固定的数据结构"><span class="toc-text">在数据复杂的项目中使用固定的数据结构</span></a></li></ol>
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
                 </div>
             </div>
-        </div>
+        
 
-        <div class="row">
-            <!-- Sidebar Container -->
-
+    <!-- Sidebar Container -->
             <div class="
                 col-lg-8 col-lg-offset-2
                 col-md-10 col-md-offset-1
@@ -459,38 +866,74 @@
                 <!-- Featured Tags -->
                 
                 <section>
-                    <!-- no hr -->
-                    <h5 class="text-center">
-                        <a href="/tags/">FEATURED TAGS</a>
-                    </h5>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
-                        
-                        <a class="tag" href="/tags/#Android"
-                           title="Android">Android</a>
-                        
-                        <a class="tag" href="/tags/#MVP"
-                           title="MVP">MVP</a>
-                        
-                    </div>
+        				
+                            
+                				<a href="/tags/#Android" title="Android" rel="12">
+                                    Android
+                                </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+                				<a href="/tags/#逆向工程" title="逆向工程" rel="4">
+                                    逆向工程
+                                </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+        			</div>
                 </section>
                 
 
                 <!-- Friends Blog -->
                 
-                <div style="margin-top: 20px;">
-                    <h5 class="text-center">FRIENDS</h5>
-                    <ul class="list-inline text-center">
-                        
-                        <li><a href="http://chih.me">chih</a></li>
-                        
-                        <li><a href="https://buwenqi.github.io">wenqi</a></li>
-                        
-                    </ul>
-                </div>
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                        <li><a href="http://chih.me/">chih</a></li>
+                    
+                        <li><a href="https://buwenqi.github.io/">wenqi</a></li>
+                    
+                </ul>
                 
             </div>
         </div>
-
     </div>
 </article>
 
@@ -499,17 +942,63 @@
 
 
 
-<!-- Footer -->
-<!-- Footer -->
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+    <!-- Footer -->
 <footer>
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
-                <br>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <ul class="list-inline text-center">
-                
-                
-                
+                    
+                    <li>
+                        <a href="/feed.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <!-- add jianshu add target = "_blank" to <a> by BY -->
+                    
+                    
+
+                    <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
+                    
                     <li>
                         <a target="_blank" href="https://www.zhihu.com/people/mijackstudio">
                             <span class="fa-stack fa-lg">
@@ -518,56 +1007,60 @@
                             </span>
                         </a>
                     </li>
-                
+                    
+                    
 
-                
+
+                    
+                    
                     <li>
-                        <a target="_blank" href="http://weibo.com/mijackstudio">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-
-                
-                    <li>
-                        <a target="_blank"  href="https://github.com/mijack">
+                        <a target="_blank" href="https://github.com/github">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-github fa-stack-1x fa-inverse"></i>
                             </span>
                         </a>
                     </li>
-                
-
-                
-
+                    
+                    
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; 江湖迈杰的博客 2018
+                    Copyright &copy; Mi&Jack 2018
                     <br>
-                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
-                    <br>
-                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                    Theme on <a href="https://github.com/mijack/mijack.github.io.git">GitHub</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=github&repo=github.github.io&type=star&count=true" >
+                    </iframe>
                 </p>
-
             </div>
         </div>
     </div>
 </footer>
 
 <!-- jQuery -->
-<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.min.js "></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.min.js "></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="/js/blog.js"></script>
+<script src="/js/hux-blog.min.js "></script>
+
+<!-- Service Worker -->
+
+<script type="text/javascript">
+    if(navigator.serviceWorker){
+        // For security reasons, a service worker can only control the pages that are in the same directory level or below it. That's why we put sw.js at ROOT level.
+        navigator.serviceWorker
+            .register('/sw.js')
+            .then((registration) => {console.log('Service Worker Registered. ', registration)})
+            .catch((error) => {console.log('ServiceWorker registration failed: ', error)})
+    }
+</script>
+
+
 
 <!-- async load function -->
 <script>
@@ -581,11 +1074,31 @@
     }
 </script>
 
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/ 
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers   
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
 <!-- jquery.tagcloud.js -->
 <script>
     // only load tagcloud.js in tag.html
     if($('#tag_cloud').length !== 0){
-        async("http://mijack.github.io/js/jquery.tagcloud.js",function(){
+        async('/js/jquery.tagcloud.js',function(){
             $.fn.tagcloud.defaults = {
                 //size: {start: 1, end: 1, unit: 'em'},
                 color: {start: '#bbbbee', end: '#0085a1'},
@@ -597,46 +1110,89 @@
 
 <!--fastClick.js -->
 <script>
-    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
         var $nav = document.querySelector("nav");
         if($nav) FastClick.attach($nav);
     })
 </script>
 
-<!-- Google Analytics -->
 
+<!-- Google Analytics -->
 
 <script>
     // dynamic User by Hux
-    var _gaId = 'UA-75651210- 1';
-    var _gaDomain = 'auto';
+    var _gaId = 'UA-75651210-1';
+    var _gaDomain = 'mijack.github.io';
+
     // Originial
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
     ga('create', _gaId, _gaDomain);
     ga('send', 'pageview');
 </script>
 
 
+
 <!-- Baidu Tongji -->
 
 
-<!-- swiftype -->
-<script type="text/javascript">
-  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
-  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
-  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
-  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
 
-  _st('install','null','2.0.0');
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        var P = $('div.post-container'),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;    
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
 </script>
 
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-<!--wechat title img-->
-<img class="wechat-title-img" src="https://avatars.githubusercontent.com/u/4158061?v=3">
+
+
+
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
 </body>
 
 </html>

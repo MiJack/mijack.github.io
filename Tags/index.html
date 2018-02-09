@@ -1,50 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Head tag -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="袁宇杰（Mi&amp;Jack）在 Github 上的个人博客">
-    <meta name="keyword" content="null">
-    <meta name="theme-color" content="#600090">
-    <meta name="msapplication-navbutton-color" content="#600090">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
-    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
-    <link rel="alternate" type="application/atom+xml" title="江湖迈杰的博客" href="/atom.xml">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
-    <title>
-        
-        Tags｜Mi&amp;Jack&#39;s blog
-        
-    </title>
+    <meta name="description" content="description">
+    <meta name="keywords"  content="Mi&Jack, Mi&Jack Blog, 江湖迈杰的博客, yuanyujie, 袁宇杰, Java, Android">
+    <meta name="theme-color" content="#000000">
+    
+    <title>Tags - 江湖迈杰的博客 | BY Mi&Jack</title>
 
-    <link rel="canonical" href="http://mijack.github.io/Tags/">
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="http://localhost:4000/tags/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/blog-style.css">
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
 
     <!-- Pygments Github CSS -->
     <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
 </head>
 
-<style>
 
-    header.intro-header {
-        background-image: url('http://ohy7r8bgu.bkt.clouddn.com/background.jpg#博文默认的图片')
-    }
-</style>
 <!-- hack iOS CSS :active style -->
-<body ontouchstart="" class="animated fadeIn">
-<!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "false" data-istags="false
-" data-ishome = "false" >
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header page-scroll">
@@ -54,44 +69,29 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand animated pulse" href="/">
-                <span class="brand-logo">
-                    江湖迈杰的博客
-                </span>
-                's Blog
-            </a>
+            <a class="navbar-brand" href="/">江湖迈杰的博客</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <!-- Known Issue, found by Hux:
-            <nav>'s height woule be hold on by its content.
-            so, when navbar scale out, the <nav> will cover tags.
-            also mask any touch event of tags, unfortunately.
-        -->
-        <!-- /.navbar-collapse -->
         <div id="huxblog_navbar">
             <div class="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a href="/">Home</a>
                     </li>
-					
                     
-                        
+                    <li>
+                        <a href="/about/">About</a>
+                    </li>
                     
-                        
-							
-                        <li>
-                            <a href="/Tags/">Tags</a>
-                        </li>
-							
-						
+                    <li>
+                        <a href="/tags/">Tags</a>
+                    </li>
                     
-					
-					
                 </ul>
             </div>
         </div>
+        <!-- /.navbar-collapse -->
     </div>
     <!-- /.container -->
 </nav>
@@ -99,15 +99,13 @@
     // Drop Bootstarp low-performance Navbar
     // Use customize navbar with high-quality material design animation
     // in high-perf jank-free CSS3 implementation
-//    var $body   = document.body;
+    var $body   = document.body;
     var $toggle = document.querySelector('.navbar-toggle');
     var $navbar = document.querySelector('#huxblog_navbar');
     var $collapse = document.querySelector('.navbar-collapse');
 
-    $toggle.addEventListener('click', handleMagic)
-    function handleMagic(e){
-        if ($navbar.className.indexOf('in') > 0) {
-        // CLOSE
+    var __HuxNav__ = {
+        close: function(){
             $navbar.className = " ";
             // wait until animation end.
             setTimeout(function(){
@@ -116,29 +114,49 @@
                     $collapse.style.height = "0px"
                 }
             },400)
-        }else{
-        // OPEN
+        },
+        open: function(){
             $collapse.style.height = "auto"
             $navbar.className += " in";
         }
     }
+
+    // Bind Event
+    $toggle.addEventListener('click', function(e){
+        if ($navbar.className.indexOf('in') > 0) {
+            __HuxNav__.close()
+        }else{
+            __HuxNav__.open()
+        }
+    })
+
+    /**
+     * Since Fastclick is used to delegate 'touchstart' globally
+     * to hack 300ms delay in iOS by performing a fake 'click',
+     * Using 'e.stopPropagation' to stop 'touchstart' event from 
+     * $toggle/$collapse will break global delegation.
+     * 
+     * Instead, we use a 'e.target' filter to prevent handler
+     * added to document close HuxNav.  
+     *
+     * Also, we use 'click' instead of 'touchstart' as compromise
+     */
+    document.addEventListener('click', function(e){
+        if(e.target == $toggle) return;
+        if(e.target.className == 'icon-bar') return;
+        __HuxNav__.close();
+    })
 </script>
 
-<!-- Main Content -->
-<style>
-    .intro-header .site-heading {
-        margin: 50px;
-    }
-</style>
 
-<!-- Page Header -->
-<header class="intro-header">
+    <!-- Page Header -->
+<header class="intro-header" style="background-image: url('/img/bg-head.jpg')">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading text-center">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading" id="tag-heading">
                     <h1>Tags</h1>
-                    <span class="subheading">袁宇杰的个人博客</span>
+                    <span class="subheading"></span>
                 </div>
             </div>
         </div>
@@ -147,532 +165,715 @@
 
 <!-- Main Content -->
 <div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+	<div class="row">
+		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <!-- 标签云 -->
-            <div id='tag_cloud' class="tags">
-                
-                <a href="#Android" title="Android" rel="12">Android</a>
-                
-                <a href="#Maven" title="Maven" rel="1">Maven</a>
-                
-                <a href="#Material Design" title="Material Design" rel="1">Material Design</a>
-                
-                <a href="#逆向工程" title="逆向工程" rel="4">逆向工程</a>
-                
-                <a href="#MVP" title="MVP" rel="1">MVP</a>
-                
-                <a href="#Network" title="Network" rel="1">Network</a>
-                
-                <a href="#Log" title="Log" rel="1">Log</a>
-                
-                <a href="#ExoPlayer" title="ExoPlayer" rel="1">ExoPlayer</a>
-                
-                <a href="#视频播放" title="视频播放" rel="1">视频播放</a>
-                
-                <a href="#Layout" title="Layout" rel="1">Layout</a>
-                
-                <a href="#Gradle" title="Gradle" rel="1">Gradle</a>
-                
-                <a href="#算法" title="算法" rel="1">算法</a>
-                
-                <a href="#二叉树" title="二叉树" rel="1">二叉树</a>
-                
-                <a href="#设计模式" title="设计模式" rel="1">设计模式</a>
-                
-                <a href="#代理模式" title="代理模式" rel="1">代理模式</a>
-                
-                <a href="#CGLib" title="CGLib" rel="1">CGLib</a>
-                
-                <a href="#RxJava" title="RxJava" rel="1">RxJava</a>
-                
-                <a href="#源码分享" title="源码分享" rel="1">源码分享</a>
-                
-                <a href="#开发" title="开发" rel="1">开发</a>
-                
-            </div>
+			<div id='tag_cloud' class="tags">
+				
+				<a href="#Android" title="Android" rel="12">Android</a>
+				
+				<a href="#Maven" title="Maven" rel="1">Maven</a>
+				
+				<a href="#MVP" title="MVP" rel="1">MVP</a>
+				
+				<a href="#Material Design" title="Material Design" rel="1">Material Design</a>
+				
+				<a href="#Gradle" title="Gradle" rel="1">Gradle</a>
+				
+				<a href="#开发" title="开发" rel="1">开发</a>
+				
+				<a href="#逆向工程" title="逆向工程" rel="4">逆向工程</a>
+				
+				<a href="#Layout" title="Layout" rel="1">Layout</a>
+				
+				<a href="#Network" title="Network" rel="1">Network</a>
+				
+				<a href="#Log" title="Log" rel="1">Log</a>
+				
+				<a href="#RxJava" title="RxJava" rel="1">RxJava</a>
+				
+				<a href="#源码分享" title="源码分享" rel="1">源码分享</a>
+				
+				<a href="#ExoPlayer" title="ExoPlayer" rel="1">ExoPlayer</a>
+				
+				<a href="#视频播放" title="视频播放" rel="1">视频播放</a>
+				
+				<a href="#算法" title="算法" rel="1">算法</a>
+				
+				<a href="#二叉树" title="二叉树" rel="1">二叉树</a>
+				
+				<a href="#设计模式" title="设计模式" rel="1">设计模式</a>
+				
+				<a href="#代理模式" title="代理模式" rel="1">代理模式</a>
+				
+				<a href="#CGLib" title="CGLib" rel="1">CGLib</a>
+				
+			</div>
+
+            <!--<blockquote class="tag-comments">
+                标签命名规范：
+                    <li>行业观察、职位、公司优先使用中文</li>
+                    <li>外国产品、术语优先使用英文</li>
+            </blockquote>-->
 
             <!-- 标签列表 -->
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="Android">
+			
+			<div class="one-tag-list">
+			  	<span class="fa fa-tag listing-seperator" id="Android">
                     <span class="tag-text">Android</span>
                 </span>
-                
-                <div class="post-preview">
-                    <a href="/2015/09/03/30分钟搭建一个android的私有Maven仓库/">
-                        <h2 class="post-title">
-                            30分钟搭建一个android的私有Maven仓库
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                <div class="post-preview">
-                    <a href="/2015/10/10/Android-Design-Support-Library/">
-                        <h2 class="post-title">
-                            Android Design Support Library
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                <div class="post-preview">
-                    <a href="/2016/01/07/Android-Reverse-Engineering-101-Part-1/">
-                        <h2 class="post-title">
-                            Android逆向工程101 – Part 1
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                <div class="post-preview">
-                    <a href="/2016/01/17/Android-Reverse-Engineering-101-Part-2/">
-                        <h2 class="post-title">
-                            Android逆向工程101 – Part 2
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                <div class="post-preview">
-                    <a href="/2016/01/17/Android-Reverse-Engineering-101-Part-4/">
-                        <h2 class="post-title">
-                            Android逆向工程101 – Part 4
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                <div class="post-preview">
-                    <a href="/2016/01/17/Android-Reverse-Engineering-101-Part-5/">
-                        <h2 class="post-title">
-                            Android逆向工程101 – Part 5
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                <div class="post-preview">
-                    <a href="/2015/10/07/Android上MVP的介绍/">
-                        <h2 class="post-title">
-                            MVP在Android平台上的应用
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                <div class="post-preview">
-                    <a href="/2016/05/03/Effortless-network-response-logging-on-Android/">
-                        <h2 class="post-title">
-                            Android上的网络响应日志技巧
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                <div class="post-preview">
-                    <a href="/2017/01/12/ExoPlayer探营/">
-                        <h2 class="post-title">
+				
+				  <!-- <li class="listing-item">
+				  <time datetime="2017-01-12">2017-01-12</time>
+				  <a href="/2017/01/12/ExoPlayer%E6%8E%A2%E8%90%A5/" title="ExoPlayer探营">ExoPlayer探营</a>
+				  </li> -->
+				 <div class="post-preview">
+				    <a href="/2017/01/12/ExoPlayer%E6%8E%A2%E8%90%A5/">
+				        <h2 class="post-title">
                             ExoPlayer探营
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                <div class="post-preview">
-                    <a href="/2016/03/26/Layouts-Attributes-and-you/">
-                        <h2 class="post-title">
+				        </h2>
+				        
+				    </a>
+				    <!-- <p class="post-meta">2017-01-12</p> -->
+				</div>
+				<hr>
+				
+				  <!-- <li class="listing-item">
+				  <time datetime="2016-05-03">2016-05-03</time>
+				  <a href="/2016/05/03/Effortless-network-response-logging-on-Android/" title="Android上的网络响应日志技巧">Android上的网络响应日志技巧</a>
+				  </li> -->
+				 <div class="post-preview">
+				    <a href="/2016/05/03/Effortless-network-response-logging-on-Android/">
+				        <h2 class="post-title">
+                            Android上的网络响应日志技巧
+				        </h2>
+				        
+				    </a>
+				    <!-- <p class="post-meta">2016-05-03</p> -->
+				</div>
+				<hr>
+				
+				  <!-- <li class="listing-item">
+				  <time datetime="2016-03-26">2016-03-26</time>
+				  <a href="/2016/03/26/Layouts-Attributes-and-you/" title="Layouts, Attributes, and you">Layouts, Attributes, and you</a>
+				  </li> -->
+				 <div class="post-preview">
+				    <a href="/2016/03/26/Layouts-Attributes-and-you/">
+				        <h2 class="post-title">
                             Layouts, Attributes, and you
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                <div class="post-preview">
-                    <a href="/2015/10/17/Publish-with-Gradle-on-Bitbucket/">
-                        <h2 class="post-title">
-                            使用Gradle将项目发布到Bitbucket上
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                <div class="post-preview">
-                    <a href="/2016/01/07/让 Toolbar 随着 RecyclerView 的滚动而显示隐藏/">
-                        <h2 class="post-title">
+				        </h2>
+				        
+				    </a>
+				    <!-- <p class="post-meta">2016-03-26</p> -->
+				</div>
+				<hr>
+				
+				  <!-- <li class="listing-item">
+				  <time datetime="2016-01-17">2016-01-17</time>
+				  <a href="/2016/01/17/Android-Reverse-Engineering-101-Part-5/" title="Android逆向工程101 – Part 5">Android逆向工程101 – Part 5</a>
+				  </li> -->
+				 <div class="post-preview">
+				    <a href="/2016/01/17/Android-Reverse-Engineering-101-Part-5/">
+				        <h2 class="post-title">
+                            Android逆向工程101 – Part 5
+				        </h2>
+				        
+				    </a>
+				    <!-- <p class="post-meta">2016-01-17</p> -->
+				</div>
+				<hr>
+				
+				  <!-- <li class="listing-item">
+				  <time datetime="2016-01-17">2016-01-17</time>
+				  <a href="/2016/01/17/Android-Reverse-Engineering-101-Part-4/" title="Android逆向工程101 – Part 4">Android逆向工程101 – Part 4</a>
+				  </li> -->
+				 <div class="post-preview">
+				    <a href="/2016/01/17/Android-Reverse-Engineering-101-Part-4/">
+				        <h2 class="post-title">
+                            Android逆向工程101 – Part 4
+				        </h2>
+				        
+				    </a>
+				    <!-- <p class="post-meta">2016-01-17</p> -->
+				</div>
+				<hr>
+				
+				  <!-- <li class="listing-item">
+				  <time datetime="2016-01-17">2016-01-17</time>
+				  <a href="/2016/01/17/Android-Reverse-Engineering-101-Part-2/" title="Android逆向工程101 – Part 2">Android逆向工程101 – Part 2</a>
+				  </li> -->
+				 <div class="post-preview">
+				    <a href="/2016/01/17/Android-Reverse-Engineering-101-Part-2/">
+				        <h2 class="post-title">
+                            Android逆向工程101 – Part 2
+				        </h2>
+				        
+				    </a>
+				    <!-- <p class="post-meta">2016-01-17</p> -->
+				</div>
+				<hr>
+				
+				  <!-- <li class="listing-item">
+				  <time datetime="2016-01-07">2016-01-07</time>
+				  <a href="/2016/01/07/Android-Reverse-Engineering-101-Part-1/" title="Android逆向工程101 – Part 1">Android逆向工程101 – Part 1</a>
+				  </li> -->
+				 <div class="post-preview">
+				    <a href="/2016/01/07/Android-Reverse-Engineering-101-Part-1/">
+				        <h2 class="post-title">
+                            Android逆向工程101 – Part 1
+				        </h2>
+				        
+				    </a>
+				    <!-- <p class="post-meta">2016-01-07</p> -->
+				</div>
+				<hr>
+				
+				  <!-- <li class="listing-item">
+				  <time datetime="2016-01-07">2016-01-07</time>
+				  <a href="/2016/01/07/%E8%AE%A9-Toolbar-%E9%9A%8F%E7%9D%80-RecyclerView-%E7%9A%84%E6%BB%9A%E5%8A%A8%E8%80%8C%E6%98%BE%E7%A4%BA%E9%9A%90%E8%97%8F/" title="让 Toolbar 随着 RecyclerView 的滚动而显示/隐藏">让 Toolbar 随着 RecyclerView 的滚动而显示/隐藏</a>
+				  </li> -->
+				 <div class="post-preview">
+				    <a href="/2016/01/07/%E8%AE%A9-Toolbar-%E9%9A%8F%E7%9D%80-RecyclerView-%E7%9A%84%E6%BB%9A%E5%8A%A8%E8%80%8C%E6%98%BE%E7%A4%BA%E9%9A%90%E8%97%8F/">
+				        <h2 class="post-title">
                             让 Toolbar 随着 RecyclerView 的滚动而显示/隐藏
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="Maven">
+				        </h2>
+				        
+				    </a>
+				    <!-- <p class="post-meta">2016-01-07</p> -->
+				</div>
+				<hr>
+				
+				  <!-- <li class="listing-item">
+				  <time datetime="2015-10-17">2015-10-17</time>
+				  <a href="/2015/10/17/Publish-with-Gradle-on-Bitbucket/" title="使用Gradle将项目发布到Bitbucket上">使用Gradle将项目发布到Bitbucket上</a>
+				  </li> -->
+				 <div class="post-preview">
+				    <a href="/2015/10/17/Publish-with-Gradle-on-Bitbucket/">
+				        <h2 class="post-title">
+                            使用Gradle将项目发布到Bitbucket上
+				        </h2>
+				        
+				    </a>
+				    <!-- <p class="post-meta">2015-10-17</p> -->
+				</div>
+				<hr>
+				
+				  <!-- <li class="listing-item">
+				  <time datetime="2015-10-10">2015-10-10</time>
+				  <a href="/2015/10/10/Android-Design-Support-Library/" title="Android Design Support Library">Android Design Support Library</a>
+				  </li> -->
+				 <div class="post-preview">
+				    <a href="/2015/10/10/Android-Design-Support-Library/">
+				        <h2 class="post-title">
+                            Android Design Support Library
+				        </h2>
+				        
+				    </a>
+				    <!-- <p class="post-meta">2015-10-10</p> -->
+				</div>
+				<hr>
+				
+				  <!-- <li class="listing-item">
+				  <time datetime="2015-10-07">2015-10-07</time>
+				  <a href="/2015/10/07/Android%E4%B8%8AMVP%E7%9A%84%E4%BB%8B%E7%BB%8D/" title="MVP在Android平台上的应用">MVP在Android平台上的应用</a>
+				  </li> -->
+				 <div class="post-preview">
+				    <a href="/2015/10/07/Android%E4%B8%8AMVP%E7%9A%84%E4%BB%8B%E7%BB%8D/">
+				        <h2 class="post-title">
+                            MVP在Android平台上的应用
+				        </h2>
+				        
+				    </a>
+				    <!-- <p class="post-meta">2015-10-07</p> -->
+				</div>
+				<hr>
+				
+				  <!-- <li class="listing-item">
+				  <time datetime="2015-09-03">2015-09-03</time>
+				  <a href="/2015/09/03/%E5%88%86%E9%92%9F%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAandroid%E7%9A%84%E7%A7%81%E6%9C%89Maven%E4%BB%93%E5%BA%93/" title="30分钟搭建一个android的私有Maven仓库">30分钟搭建一个android的私有Maven仓库</a>
+				  </li> -->
+				 <div class="post-preview">
+				    <a href="/2015/09/03/%E5%88%86%E9%92%9F%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAandroid%E7%9A%84%E7%A7%81%E6%9C%89Maven%E4%BB%93%E5%BA%93/">
+				        <h2 class="post-title">
+                            30分钟搭建一个android的私有Maven仓库
+				        </h2>
+				        
+				    </a>
+				    <!-- <p class="post-meta">2015-09-03</p> -->
+				</div>
+				<hr>
+				
+			</div>
+			
+			<div class="one-tag-list">
+			  	<span class="fa fa-tag listing-seperator" id="Maven">
                     <span class="tag-text">Maven</span>
                 </span>
-                
-                <div class="post-preview">
-                    <a href="/2015/09/03/30分钟搭建一个android的私有Maven仓库/">
-                        <h2 class="post-title">
+				
+				  <!-- <li class="listing-item">
+				  <time datetime="2015-09-03">2015-09-03</time>
+				  <a href="/2015/09/03/%E5%88%86%E9%92%9F%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAandroid%E7%9A%84%E7%A7%81%E6%9C%89Maven%E4%BB%93%E5%BA%93/" title="30分钟搭建一个android的私有Maven仓库">30分钟搭建一个android的私有Maven仓库</a>
+				  </li> -->
+				 <div class="post-preview">
+				    <a href="/2015/09/03/%E5%88%86%E9%92%9F%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAandroid%E7%9A%84%E7%A7%81%E6%9C%89Maven%E4%BB%93%E5%BA%93/">
+				        <h2 class="post-title">
                             30分钟搭建一个android的私有Maven仓库
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="Material Design">
-                    <span class="tag-text">Material Design</span>
-                </span>
-                
-                <div class="post-preview">
-                    <a href="/2015/10/10/Android-Design-Support-Library/">
-                        <h2 class="post-title">
-                            Android Design Support Library
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="逆向工程">
-                    <span class="tag-text">逆向工程</span>
-                </span>
-                
-                <div class="post-preview">
-                    <a href="/2016/01/07/Android-Reverse-Engineering-101-Part-1/">
-                        <h2 class="post-title">
-                            Android逆向工程101 – Part 1
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                <div class="post-preview">
-                    <a href="/2016/01/17/Android-Reverse-Engineering-101-Part-2/">
-                        <h2 class="post-title">
-                            Android逆向工程101 – Part 2
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                <div class="post-preview">
-                    <a href="/2016/01/17/Android-Reverse-Engineering-101-Part-4/">
-                        <h2 class="post-title">
-                            Android逆向工程101 – Part 4
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                <div class="post-preview">
-                    <a href="/2016/01/17/Android-Reverse-Engineering-101-Part-5/">
-                        <h2 class="post-title">
-                            Android逆向工程101 – Part 5
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="MVP">
+				        </h2>
+				        
+				    </a>
+				    <!-- <p class="post-meta">2015-09-03</p> -->
+				</div>
+				<hr>
+				
+			</div>
+			
+			<div class="one-tag-list">
+			  	<span class="fa fa-tag listing-seperator" id="MVP">
                     <span class="tag-text">MVP</span>
                 </span>
-                
-                <div class="post-preview">
-                    <a href="/2015/10/07/Android上MVP的介绍/">
-                        <h2 class="post-title">
+				
+				  <!-- <li class="listing-item">
+				  <time datetime="2015-10-07">2015-10-07</time>
+				  <a href="/2015/10/07/Android%E4%B8%8AMVP%E7%9A%84%E4%BB%8B%E7%BB%8D/" title="MVP在Android平台上的应用">MVP在Android平台上的应用</a>
+				  </li> -->
+				 <div class="post-preview">
+				    <a href="/2015/10/07/Android%E4%B8%8AMVP%E7%9A%84%E4%BB%8B%E7%BB%8D/">
+				        <h2 class="post-title">
                             MVP在Android平台上的应用
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="Network">
-                    <span class="tag-text">Network</span>
+				        </h2>
+				        
+				    </a>
+				    <!-- <p class="post-meta">2015-10-07</p> -->
+				</div>
+				<hr>
+				
+			</div>
+			
+			<div class="one-tag-list">
+			  	<span class="fa fa-tag listing-seperator" id="Material Design">
+                    <span class="tag-text">Material Design</span>
                 </span>
-                
-                <div class="post-preview">
-                    <a href="/2016/05/03/Effortless-network-response-logging-on-Android/">
-                        <h2 class="post-title">
-                            Android上的网络响应日志技巧
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="Log">
-                    <span class="tag-text">Log</span>
-                </span>
-                
-                <div class="post-preview">
-                    <a href="/2016/05/03/Effortless-network-response-logging-on-Android/">
-                        <h2 class="post-title">
-                            Android上的网络响应日志技巧
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="ExoPlayer">
-                    <span class="tag-text">ExoPlayer</span>
-                </span>
-                
-                <div class="post-preview">
-                    <a href="/2017/01/12/ExoPlayer探营/">
-                        <h2 class="post-title">
-                            ExoPlayer探营
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="视频播放">
-                    <span class="tag-text">视频播放</span>
-                </span>
-                
-                <div class="post-preview">
-                    <a href="/2017/01/12/ExoPlayer探营/">
-                        <h2 class="post-title">
-                            ExoPlayer探营
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="Layout">
-                    <span class="tag-text">Layout</span>
-                </span>
-                
-                <div class="post-preview">
-                    <a href="/2016/03/26/Layouts-Attributes-and-you/">
-                        <h2 class="post-title">
-                            Layouts, Attributes, and you
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="Gradle">
+				
+				  <!-- <li class="listing-item">
+				  <time datetime="2015-10-10">2015-10-10</time>
+				  <a href="/2015/10/10/Android-Design-Support-Library/" title="Android Design Support Library">Android Design Support Library</a>
+				  </li> -->
+				 <div class="post-preview">
+				    <a href="/2015/10/10/Android-Design-Support-Library/">
+				        <h2 class="post-title">
+                            Android Design Support Library
+				        </h2>
+				        
+				    </a>
+				    <!-- <p class="post-meta">2015-10-10</p> -->
+				</div>
+				<hr>
+				
+			</div>
+			
+			<div class="one-tag-list">
+			  	<span class="fa fa-tag listing-seperator" id="Gradle">
                     <span class="tag-text">Gradle</span>
                 </span>
-                
-                <div class="post-preview">
-                    <a href="/2015/10/17/Publish-with-Gradle-on-Bitbucket/">
-                        <h2 class="post-title">
+				
+				  <!-- <li class="listing-item">
+				  <time datetime="2015-10-17">2015-10-17</time>
+				  <a href="/2015/10/17/Publish-with-Gradle-on-Bitbucket/" title="使用Gradle将项目发布到Bitbucket上">使用Gradle将项目发布到Bitbucket上</a>
+				  </li> -->
+				 <div class="post-preview">
+				    <a href="/2015/10/17/Publish-with-Gradle-on-Bitbucket/">
+				        <h2 class="post-title">
                             使用Gradle将项目发布到Bitbucket上
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="算法">
-                    <span class="tag-text">算法</span>
-                </span>
-                
-                <div class="post-preview">
-                    <a href="/2017/12/25/二叉树的遍历算法/">
-                        <h2 class="post-title">
-                            二叉树的遍历算法
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="二叉树">
-                    <span class="tag-text">二叉树</span>
-                </span>
-                
-                <div class="post-preview">
-                    <a href="/2017/12/25/二叉树的遍历算法/">
-                        <h2 class="post-title">
-                            二叉树的遍历算法
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="设计模式">
-                    <span class="tag-text">设计模式</span>
-                </span>
-                
-                <div class="post-preview">
-                    <a href="/2018/01/07/代理模式/">
-                        <h2 class="post-title">
-                            代理模式
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="代理模式">
-                    <span class="tag-text">代理模式</span>
-                </span>
-                
-                <div class="post-preview">
-                    <a href="/2018/01/07/代理模式/">
-                        <h2 class="post-title">
-                            代理模式
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="CGLib">
-                    <span class="tag-text">CGLib</span>
-                </span>
-                
-                <div class="post-preview">
-                    <a href="/2018/01/07/代理模式/">
-                        <h2 class="post-title">
-                            代理模式
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="RxJava">
-                    <span class="tag-text">RxJava</span>
-                </span>
-                
-                <div class="post-preview">
-                    <a href="/2016/11/14/小试RxJava原理/">
-                        <h2 class="post-title">
-                            小试RxJava原理
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="源码分享">
-                    <span class="tag-text">源码分享</span>
-                </span>
-                
-                <div class="post-preview">
-                    <a href="/2016/11/14/小试RxJava原理/">
-                        <h2 class="post-title">
-                            小试RxJava原理
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="开发">
+				        </h2>
+				        
+				    </a>
+				    <!-- <p class="post-meta">2015-10-17</p> -->
+				</div>
+				<hr>
+				
+			</div>
+			
+			<div class="one-tag-list">
+			  	<span class="fa fa-tag listing-seperator" id="开发">
                     <span class="tag-text">开发</span>
                 </span>
-                
-                <div class="post-preview">
-                    <a href="/2016/01/07/让 Toolbar 随着 RecyclerView 的滚动而显示隐藏/">
-                        <h2 class="post-title">
+				
+				  <!-- <li class="listing-item">
+				  <time datetime="2016-01-07">2016-01-07</time>
+				  <a href="/2016/01/07/%E8%AE%A9-Toolbar-%E9%9A%8F%E7%9D%80-RecyclerView-%E7%9A%84%E6%BB%9A%E5%8A%A8%E8%80%8C%E6%98%BE%E7%A4%BA%E9%9A%90%E8%97%8F/" title="让 Toolbar 随着 RecyclerView 的滚动而显示/隐藏">让 Toolbar 随着 RecyclerView 的滚动而显示/隐藏</a>
+				  </li> -->
+				 <div class="post-preview">
+				    <a href="/2016/01/07/%E8%AE%A9-Toolbar-%E9%9A%8F%E7%9D%80-RecyclerView-%E7%9A%84%E6%BB%9A%E5%8A%A8%E8%80%8C%E6%98%BE%E7%A4%BA%E9%9A%90%E8%97%8F/">
+				        <h2 class="post-title">
                             让 Toolbar 随着 RecyclerView 的滚动而显示/隐藏
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
+				        </h2>
+				        
+				    </a>
+				    <!-- <p class="post-meta">2016-01-07</p> -->
+				</div>
+				<hr>
+				
+			</div>
+			
+			<div class="one-tag-list">
+			  	<span class="fa fa-tag listing-seperator" id="逆向工程">
+                    <span class="tag-text">逆向工程</span>
+                </span>
+				
+				  <!-- <li class="listing-item">
+				  <time datetime="2016-01-17">2016-01-17</time>
+				  <a href="/2016/01/17/Android-Reverse-Engineering-101-Part-5/" title="Android逆向工程101 – Part 5">Android逆向工程101 – Part 5</a>
+				  </li> -->
+				 <div class="post-preview">
+				    <a href="/2016/01/17/Android-Reverse-Engineering-101-Part-5/">
+				        <h2 class="post-title">
+                            Android逆向工程101 – Part 5
+				        </h2>
+				        
+				    </a>
+				    <!-- <p class="post-meta">2016-01-17</p> -->
+				</div>
+				<hr>
+				
+				  <!-- <li class="listing-item">
+				  <time datetime="2016-01-17">2016-01-17</time>
+				  <a href="/2016/01/17/Android-Reverse-Engineering-101-Part-4/" title="Android逆向工程101 – Part 4">Android逆向工程101 – Part 4</a>
+				  </li> -->
+				 <div class="post-preview">
+				    <a href="/2016/01/17/Android-Reverse-Engineering-101-Part-4/">
+				        <h2 class="post-title">
+                            Android逆向工程101 – Part 4
+				        </h2>
+				        
+				    </a>
+				    <!-- <p class="post-meta">2016-01-17</p> -->
+				</div>
+				<hr>
+				
+				  <!-- <li class="listing-item">
+				  <time datetime="2016-01-17">2016-01-17</time>
+				  <a href="/2016/01/17/Android-Reverse-Engineering-101-Part-2/" title="Android逆向工程101 – Part 2">Android逆向工程101 – Part 2</a>
+				  </li> -->
+				 <div class="post-preview">
+				    <a href="/2016/01/17/Android-Reverse-Engineering-101-Part-2/">
+				        <h2 class="post-title">
+                            Android逆向工程101 – Part 2
+				        </h2>
+				        
+				    </a>
+				    <!-- <p class="post-meta">2016-01-17</p> -->
+				</div>
+				<hr>
+				
+				  <!-- <li class="listing-item">
+				  <time datetime="2016-01-07">2016-01-07</time>
+				  <a href="/2016/01/07/Android-Reverse-Engineering-101-Part-1/" title="Android逆向工程101 – Part 1">Android逆向工程101 – Part 1</a>
+				  </li> -->
+				 <div class="post-preview">
+				    <a href="/2016/01/07/Android-Reverse-Engineering-101-Part-1/">
+				        <h2 class="post-title">
+                            Android逆向工程101 – Part 1
+				        </h2>
+				        
+				    </a>
+				    <!-- <p class="post-meta">2016-01-07</p> -->
+				</div>
+				<hr>
+				
+			</div>
+			
+			<div class="one-tag-list">
+			  	<span class="fa fa-tag listing-seperator" id="Layout">
+                    <span class="tag-text">Layout</span>
+                </span>
+				
+				  <!-- <li class="listing-item">
+				  <time datetime="2016-03-26">2016-03-26</time>
+				  <a href="/2016/03/26/Layouts-Attributes-and-you/" title="Layouts, Attributes, and you">Layouts, Attributes, and you</a>
+				  </li> -->
+				 <div class="post-preview">
+				    <a href="/2016/03/26/Layouts-Attributes-and-you/">
+				        <h2 class="post-title">
+                            Layouts, Attributes, and you
+				        </h2>
+				        
+				    </a>
+				    <!-- <p class="post-meta">2016-03-26</p> -->
+				</div>
+				<hr>
+				
+			</div>
+			
+			<div class="one-tag-list">
+			  	<span class="fa fa-tag listing-seperator" id="Network">
+                    <span class="tag-text">Network</span>
+                </span>
+				
+				  <!-- <li class="listing-item">
+				  <time datetime="2016-05-03">2016-05-03</time>
+				  <a href="/2016/05/03/Effortless-network-response-logging-on-Android/" title="Android上的网络响应日志技巧">Android上的网络响应日志技巧</a>
+				  </li> -->
+				 <div class="post-preview">
+				    <a href="/2016/05/03/Effortless-network-response-logging-on-Android/">
+				        <h2 class="post-title">
+                            Android上的网络响应日志技巧
+				        </h2>
+				        
+				    </a>
+				    <!-- <p class="post-meta">2016-05-03</p> -->
+				</div>
+				<hr>
+				
+			</div>
+			
+			<div class="one-tag-list">
+			  	<span class="fa fa-tag listing-seperator" id="Log">
+                    <span class="tag-text">Log</span>
+                </span>
+				
+				  <!-- <li class="listing-item">
+				  <time datetime="2016-05-03">2016-05-03</time>
+				  <a href="/2016/05/03/Effortless-network-response-logging-on-Android/" title="Android上的网络响应日志技巧">Android上的网络响应日志技巧</a>
+				  </li> -->
+				 <div class="post-preview">
+				    <a href="/2016/05/03/Effortless-network-response-logging-on-Android/">
+				        <h2 class="post-title">
+                            Android上的网络响应日志技巧
+				        </h2>
+				        
+				    </a>
+				    <!-- <p class="post-meta">2016-05-03</p> -->
+				</div>
+				<hr>
+				
+			</div>
+			
+			<div class="one-tag-list">
+			  	<span class="fa fa-tag listing-seperator" id="RxJava">
+                    <span class="tag-text">RxJava</span>
+                </span>
+				
+				  <!-- <li class="listing-item">
+				  <time datetime="2016-11-14">2016-11-14</time>
+				  <a href="/2016/11/14/%E5%B0%8F%E8%AF%95RxJava%E5%8E%9F%E7%90%86/" title="小试RxJava原理">小试RxJava原理</a>
+				  </li> -->
+				 <div class="post-preview">
+				    <a href="/2016/11/14/%E5%B0%8F%E8%AF%95RxJava%E5%8E%9F%E7%90%86/">
+				        <h2 class="post-title">
+                            小试RxJava原理
+				        </h2>
+				        
+				    </a>
+				    <!-- <p class="post-meta">2016-11-14</p> -->
+				</div>
+				<hr>
+				
+			</div>
+			
+			<div class="one-tag-list">
+			  	<span class="fa fa-tag listing-seperator" id="源码分享">
+                    <span class="tag-text">源码分享</span>
+                </span>
+				
+				  <!-- <li class="listing-item">
+				  <time datetime="2016-11-14">2016-11-14</time>
+				  <a href="/2016/11/14/%E5%B0%8F%E8%AF%95RxJava%E5%8E%9F%E7%90%86/" title="小试RxJava原理">小试RxJava原理</a>
+				  </li> -->
+				 <div class="post-preview">
+				    <a href="/2016/11/14/%E5%B0%8F%E8%AF%95RxJava%E5%8E%9F%E7%90%86/">
+				        <h2 class="post-title">
+                            小试RxJava原理
+				        </h2>
+				        
+				    </a>
+				    <!-- <p class="post-meta">2016-11-14</p> -->
+				</div>
+				<hr>
+				
+			</div>
+			
+			<div class="one-tag-list">
+			  	<span class="fa fa-tag listing-seperator" id="ExoPlayer">
+                    <span class="tag-text">ExoPlayer</span>
+                </span>
+				
+				  <!-- <li class="listing-item">
+				  <time datetime="2017-01-12">2017-01-12</time>
+				  <a href="/2017/01/12/ExoPlayer%E6%8E%A2%E8%90%A5/" title="ExoPlayer探营">ExoPlayer探营</a>
+				  </li> -->
+				 <div class="post-preview">
+				    <a href="/2017/01/12/ExoPlayer%E6%8E%A2%E8%90%A5/">
+				        <h2 class="post-title">
+                            ExoPlayer探营
+				        </h2>
+				        
+				    </a>
+				    <!-- <p class="post-meta">2017-01-12</p> -->
+				</div>
+				<hr>
+				
+			</div>
+			
+			<div class="one-tag-list">
+			  	<span class="fa fa-tag listing-seperator" id="视频播放">
+                    <span class="tag-text">视频播放</span>
+                </span>
+				
+				  <!-- <li class="listing-item">
+				  <time datetime="2017-01-12">2017-01-12</time>
+				  <a href="/2017/01/12/ExoPlayer%E6%8E%A2%E8%90%A5/" title="ExoPlayer探营">ExoPlayer探营</a>
+				  </li> -->
+				 <div class="post-preview">
+				    <a href="/2017/01/12/ExoPlayer%E6%8E%A2%E8%90%A5/">
+				        <h2 class="post-title">
+                            ExoPlayer探营
+				        </h2>
+				        
+				    </a>
+				    <!-- <p class="post-meta">2017-01-12</p> -->
+				</div>
+				<hr>
+				
+			</div>
+			
+			<div class="one-tag-list">
+			  	<span class="fa fa-tag listing-seperator" id="算法">
+                    <span class="tag-text">算法</span>
+                </span>
+				
+				  <!-- <li class="listing-item">
+				  <time datetime="2017-12-25">2017-12-25</time>
+				  <a href="/2017/12/25/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86%E7%AE%97%E6%B3%95/" title="二叉树的遍历算法">二叉树的遍历算法</a>
+				  </li> -->
+				 <div class="post-preview">
+				    <a href="/2017/12/25/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86%E7%AE%97%E6%B3%95/">
+				        <h2 class="post-title">
+                            二叉树的遍历算法
+				        </h2>
+				        
+				    </a>
+				    <!-- <p class="post-meta">2017-12-25</p> -->
+				</div>
+				<hr>
+				
+			</div>
+			
+			<div class="one-tag-list">
+			  	<span class="fa fa-tag listing-seperator" id="二叉树">
+                    <span class="tag-text">二叉树</span>
+                </span>
+				
+				  <!-- <li class="listing-item">
+				  <time datetime="2017-12-25">2017-12-25</time>
+				  <a href="/2017/12/25/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86%E7%AE%97%E6%B3%95/" title="二叉树的遍历算法">二叉树的遍历算法</a>
+				  </li> -->
+				 <div class="post-preview">
+				    <a href="/2017/12/25/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86%E7%AE%97%E6%B3%95/">
+				        <h2 class="post-title">
+                            二叉树的遍历算法
+				        </h2>
+				        
+				    </a>
+				    <!-- <p class="post-meta">2017-12-25</p> -->
+				</div>
+				<hr>
+				
+			</div>
+			
+			<div class="one-tag-list">
+			  	<span class="fa fa-tag listing-seperator" id="设计模式">
+                    <span class="tag-text">设计模式</span>
+                </span>
+				
+				  <!-- <li class="listing-item">
+				  <time datetime="2018-01-07">2018-01-07</time>
+				  <a href="/2018/01/07/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" title="代理模式">代理模式</a>
+				  </li> -->
+				 <div class="post-preview">
+				    <a href="/2018/01/07/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/">
+				        <h2 class="post-title">
+                            代理模式
+				        </h2>
+				        
+				    </a>
+				    <!-- <p class="post-meta">2018-01-07</p> -->
+				</div>
+				<hr>
+				
+			</div>
+			
+			<div class="one-tag-list">
+			  	<span class="fa fa-tag listing-seperator" id="代理模式">
+                    <span class="tag-text">代理模式</span>
+                </span>
+				
+				  <!-- <li class="listing-item">
+				  <time datetime="2018-01-07">2018-01-07</time>
+				  <a href="/2018/01/07/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" title="代理模式">代理模式</a>
+				  </li> -->
+				 <div class="post-preview">
+				    <a href="/2018/01/07/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/">
+				        <h2 class="post-title">
+                            代理模式
+				        </h2>
+				        
+				    </a>
+				    <!-- <p class="post-meta">2018-01-07</p> -->
+				</div>
+				<hr>
+				
+			</div>
+			
+			<div class="one-tag-list">
+			  	<span class="fa fa-tag listing-seperator" id="CGLib">
+                    <span class="tag-text">CGLib</span>
+                </span>
+				
+				  <!-- <li class="listing-item">
+				  <time datetime="2018-01-07">2018-01-07</time>
+				  <a href="/2018/01/07/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" title="代理模式">代理模式</a>
+				  </li> -->
+				 <div class="post-preview">
+				    <a href="/2018/01/07/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/">
+				        <h2 class="post-title">
+                            代理模式
+				        </h2>
+				        
+				    </a>
+				    <!-- <p class="post-meta">2018-01-07</p> -->
+				</div>
+				<hr>
+				
+			</div>
+			
 
-        </div>
-    </div>
+		</div>
+	</div>
 </div>
 
-<!-- Footer -->
-<!-- Footer -->
+
+    <!-- Footer -->
 <footer>
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
-                <br>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <ul class="list-inline text-center">
-                
-                
-                
+                    
+                    <li>
+                        <a href="/feed.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <!-- add jianshu add target = "_blank" to <a> by BY -->
+                    
+                    
+
+                    <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
+                    
                     <li>
                         <a target="_blank" href="https://www.zhihu.com/people/mijackstudio">
                             <span class="fa-stack fa-lg">
@@ -681,56 +882,60 @@
                             </span>
                         </a>
                     </li>
-                
+                    
+                    
 
-                
+
+                    
+                    
                     <li>
-                        <a target="_blank" href="http://weibo.com/mijackstudio">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-
-                
-                    <li>
-                        <a target="_blank"  href="https://github.com/mijack">
+                        <a target="_blank" href="https://github.com/github">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-github fa-stack-1x fa-inverse"></i>
                             </span>
                         </a>
                     </li>
-                
-
-                
-
+                    
+                    
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; 江湖迈杰的博客 2018
+                    Copyright &copy; Mi&Jack 2018
                     <br>
-                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
-                    <br>
-                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                    Theme on <a href="https://github.com/mijack/mijack.github.io.git">GitHub</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=github&repo=github.github.io&type=star&count=true" >
+                    </iframe>
                 </p>
-
             </div>
         </div>
     </div>
 </footer>
 
 <!-- jQuery -->
-<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.min.js "></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.min.js "></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="/js/blog.js"></script>
+<script src="/js/hux-blog.min.js "></script>
+
+<!-- Service Worker -->
+
+<script type="text/javascript">
+    if(navigator.serviceWorker){
+        // For security reasons, a service worker can only control the pages that are in the same directory level or below it. That's why we put sw.js at ROOT level.
+        navigator.serviceWorker
+            .register('/sw.js')
+            .then((registration) => {console.log('Service Worker Registered. ', registration)})
+            .catch((error) => {console.log('ServiceWorker registration failed: ', error)})
+    }
+</script>
+
+
 
 <!-- async load function -->
 <script>
@@ -744,11 +949,31 @@
     }
 </script>
 
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/ 
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers   
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
 <!-- jquery.tagcloud.js -->
 <script>
     // only load tagcloud.js in tag.html
     if($('#tag_cloud').length !== 0){
-        async("http://mijack.github.io/js/jquery.tagcloud.js",function(){
+        async('/js/jquery.tagcloud.js',function(){
             $.fn.tagcloud.defaults = {
                 //size: {start: 1, end: 1, unit: 'em'},
                 color: {start: '#bbbbee', end: '#0085a1'},
@@ -760,46 +985,45 @@
 
 <!--fastClick.js -->
 <script>
-    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
         var $nav = document.querySelector("nav");
         if($nav) FastClick.attach($nav);
     })
 </script>
 
-<!-- Google Analytics -->
 
+<!-- Google Analytics -->
 
 <script>
     // dynamic User by Hux
-    var _gaId = 'UA-75651210- 1';
-    var _gaDomain = 'auto';
+    var _gaId = 'UA-75651210-1';
+    var _gaDomain = 'mijack.github.io';
+
     // Originial
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
     ga('create', _gaId, _gaDomain);
     ga('send', 'pageview');
 </script>
 
 
+
 <!-- Baidu Tongji -->
 
 
-<!-- swiftype -->
-<script type="text/javascript">
-  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
-  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
-  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
-  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
 
-  _st('install','null','2.0.0');
-</script>
 
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- Side Catalog -->
 
-<!--wechat title img-->
-<img class="wechat-title-img" src="https://avatars.githubusercontent.com/u/4158061?v=3">
+
+
+
+
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
 </body>
 
 </html>
