@@ -84,9 +84,6 @@ CMS（Concurrent Mark Sweep）收集器是在最短回收停顿时间为前提�
 3. **垃圾收集结束后残余大量空间碎片**<br/>
     CMS收集器采用的标记清除算法，本身存在垃圾收集结束后残余大量空间碎片的缺点。CMS配合适当的内存整理策略在一定程度上可以解决这个问题。
 
-
-## G1收集器
-
 # 参考资料
 1. [深入理解Java虚拟机（第2版）](https://book.douban.com/subject/24722612/)
 2. [JVM（二）垃圾收集算法与收集器](http://alicharles.com/article/jvm-gc/)
