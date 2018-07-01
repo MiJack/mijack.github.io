@@ -1,0 +1,80 @@
+basic_info:
+    -   key:    姓名
+        value:  袁宇杰
+
+    -   key:    学校
+        value:  华东师范大学
+
+    -   key:    学历
+        value:  研究生（2019届）
+
+    -   key:    Github
+        value:  Mi&Jack
+        link:   https://github.com/mijack
+
+    -   key:    邮箱
+        value:  mijackstudio@gmail.com
+        link:   mailto://mijackstudio@gmail.com
+
+    -   key:    专业
+        value:  计算机技术
+
+    -   key:    方向
+        value:  移动应用分析(SQSLab)
+        link:   http://www.sqslab.com
+
+    -   key:    意向岗位
+        value:  Java开发工程师	
+
+    -   key:    意向城市
+        value:  杭州
+educations:
+    -   education:    专业硕士(工程硕士)
+        school: 华东师范大学
+        major:  计算机技术
+        time:   2016年9月~至今
+    -   education:  本科
+        school: 浙江工业大学
+        major:  物联网工程
+        time:   2012年9月~2016年6月
+publications:
+    - "Yujie Yuan, Lihua Xu, Xusheng Xiao, Andy Podgurski, and Huibiao Zhu,RunDroid: Recovering Execution Call Graphs for Android Applications. In Proc. ESEC/FSE, 2017."
+
+skills:
+    - Java的基础编程能力，对JVM有一定的了解
+    - 了解常见数据结构、算法以及正则表达式，熟悉常用的设计模式及其使用场景
+    - 了解构建工具（Maven、Gradle等）和版本控制（Git）并可以熟练运用
+    - 了解MySQL数据库的使用，对Spring，MyBatis等框架的源码有一定的了解
+    - 具备独立开发Android应用和Java Web项目（SSM框架）的能力
+projects:
+    -   title:	关于Android 运行时动态调用图的生成
+        content:    RunDroid以帮助开发者了解Android应用的执行过程作为基本出发点，利用SrcML和Xposed让Android应用在执行时输出相应的执行日志信息，进而在Neo4J数据库中构建应用程序执行时的动态调用图，除外还提供了函数间触发关系（例如事件绑定与多线程）的展现，相关工作以论文的形式于2017年7月被ESEC/FSE 2017会议（CCF-A）录用。
+    -   title:  基于Spring相关技术的博客管理系统
+        content:    项目采用Bootstrap作为前台界面框架，采用Editor.md用于Markdown博客的内容渲染，使用Spring MVC作为网络请求处理框架，基于Spring Data进行数据的ORM持久化管理，同时使用Spring Security对用户相关权限进行基本管理，此外，项目还使用MongoDB用于博客源文件的存储，基于ElasticSearch开发了对应的搜索功能。
+    -   title:  ImageDriver
+        content:    这是Study Jams的结业作品，是一款基于Firebase存储的图片同步软件，可以浏览你本地的图片，同时将图片上传到Firebase上提供Firebase文件的下载服务，使用了Firebase Auth、Firebase Storage、Firebase Database等多项服务，
+interns:
+    -   company:  百度商业搜索商品推广部
+        job:    Java开发工程师
+        time:   2018年1月~2018年5月
+        content:    负责百度闪投业务端后端（Java）的开发和维护工作，参与结构化（普通版）、结构化（高级版）的开发与维护工作。参与项目有分公司样式权限控制机制、商品字段检验、客户商品投放在线报表等，另外还从事百度闪投离线报表的维护工作。
+
+    -   company:   脆饼（杭州）网络技术有限公司
+        job:    Android开发工程师
+        time:   2015年10月~2016年2月，2016年7月~2016年8月
+        content:    负责“脆饼”Android客户端的需求讨论、迭代开发、bug修补等工作。参与完成了客户端从1.3到1.8版本的迭代开发工作，独立完成了“关于我”、“预约列表”、“时区模块”等若干模块开发工作，学习MultiDex、RxJava、Retrofit技术并运用在实际项目开发过程中。 
+    -   company:    阿里无线事业部
+        job:    Android开发工程师
+        time:   2015年7月~2015年9月
+        content:    实习期间所在的团队为微淘开放团队。实习期间，我参与内部项目 wopc 以及 AppLink 的开发工作。中间还参与“海豹突击队”的内部培训，通过组队的形式和其余 8 人参与完成一款导购类 app——“荐货”的设计与开发，获得评委老师的好评，对产品从诞生到上线的整个过程有了一定的认识。
+
+
+
+awards:
+    - 华东师范大学硕士研究生国家奖学金
+    - 华东师范大学研究生学业奖学金
+    - 网易云课堂“Java 开发工程师（Web方向）”微专业证书
+    - Google Developers Study Jams China结业证书
+    - 浙江工业大学天鸽杯手机开发大赛三等奖
+    - 浙江省高校计算机等级考试（数据库）
+    - 浙江省大学生物理创新竞赛一等奖
