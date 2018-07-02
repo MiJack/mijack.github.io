@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: about
 title: "About"
 catalog: true
 description: "Hey, this is MiJack."
@@ -15,7 +15,7 @@ description: "Hey, this is MiJack."
 <div class="zh post-container">
     {% assign profile = site.data.profile %}
     <ul>
-        <h1 class="profile head">个人信息</h1>
+        <h1 id='basic_info' class="profile head">个人信息</h1>
         {% for info in profile.basic_info %}
             <li>
                 <span class="profile key basic_info">{{ info.key }}:</span>
@@ -26,7 +26,7 @@ description: "Hey, this is MiJack."
     </ul>
     <hr/>      
     <ul>
-        <h1 class="profile head">教育经历</h1>
+        <h1 id='educations' class="profile head">教育经历</h1>
 
         {% for education in profile.educations %}
             <li>
@@ -39,7 +39,7 @@ description: "Hey, this is MiJack."
     </ul>
     
     <ul>
-        <h1 class="profile head">专业技能</h1>
+        <h1 id='skills' class="profile head">专业技能</h1>
         {% for skill in profile.skills %}
             <li>
                 <span class="profile key skill">{{ skill }}</span>
@@ -49,7 +49,7 @@ description: "Hey, this is MiJack."
     </ul>
     <hr/>   
     <ul>           
-        <h1 class="profile head">实习经历</h1>
+        <h1 id='interns' class="profile head">实习经历</h1>
         {% for intern in profile.interns %}
             <li>
                 <span class="profile key intern time">{{ intern.time }}</span><br/>
@@ -61,7 +61,7 @@ description: "Hey, this is MiJack."
     </ul>
     <hr/>  
     <ul>
-        <h1 class="profile head">项目介绍</h1>
+        <h1 id="projects" class="profile head">项目介绍</h1>
         {% for project in profile.projects %}
             <li>
                 <span class="profile key project_title">{{ project.title }}</span><br/>
@@ -73,7 +73,7 @@ description: "Hey, this is MiJack."
  
   
     <ul>
-        <h1 class="profile head">学术经历</h1>
+        <h1 id="publications" class="profile head">学术经历</h1>
 
         {% for publication in profile.publications %}
             <li>
@@ -84,7 +84,7 @@ description: "Hey, this is MiJack."
     </ul>
     <hr/>  
     <ul>
-        <h1 class="profile head">获奖经历</h1>
+        <h1 id="awards" class="profile head">获奖经历</h1>
         {% for award in profile.awards %}
             <li>
                 <span class="profile key award">{{ award }}</span>
