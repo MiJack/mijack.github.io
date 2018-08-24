@@ -99,8 +99,8 @@ service-worker: true
 # Friends
 friends: [
     {
-        title: "buwengqi",
-        href: "http://buwengqi.github.io"
+        title: "buwenqi",
+        href: "https://buwenqi.github.io"
     },{
         title: "yangyingming",
         href: "http://yangyingming.com"
