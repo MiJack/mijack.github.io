@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 理解Spring系列——前言：
+title: 理解Spring系列——前言
 date: 2020-06-07
 catalog: true
 tags: 
