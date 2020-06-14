@@ -31,7 +31,7 @@ tags:
 源码分析主要分为以下几个部分：
 
 - Spring IoC篇（spring-beans、spring-context等模块）
-    - [什么是控制反转](/2020/06/13/What-is-the-inversion-of-control/)
+    - [什么是控制反转](/2020/06/14/What-is-the-inversion-of-control/)
     - BeanDefination的抽象
     - Bean的生命周期
     - BeanDefinition的注册
