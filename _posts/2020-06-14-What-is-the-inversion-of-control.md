@@ -9,6 +9,8 @@ tags:
 - 源码分析
 - IoC
 ---
+> 声明：我已委托「维权骑士」（rightknights.com）为我的文章进行维权行动。
+
 # 控制反转 —— 软件复用的解决方案。
 控制反转（Inversion of Control, IoC）最早由Michael Mattsson在《Object-Oriented Frameworks：A survey of methodological issues》一文中提出。
 
