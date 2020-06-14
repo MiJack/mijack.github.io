@@ -48,7 +48,10 @@ public class YourBizListener extends OnButtonClickListener {
         // 编写按钮按下的业务逻辑
     }
 }
+```
+![](/imgs/the-program-dependency-for-terminal.png)
 
+```java
 public class GUI {
     public static void main(String[] args) {
         Application application = createApplication();
@@ -57,10 +60,6 @@ public class GUI {
     }
 }
 ```
-上述两端代码的程序控制流关系和源码依赖关系如下：
-
-![](/imgs/the-program-dependency-for-terminal.png)
-
 ![](/imgs/the-program-dependency-for-GUI.png)
 
 ### 设计分析
