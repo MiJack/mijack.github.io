@@ -113,10 +113,10 @@ IoC的实现方式有很多，最为常见的可以分为以下几种：
 
 # 场景举例
 
-- Spring Bean容器
-- Servlet 容器（Tomcat等）
-- Java ServiceLoader：https://docs.oracle.com/javase/8/docs/api/java/util/ServiceLoader.html
-- Spring SpringFactoriesLoader：https://docs.spring.io/spring-framework/docs/5.2.6.RELEASE/javadoc-api/org/springframework/core/io/support/SpringFactoriesLoader.html
+- [Spring Bean容器](https://docs.spring.io/spring/docs/5.2.6.RELEASE/spring-framework-reference/core.html#beans)
+- Servlet 容器，如[Tomcat](http://tomcat.apache.org/)等
+- [ServiceLoader](https://docs.oracle.com/javase/8/docs/api/java/util/ServiceLoader.html)
+- [SpringFactoriesLoader](https://docs.spring.io/spring-framework/docs/5.2.6.RELEASE/javadoc-api/org/springframework/core/io/support/SpringFactoriesLoader.html)
 
 # 参考资料
 
