@@ -39,6 +39,8 @@ tags:
 
 ### 类 DefaultListableBeanFactory 的继承关系
 
+![](/imgs/Spring-Framework-DefaultListableBeanFactory-Hierarchical.png)
+
 ### ApplicationContext接口
 
 从 ApplicationContext 的定义上，我们可以看出，接口 ApplicationContext 默认具备的能力
