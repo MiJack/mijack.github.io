@@ -37,9 +37,26 @@ tags:
 - `SimpleJndiBeanFactory`则是基于JNDI场景发现对应Bean。
 
 
-### 类 DefaultListableBeanFactory 的继承关系
+### 类 DefaultListableBeanFactory 
+
+类 DefaultListableBeanFactory 的继承关系如下图所示， 从中我们可以基本上了解到 类 DefaultListableBeanFactory 的基本功能。
 
 ![](/imgs/Spring-Framework-DefaultListableBeanFactory-Hierarchical.png)
+
+从接口实现上看，类 DefaultListableBeanFactory 主要实现了以下基础的接口：
+- **`AliasRegistry`** ：属于spring-core模块（别名能力不限制于Bean Name场景，因此定义在core模块中），提供String类型别名相关能力，对应的实现类为 SimpleAliasRegistry ，可以看做是简易版的 Map<String,String> 抽象能力，提供别名的增删改查相关能力；
+- **`SingletonBeanRegistry`** ：属于spring-beans模块，提供单例bean对象的注册和查询能力，可以看做是简易版的 Map<String,Object> ；
+- **`ListableBeanFactory：`**：属于spring-beans模块，在 BeanFactory 的基础上提供更进一步的非精确化查询能力，支持基于类型（ `Class` 和 `ResolvableType` ）的查询能力，返回的结果支持beanName 和`Map<BeanName，Bean>`；
+- **`HierarchicalBeanFactory`**： 属于spring-beans模块，提供多层次的BeanFactory结构，允许多个BeanFactory之间存在继承关系。例如在 WebApplicationCpontext 的使用场景中， WebApplicationContext 依赖于基于XML配置的 XMLApplicationContext等；
+- **`AutowireCapableBeanFactory`**：属于spring-beans模块，提供基于bean的自动装配能力，包括依赖查找（Dependence Lookup）和依赖注入（Dependence Inject）能力；
+- **`ConfigurableBeanFactory`**： 属于spring-beans模块，提供 DefaultListableBeanFactory 相关数据的读取和配置接口，同时提供销毁bean 的能力。
+
+另外，接口`BeanDefinitionRegistry` 提供了基于beanName的 BeanDefinition 的注册、删除和查询能力。
+
+- ConfigurableListableBeanFactory
+- ：
+
+
 
 ### ApplicationContext接口
 
