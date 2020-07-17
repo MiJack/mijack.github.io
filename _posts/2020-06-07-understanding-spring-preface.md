@@ -32,6 +32,7 @@ tags:
 
 - Spring IoC篇（spring-beans、spring-context等模块）
     - [什么是控制反转](/2020/06/14/What-is-the-inversion-of-control/)
+    - [BeanFactory，Spring IoC的核心担当](/2020/07/14/BeanFactory-in-Spring/)
     - BeanDefination的抽象
     - Bean的生命周期
     - BeanDefinition的注册
