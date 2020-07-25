@@ -3,11 +3,12 @@ layout: post
 title: 理解Spring系列——什么是控制反转（Inversion of Control, IoC）
 date: 2020-06-14
 catalog: true
+categories: 理解Spring系列
 tags: 
 - Spring
 - 控制反转
-- 源码分析
 - IoC
+- 理解Spring系列
 ---
 > 声明：我已委托「维权骑士」（rightknights.com）为我的文章进行维权行动。
 

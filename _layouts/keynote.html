@@ -10,7 +10,7 @@ layout: default
 <style type="text/css">
     header.intro-header{
         /*background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')*/
-        height: 500px;
+        height: 200px;
         overflow: hidden;
     }
     header iframe{
@@ -63,8 +63,7 @@ layout: default
             <div class="post-container
                 col-lg-8 col-lg-offset-2
                 col-md-10 col-md-offset-1 ">
-
-				{{ content }}
+                <h1>KEY NOTE</h1>
 
                 <hr style="visibility: hidden;">
 
@@ -133,7 +132,7 @@ layout: default
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                         {% for tag in site.tags %}
-                            {% if tag[1].size > {{site.featured-condition-size}} %}
+                            {% if tag[1].size > site.featured-condition-size %}
                                 <a href="/tags/#{{ tag[0] }}" title="{{ tag[0] }}" rel="{{ tag[1].size }}">
                                     {{ tag[0] }}
                                 </a>
