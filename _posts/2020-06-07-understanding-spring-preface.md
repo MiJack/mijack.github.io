@@ -35,7 +35,7 @@ tags:
     - [什么是控制反转](/2020/06/14/What-is-the-inversion-of-control/)
     - [BeanFactory，Spring IoC的核心担当](/2020/07/14/BeanFactory-in-Spring/)
     - [BeanDefinition，Bean的实例化抽象表达](/2020/07/26/BeanDefinition-in-Spring-Framework/)
-    - Spring Bean 的初始化过程
+    - Spring Bean 的生命周期
     - Spring Bean 的依赖管理
     - Spring Bean 的Scope管理
     - Spring IoC 容器的拓展点
