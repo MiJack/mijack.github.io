@@ -3,9 +3,10 @@ layout: post
 title: 理解Spring系列——前言
 date: 2020-06-07
 catalog: true
+categories: 理解Spring系列
 tags: 
 - Spring
-- 源码分析
+- 理解Spring系列
 ---
 
 
@@ -33,8 +34,11 @@ tags:
 - Spring IoC篇（spring-beans、spring-context等模块）
     - [什么是控制反转](/2020/06/14/What-is-the-inversion-of-control/)
     - [BeanFactory，Spring IoC的核心担当](/2020/07/14/BeanFactory-in-Spring/)
-    - BeanDefination的抽象
-    - Bean的生命周期
+    - [BeanDefinition，Bean的实例化抽象表达](/2020/07/26/BeanDefinition-in-Spring-Framework/)
+    - Spring Bean 的生命周期
+    - Spring Bean 的依赖管理
+    - Spring Bean 的Scope管理
+    - Spring IoC 容器的拓展点
     - BeanDefinition的注册
     - BeanFactory体系及拓展
 - Spring AOP篇（spring-aop模块）

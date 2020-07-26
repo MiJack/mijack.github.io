@@ -9,9 +9,9 @@ layout: default
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
                 <div class="site-heading">
                     <h1 style="visibility: hidden;">{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</h1>
-                    <h1 style="visibility: hidden;">{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</h1>
-                    <h1 style="visibility: hidden;">{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</h1>
-                    <h1 style="visibility: hidden;">{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</h1>
+                    <!-- <h1 style="visibility: hidden;">{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</h1> -->
+                    <!-- <h1 style="visibility: hidden;">{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</h1> -->
+                    <!-- <h1 style="visibility: hidden;">{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</h1> -->
                     <h1 style="visibility: hidden;">{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</h1>
                       <!--<hr class="small">-->
                     <span style="visibility: hidden;" class="subheading"></span>
@@ -85,7 +85,23 @@ layout: default
                 col-xs-12
                 sidebar-container
             ">
-                <!-- Featured Tags -->
+                <!-- Categories -->
+              
+
+                <!-- Short About -->
+                <section class="visible-md visible-lg">
+                    <hr><h5><a href="{{'/about/' | prepend: site.baseurl }}">ABOUT ME</a></h5>
+                    <div class="short-about">
+                        {% if site.sidebar-avatar %}
+                            <a href="{{ site.baseurl }}/about">
+                                <img src="{{site.sidebar-avatar}}"/>
+                            </a>
+                        {% endif %}
+                        {% if site.sidebar-about-description %}
+                            <p>{{site.sidebar-about-description}}</p>
+                        {% endif %}
+                    </section>
+                    <!-- Featured Tags -->
                 {% if site.featured-tags %}
                 <section>
                     <hr class="hidden-sm hidden-xs">
@@ -101,22 +117,13 @@ layout: default
                     </div>
                 </section>
                 {% endif %}
-
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="{{'/about/' | prepend: site.baseurl }}">ABOUT ME</a></h5>
-                    <div class="short-about">
-                        {% if site.sidebar-avatar %}
-                            <a href="{{ site.baseurl }}/about">
-                                <img src="{{site.sidebar-avatar}}"/>
-                            </a>
-                        {% endif %}
-                        {% if site.sidebar-about-description %}
-                            <p>{{site.sidebar-about-description}}</p>
-                        {% endif %}
+                
                         <!-- SNS Link -->
-                        <ul class="list-inline">
-                            {% if site.RSS %}
+                        <section>
+                            <hr class="hidden-sm hidden-xs">
+                            <h5>SNS</h5>
+                              <ul class="list-inline">
+                            <!-- {% if site.RSS %}
                             <li>
                                 <a href="{{ "/feed.xml" | prepend: site.baseurl }}">
                                     <span class="fa-stack fa-lg">
@@ -125,7 +132,7 @@ layout: default
                                     </span>
                                 </a>
                             </li>
-                            {% endif %}
+                            {% endif %} -->
                             <!-- add jianshu add target = "_blank" to <a> by BY -->
                             {% if site.jianshu_username %}
                             <li>

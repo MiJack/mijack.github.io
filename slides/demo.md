@@ -1,13 +1,11 @@
 ---
-layout: post
+layout: keynote
 title: 理解Spring系列——BeanFactory，Spring IoC的核心担当
 date: 2020-07-14
 catalog: true
-categories: 理解Spring系列
 tags: 
 - Spring
 - BeanFactory
-- 理解Spring系列
 ---
 > 声明：我已委托「维权骑士」（rightknights.com）为我的文章进行维权行动。
 

@@ -1,0 +1,88 @@
+---
+title: Categories
+layout: default
+---
+
+<!-- Page Header -->
+<header class="intro-header" style="background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading" id="tag-heading">
+					<h1 style="visibility: hidden;">{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</h1>
+                    <h1 style="visibility: hidden;">{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</h1>
+                    <!-- <h1 style="visibility: hidden;">{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</h1> -->
+                    <!-- <h1 style="visibility: hidden;">{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</h1> -->
+                    <!-- <h1 style="visibility: hidden;">{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</h1> -->
+                      <!--<hr class="small">-->
+       			</div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+	<div class="row">
+		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+			
+
+<div id="archives">
+	
+	{% for category in site.categories  %}
+	  <div class="archive-group">
+		{% capture category_name %}{{ category | first }}{% endcapture %}
+		<div id="#{{ category_name | slugize }}"></div>
+		<p></p>
+		<span class="fa fa-tag listing-seperator" id="{{ tag[0] }}">
+			<span class="tag-text">{{ category_name }}</span>
+		</span>
+
+		<!-- <h3 class="category-head">{{ category_name }}</h3> -->
+		<a name="{{ category_name | slugize }}"></a>
+		{% assign posts = site.categories[category_name] | sort: 'date'  %}
+
+		{% for post in posts  %}
+		<article class="archive-item">
+		  <h4><a href="{{ site.baseurl }}{{ post.url }}">{{post.title}}</a></h4>
+		</article>
+		<!-- {% for post in tag[1] %} -->
+
+				  <!-- <li class="listing-item">
+				  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+				  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+				  </li> -->
+				 <div class="post-preview">
+				    <a href="{{ post.url | prepend: site.baseurl }}">
+				        <h2 class="post-title">
+                            {{ post.title }}
+				        </h2>
+				        {% if post.subtitle %}
+				        <h3 class="post-subtitle">
+				            {{ post.subtitle }}
+				        </h3>
+				        {% endif %}
+				    </a>
+				    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+				</div>
+				<hr>
+				<!-- {% endfor %} -->
+		{% endfor %}
+	  </div>
+	{% endfor %}
+	</div>
+
+
+			
+		
+            <!--<blockquote class="tag-comments">
+                标签命名规范：
+                    <li>行业观察、职位、公司优先使用中文</li>
+                    <li>外国产品、术语优先使用英文</li>
+            </blockquote>-->
+
+            <!-- 标签列表 -->
+			
+		</div>
+	</div>
+</div>
